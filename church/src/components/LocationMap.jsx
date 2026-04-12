@@ -1,0 +1,497 @@
+// components/LocationMap.jsx
+import { useState, useEffect } from "react";
+
+const LocationMap = () => {
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("map");
+  const [directions, setDirections] = useState({
+    from: "",
+    travelMode: "driving"
+  });
+  const [showDirections, setShowDirections] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const churchInfo = {
+    name: "Grace Covenant Church",
+    address: "2450 Grace Avenue, Austin, TX 78701",
+    phone: "+1 (512) 555-1234",
+    email: "info@gracecovenant.org",
+    coordinates: {
+      lat: 30.267153,
+      lng: -97.7430608
+    },
+    parking: {
+      main: "On-site parking garage - 300 spaces",
+      street: "Free street parking on surrounding roads",
+      handicap: "Designated handicap parking near all entrances",
+      overflow: "Overflow parking at Grace Community School (weekends only)"
+    },
+    accessibility: {
+      wheelchair: "Fully wheelchair accessible with ramps and elevators",
+      hearing: "Assisted listening devices available at Welcome Center",
+      largePrint: "Large print bulletins available upon request",
+      sensory: "Sensory-friendly room available during services"
+    },
+    nearby: [
+      { name: "Starbucks", type: "Coffee", distance: "0.2 miles", icon: "fa-mug-hot" },
+      { name: "Whole Foods", type: "Grocery", distance: "0.3 miles", icon: "fa-shopping-basket" },
+      { name: "Central Park", type: "Park", distance: "0.5 miles", icon: "fa-tree" },
+      { name: "CVS Pharmacy", type: "Pharmacy", distance: "0.1 miles", icon: "fa-prescription-bottle" }
+    ],
+    publicTransport: {
+      bus: "Bus routes 3, 10, and 20 stop at Grace Ave & 24th St",
+      rail: "MetroRail Downtown Station - 0.8 miles away",
+      bike: "Bike racks available at all entrances"
+    }
+  };
+
+  // Simulate map load (in production, use Google Maps or Mapbox API)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMapLoaded(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleGetDirections = (e) => {
+    e.preventDefault();
+    if (directions.from.trim()) {
+      const mapsUrl = `https://www.google.com/maps/dir/${encodeURIComponent(directions.from)}/${encodeURIComponent(churchInfo.address)}`;
+      window.open(mapsUrl, '_blank');
+      setShowDirections(false);
+      setDirections({ from: "", travelMode: "driving" });
+    }
+  };
+
+  const copyAddress = () => {
+    navigator.clipboard.writeText(churchInfo.address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const openGoogleMaps = () => {
+    window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(churchInfo.address)}`, '_blank');
+  };
+
+  const openAppleMaps = () => {
+    window.open(`https://maps.apple.com/?address=${encodeURIComponent(churchInfo.address)}`, '_blank');
+  };
+
+  const openWaze = () => {
+    window.open(`https://waze.com/ul?q=${encodeURIComponent(churchInfo.address)}`, '_blank');
+  };
+
+  return (
+    <section id="location" className="py-28 px-6 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
+      {/* Modern 2026 decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 border border-amber-500/30">
+            <i className="fas fa-map-marker-alt text-amber-400 text-sm"></i>
+            <span className="text-amber-300 font-semibold tracking-wide uppercase text-xs">Find Us</span>
+            <i className="fas fa-location-dot text-amber-400 text-sm"></i>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold serif text-white mb-4">
+            Our <span className="text-amber-400">Location</span>
+          </h2>
+          <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
+          <p className="text-stone-300 max-w-2xl mx-auto text-lg">
+            Conveniently located in the heart of Austin with easy access from anywhere in the city
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Left Column - Info Cards */}
+          <div className="space-y-6">
+            {/* Address Card */}
+            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-location-dot text-amber-400 text-xl"></i>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-white font-bold text-lg mb-2">Address</h3>
+                  <p className="text-stone-300 text-sm leading-relaxed">{churchInfo.address}</p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <button
+                      onClick={copyAddress}
+                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                    >
+                      <i className="fas fa-copy"></i>
+                      {copied ? "Copied!" : "Copy Address"}
+                    </button>
+                    <button
+                      onClick={openGoogleMaps}
+                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                    >
+                      <i className="fab fa-google"></i>
+                      Google Maps
+                    </button>
+                    <button
+                      onClick={openAppleMaps}
+                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                    >
+                      <i className="fab fa-apple"></i>
+                      Apple Maps
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Card */}
+            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-phone-alt text-amber-400 text-xl"></i>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-white font-bold text-lg mb-2">Contact</h3>
+                  <p className="text-stone-300 text-sm">
+                    <i className="fas fa-phone mr-2 text-amber-400"></i>
+                    {churchInfo.phone}
+                  </p>
+                  <p className="text-stone-300 text-sm mt-2">
+                    <i className="fas fa-envelope mr-2 text-amber-400"></i>
+                    {churchInfo.email}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Get Directions Card */}
+            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-directions text-amber-400 text-xl"></i>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-white font-bold text-lg mb-3">Get Directions</h3>
+                  {!showDirections ? (
+                    <button
+                      onClick={() => setShowDirections(true)}
+                      className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                    >
+                      <i className="fas fa-car"></i>
+                      Plan Your Route
+                    </button>
+                  ) : (
+                    <form onSubmit={handleGetDirections} className="space-y-3">
+                      <input
+                        type="text"
+                        value={directions.from}
+                        onChange={(e) => setDirections(prev => ({ ...prev, from: e.target.value }))}
+                        placeholder="Enter your starting address"
+                        className="w-full px-4 py-2 rounded-xl bg-stone-700/50 border border-stone-600 text-white placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-all"
+                        autoFocus
+                      />
+                      <div className="flex gap-2">
+                        {["driving", "walking", "transit", "bicycling"].map((mode) => (
+                          <button
+                            key={mode}
+                            type="button"
+                            onClick={() => setDirections(prev => ({ ...prev, travelMode: mode }))}
+                            className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
+                              directions.travelMode === mode
+                                ? "bg-amber-500 text-white"
+                                : "bg-stone-700/50 text-stone-400 hover:bg-stone-700"
+                            }`}
+                          >
+                            <i className={`fas fa-${mode === "driving" ? "car" : mode === "walking" ? "walking" : mode === "transit" ? "bus" : "bicycle"} mr-1`}></i>
+                            {mode.charAt(0).toUpperCase() + mode.slice(1, 4)}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          type="submit"
+                          className="flex-1 py-2 bg-amber-500 text-white rounded-xl font-medium hover:bg-amber-600 transition-all"
+                        >
+                          Get Directions
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setShowDirections(false)}
+                          className="py-2 px-4 bg-stone-700 text-stone-300 rounded-xl hover:bg-stone-600 transition-all"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Navigation Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={openWaze}
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+              >
+                <i className="fab fa-waze text-lg"></i>
+                <span className="text-sm">Waze</span>
+              </button>
+              <button
+                onClick={() => window.open(`https://www.google.com/maps/dir//${encodeURIComponent(churchInfo.address)}`, '_blank')}
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+              >
+                <i className="fab fa-google text-lg"></i>
+                <span className="text-sm">Google</span>
+              </button>
+              <button
+                onClick={() => window.open(`https://maps.apple.com/?address=${encodeURIComponent(churchInfo.address)}`, '_blank')}
+                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+              >
+                <i className="fab fa-apple text-lg"></i>
+                <span className="text-sm">Apple</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column - Map and Tabs */}
+          <div className="lg:col-span-2">
+            {/* Map Container */}
+            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-stone-700/50">
+              <div className="relative h-[400px] md:h-[450px] bg-stone-800">
+                {!mapLoaded ? (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <i className="fas fa-spinner fa-spin text-amber-400 text-3xl mb-3"></i>
+                      <p className="text-stone-400">Loading map...</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {/* Interactive Map Image - In production, use Google Maps Embed API */}
+                    <img
+                      src="https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                      alt="Church location map"
+                      className="w-full h-full object-cover opacity-80"
+                    />
+                    {/* Map Overlay with Pin */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 to-transparent"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-amber-500 rounded-full animate-ping opacity-75"></div>
+                        <div className="relative w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center shadow-lg">
+                          <i className="fas fa-church text-white text-sm"></i>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Map Controls */}
+                    <div className="absolute bottom-4 right-4 flex gap-2">
+                      <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
+                        <i className="fas fa-plus"></i>
+                      </button>
+                      <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
+                        <i className="fas fa-minus"></i>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Tabs Navigation */}
+              <div className="border-b border-stone-700">
+                <div className="flex">
+                  {["map", "parking", "accessibility", "nearby"].map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setSelectedTab(tab)}
+                      className={`flex-1 py-3 text-sm font-medium transition-all ${
+                        selectedTab === tab
+                          ? "text-amber-400 border-b-2 border-amber-400"
+                          : "text-stone-400 hover:text-stone-300"
+                      }`}
+                    >
+                      <i className={`fas ${
+                        tab === "map" ? "fa-map" :
+                        tab === "parking" ? "fa-parking" :
+                        tab === "accessibility" ? "fa-wheelchair" : "fa-store"
+                      } mr-2`}></i>
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tab Content */}
+              <div className="p-5">
+                {selectedTab === "map" && (
+                  <div>
+                    <h4 className="text-white font-semibold mb-3">Interactive Map</h4>
+                    <p className="text-stone-400 text-sm mb-4">
+                      Use the controls to zoom and pan. Click the pin for more information about our location.
+                    </p>
+                    <button
+                      onClick={openGoogleMaps}
+                      className="text-amber-400 text-sm hover:text-amber-300 transition-colors flex items-center gap-1"
+                    >
+                      Open in Google Maps <i className="fas fa-external-link-alt text-xs"></i>
+                    </button>
+                  </div>
+                )}
+
+                {selectedTab === "parking" && (
+                  <div className="space-y-3">
+                    <h4 className="text-white font-semibold mb-3">Parking Information</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-building text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Main Parking Garage</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.parking.main}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-road text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Street Parking</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.parking.street}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-wheelchair text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Handicap Parking</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.parking.handicap}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-school text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Overflow Parking</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.parking.overflow}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedTab === "accessibility" && (
+                  <div className="space-y-3">
+                    <h4 className="text-white font-semibold mb-3">Accessibility Features</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-wheelchair text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Wheelchair Access</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.wheelchair}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-ear-deaf text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Hearing Assistance</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.hearing}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-print text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Large Print</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.largePrint}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <i className="fas fa-peace text-amber-400 mt-0.5"></i>
+                        <div>
+                          <p className="text-white text-sm font-medium">Sensory-Friendly</p>
+                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.sensory}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedTab === "nearby" && (
+                  <div>
+                    <h4 className="text-white font-semibold mb-3">Nearby Amenities</h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      {churchInfo.nearby.map((place, idx) => (
+                        <div key={idx} className="flex items-center gap-3 p-2 bg-stone-700/30 rounded-lg">
+                          <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                            <i className={`fas ${place.icon} text-amber-400 text-sm`}></i>
+                          </div>
+                          <div>
+                            <p className="text-white text-sm font-medium">{place.name}</p>
+                            <p className="text-stone-400 text-xs">{place.type} • {place.distance}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-stone-700">
+                      <h5 className="text-white text-sm font-medium mb-2">Public Transportation</h5>
+                      <div className="space-y-1">
+                        <p className="text-stone-400 text-sm"><i className="fas fa-bus mr-2 text-amber-400"></i>{churchInfo.publicTransport.bus}</p>
+                        <p className="text-stone-400 text-sm"><i className="fas fa-train mr-2 text-amber-400"></i>{churchInfo.publicTransport.rail}</p>
+                        <p className="text-stone-400 text-sm"><i className="fas fa-bicycle mr-2 text-amber-400"></i>{churchInfo.publicTransport.bike}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Service Times Banner */}
+        <div className="mt-12 bg-gradient-to-r from-amber-600/20 to-amber-700/20 backdrop-blur-sm rounded-2xl p-6 border border-amber-500/20 text-center">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
+                <i className="fas fa-clock text-amber-400 text-xl"></i>
+              </div>
+              <div className="text-left">
+                <h4 className="text-white font-semibold">Service Times</h4>
+                <p className="text-stone-300 text-sm">Sunday 9:00 AM & 11:00 AM | Wednesday 7:00 PM | Saturday 6:00 PM</p>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                const serviceTimesSection = document.getElementById("service-times");
+                if (serviceTimesSection) {
+                  serviceTimesSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full font-medium transition-all flex items-center gap-2"
+            >
+              View Full Schedule <i className="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        {/* Virtual Tour Link */}
+        <div className="text-center mt-8">
+          <button className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors">
+            <i className="fas fa-vr-cardboard text-lg"></i>
+            <span>Take a Virtual Tour of Our Church</span>
+            <i className="fas fa-arrow-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        .animate-ping {
+          animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default LocationMap;

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* your custom styles below */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fefcf8;
+}
+
+/* custom classes (no @layer needed in v4) */
+.serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-overlay {
+  background: linear-gradient(105deg, rgba(20,15,5,0.65) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+/* animations stay the same */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
