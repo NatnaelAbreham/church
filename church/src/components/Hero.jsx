@@ -19,8 +19,7 @@ const Hero = () => {
     { url: image11, alt: "Church interior with warm light" },
     { url: image2, alt: "Church interior with warm light" },
     { url: image5, alt: "Church interior with warm light" },
-    { url: image6, alt: "Church interior with warm light" },
-    
+    { url: image6, alt: "Church interior with warm light" }, 
   ];
 
   // Image rotation every 3 seconds
@@ -215,7 +214,7 @@ const Hero = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="flex flex-wrap justify-center gap-6 mt-10 pt-6">
+        {/* <div className="flex flex-wrap justify-center gap-6 mt-10 pt-6">
           <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 stats-card">
             <div className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">2,500+</div>
             <div className="text-xs text-white/60">Weekly Members</div>
@@ -228,7 +227,7 @@ const Hero = () => {
             <div className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">50+</div>
             <div className="text-xs text-white/60">Years Serving</div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Wave Divider */}
