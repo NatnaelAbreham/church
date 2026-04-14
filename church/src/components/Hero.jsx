@@ -2,6 +2,19 @@
 import { useState, useEffect } from "react";
 import { ChevronRight, Play, Calendar, Heart, Sparkles, Cross } from "lucide-react";
 
+import '../css/hero.css';
+import image1 from '../assets/images/c1.jpg';
+import image2 from '../assets/images/c2.jpg';
+import image3 from '../assets/images/c3.jpg';
+/* import image4 from '../assets/images/c4.jpg'; */
+import image5 from '../assets/images/c5.jpg';
+
+import image6 from '../assets/images/c6.jpg';
+import image7 from '../assets/images/c7.jpg';
+/* import image8 from '../assets/images/c8.jpg';
+import image9 from '../assets/images/c9.jpg'; */
+import image10 from '../assets/images/c10.jpg';
+
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
@@ -9,9 +22,55 @@ const Hero = () => {
   // Dynamic church-themed images - now more visible
   const images = [
     {
-      url: "https://images.pexels.com/photos/2606355/pexels-photo-2606355.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      url: image1,
       alt: "Church interior with warm light"
     },
+    
+    {
+      url: image2,
+      alt: "Church interior with warm light"
+    },
+    {
+      url: image3,
+      alt: "Church interior with warm light"
+    },
+   /*  {
+      url: image4,
+      alt: "Church interior with warm light"
+    }, */
+    {
+      url: image5,
+      alt: "Church interior with warm light"
+    },
+    
+    
+    
+     {
+      url: image6,
+      alt: "Church interior with warm light"
+    },
+    
+    {
+      url: image7,
+      alt: "Church interior with warm light"
+    },
+    /* {
+      url: image8,
+      alt: "Church interior with warm light"
+    }, */
+    /* {
+      url: image9,
+      alt: "Church interior with warm light"
+    }, */
+    {
+      url: image10,
+      alt: "Church interior with warm light"
+    },
+    
+    
+    
+    
+    /* ,
     {
       url: "https://images.pexels.com/photos/2775221/pexels-photo-2775221.jpeg?auto=compress&cs=tinysrgb&w=1600",
       alt: "Person praying with cross"
@@ -27,7 +86,7 @@ const Hero = () => {
     {
       url: "https://images.pexels.com/photos/5409016/pexels-photo-5409016.jpeg?auto=compress&cs=tinysrgb&w=1600",
       alt: "Church cross stained glass"
-    }
+    } */
   ];
 
   // Faster image rotation - every 3 seconds
@@ -263,112 +322,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes float-slow {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px);
-          }
-          50% {
-            transform: translateY(-10px) translateX(5px);
-          }
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 0.2;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.4;
-            transform: scale(1.05);
-          }
-        }
-        
-        @keyframes scroll {
-          0% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(6px);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0.1;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.5;
-            transform: scale(1.5);
-          }
-        }
-        
-        .animate-fade-up {
-          animation: fadeUp 0.8s ease-out forwards;
-        }
-        
-        .animate-slide-down {
-          animation: slideDown 0.6s ease-out forwards;
-        }
-        
-        .animate-float-slow {
-          animation: float-slow 6s ease-in-out infinite;
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
-        }
-        
-        .animate-scroll {
-          animation: scroll 1.5s ease-in-out infinite;
-        }
-        
-        .animate-twinkle {
-          animation: twinkle 3s ease-in-out infinite;
-        }
-        
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-        
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-        
-        .delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
+      {/* CSS Animations  here if you want to add inside jsx*/}
+     
     </section>
   );
 };
