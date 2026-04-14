@@ -1,103 +1,248 @@
- @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes float-slow {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px);
-          }
-          50% {
-            transform: translateY(-10px) translateX(5px);
-          }
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 0.2;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.4;
-            transform: scale(1.05);
-          }
-        }
-        
-        @keyframes scroll {
-          0% {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(6px);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0.1;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 0.5;
-            transform: scale(1.5);
-          }
-        }
-        
-        .animate-fade-up {
-          animation: fadeUp 0.8s ease-out forwards;
-        }
-        
-        .animate-slide-down {
-          animation: slideDown 0.6s ease-out forwards;
-        }
-        
-        .animate-float-slow {
-          animation: float-slow 6s ease-in-out infinite;
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
-        }
-        
-        .animate-scroll {
-          animation: scroll 1.5s ease-in-out infinite;
-        }
-        
-        .animate-twinkle {
-          animation: twinkle 3s ease-in-out infinite;
-        }
-        
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-        
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-        
-        .delay-2000 {
-          animation-delay: 2s;
-        }
+/* Hero Component Styles - Separate CSS File */
+
+/* ========== IMAGE TRANSITIONS ========== */
+.hero-image-container {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-image-active {
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.hero-image-inactive {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* Subtle zoom animation for active images */
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-image-active .hero-image {
+  animation: subtleZoom 8s ease-in-out infinite;
+}
+
+@keyframes subtleZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ========== FLOATING ANIMATIONS ========== */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* ========== CONTENT ENTRANCE ANIMATIONS ========== */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s ease-out forwards;
+}
+
+/* ========== TWINKLE STARS ========== */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* ========== SCROLL INDICATOR ========== */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+.animate-scroll {
+  animation: scroll 1.5s ease-in-out infinite;
+}
+
+/* ========== DELAY CLASSES ========== */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+/* ========== CROSS HOVER EFFECTS ========== */
+.cross-hover {
+  transition: all 0.5s ease-in-out;
+}
+
+.cross-hover:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* ========== BUTTON TRANSITIONS ========== */
+.btn-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-transition:hover {
+  transform: scale(1.05);
+}
+
+.icon-transition {
+  transition: transform 0.3s ease-in-out;
+}
+
+.group:hover .icon-rotate {
+  transform: rotate(12deg);
+}
+
+.group:hover .icon-translate {
+  transform: translateX(4px);
+}
+
+.group:hover .icon-scale {
+  transform: scale(1.1);
+}
+
+/* ========== STATS CARD TRANSITIONS ========== */
+.stats-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.stats-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ========== LIVE BUTTON PULSE ========== */
+.live-pulse {
+  position: relative;
+}
+
+.live-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ========== SHINE EFFECTS ========== */
+.shine-effect {
+  transition: all 0.3s ease-out;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 768px) {
+  @keyframes subtleZoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-float-slow {
+    animation-duration: 8s;
+  }
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-pulse-slow,
+  .animate-fade-up,
+  .animate-slide-down,
+  .animate-twinkle,
+  .animate-bounce,
+  .hero-image-active .hero-image {
+    animation: none;
+  }
+  
+  .hero-image-active {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  
+  .hero-image-inactive {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

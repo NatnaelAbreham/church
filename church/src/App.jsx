@@ -1,8 +1,8 @@
 // App.jsx (updated - final version with Blog)
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Ministries from "./components/Ministries";
+ import About from "./components/About";
+/*import Ministries from "./components/Ministries";
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
 import Testimonials from "./components/Testimonials";
@@ -21,15 +21,15 @@ import GivingProgress from "./components/GivingProgress";
 import Blog from "./components/Blog";
 import Giving from "./components/Giving";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer"; */
 
 function App() {
   return (
     <>
       <Navbar />
       <Hero />
-      <About />
-      <Ministries />
+     <About />
+       {/* <Ministries />
       <Events />
       <Sermons />
       <Testimonials />
@@ -48,7 +48,7 @@ function App() {
       <Blog />
       <Giving />
       <Contact />
-      <Footer />
+      <Footer /> */}
     </>
   );
 }

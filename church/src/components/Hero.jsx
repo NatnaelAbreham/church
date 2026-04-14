@@ -2,101 +2,35 @@
 import { useState, useEffect } from "react";
 import { ChevronRight, Play, Calendar, Heart, Sparkles, Cross } from "lucide-react";
 
-import '../css/hero.css';
-import image1 from '../assets/images/c1.jpg';
-import image2 from '../assets/images/c2.jpg';
-import image3 from '../assets/images/c3.jpg';
-/* import image4 from '../assets/images/c4.jpg'; */
-import image5 from '../assets/images/c5.jpg';
+// Import the CSS file
+import "../css/hero.css"; // Adjust path as needed
 
+import image2 from '../assets/images/c2.jpg';
+import image5 from '../assets/images/c5.jpg';
 import image6 from '../assets/images/c6.jpg';
-import image7 from '../assets/images/c7.jpg';
-/* import image8 from '../assets/images/c8.jpg';
-import image9 from '../assets/images/c9.jpg'; */
-import image10 from '../assets/images/c10.jpg';
+import image11 from '../assets/images/c11.jpg';
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
 
-  // Dynamic church-themed images - now more visible
+  // Dynamic church-themed images
   const images = [
-    {
-      url: image1,
-      alt: "Church interior with warm light"
-    },
+    { url: image11, alt: "Church interior with warm light" },
+    { url: image2, alt: "Church interior with warm light" },
+    { url: image5, alt: "Church interior with warm light" },
+    { url: image6, alt: "Church interior with warm light" },
     
-    {
-      url: image2,
-      alt: "Church interior with warm light"
-    },
-    {
-      url: image3,
-      alt: "Church interior with warm light"
-    },
-   /*  {
-      url: image4,
-      alt: "Church interior with warm light"
-    }, */
-    {
-      url: image5,
-      alt: "Church interior with warm light"
-    },
-    
-    
-    
-     {
-      url: image6,
-      alt: "Church interior with warm light"
-    },
-    
-    {
-      url: image7,
-      alt: "Church interior with warm light"
-    },
-    /* {
-      url: image8,
-      alt: "Church interior with warm light"
-    }, */
-    /* {
-      url: image9,
-      alt: "Church interior with warm light"
-    }, */
-    {
-      url: image10,
-      alt: "Church interior with warm light"
-    },
-    
-    
-    
-    
-    /* ,
-    {
-      url: "https://images.pexels.com/photos/2775221/pexels-photo-2775221.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      alt: "Person praying with cross"
-    },
-    {
-      url: "https://images.pexels.com/photos/2673992/pexels-photo-2673992.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      alt: "Sun rays through church window"
-    },
-    {
-      url: "https://images.pexels.com/photos/6957625/pexels-photo-6957625.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      alt: "Worship hands raised"
-    },
-    {
-      url: "https://images.pexels.com/photos/5409016/pexels-photo-5409016.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      alt: "Church cross stained glass"
-    } */
   ];
 
-  // Faster image rotation - every 3 seconds
+  // Image rotation every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   // Track mouse for dynamic shine effect
   useEffect(() => {
@@ -117,30 +51,30 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       
-      {/* Dynamic Background with Better Visible Images */}
+      {/* Dynamic Background with Smooth Transitions */}
       <div className="absolute inset-0 z-0">
-        {/* Background Images - More visible (60% opacity) */}
+        {/* Background Images */}
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? "opacity-60" : "opacity-0"
+            className={`hero-image-container ${
+              index === currentImageIndex ? 'hero-image-active' : 'hero-image-inactive'
             }`}
           >
             <img
               src={image.url}
               alt={image.alt}
-              className="w-full h-full object-cover"
+              className="hero-image"
             />
           </div>
         ))}
         
-        {/* Lighter Blue-Black Gradient Overlay */}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-blue-950/70 to-black/60"></div>
         
         {/* Dramatic Radial Gradient for Shine Effect */}
         <div 
-          className="absolute inset-0 opacity-40 transition-all duration-300 ease-out"
+          className="absolute inset-0 opacity-40 shine-effect"
           style={{
             background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(59,130,246,0.3) 0%, rgba(0,0,0,0) 60%)`
           }}
@@ -151,7 +85,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Dynamic Spotlight that follows mouse */}
         <div 
-          className="absolute w-[600px] h-[600px] rounded-full blur-3xl transition-all duration-300"
+          className="absolute w-[600px] h-[600px] rounded-full blur-3xl shine-effect"
           style={{
             background: `radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(59,130,246,0.08) 50%, transparent 70%)`,
             left: `${mousePosition.x}%`,
@@ -160,36 +94,34 @@ const Hero = () => {
           }}
         ></div>
 
-        {/* SHINING CROSSES - Fixed with proper cross shape and glow effects */}
-        
+        {/* SHINING CROSSES */}
         {/* Large Glowing Cross - Top Right */}
         <div className="absolute top-[15%] right-[10%] opacity-30 animate-float-slow">
           <div className="relative">
-            {/* Cross Glow Effect */}
-            <div className="absolute inset-0 bg-white/20 blur-xl rounded-full scale-150"></div>
-            <Cross className="w-16 h-16 text-white/50 drop-shadow-lg" strokeWidth={1.5} />
+            <div className="absolute inset-0 bg-white/20 blur-xl rounded-full scale-150 animate-pulse-slow"></div>
+            <Cross className="w-16 h-16 text-white/50 drop-shadow-lg cross-hover" strokeWidth={1.5} />
           </div>
         </div>
 
-        {/* Medium Cross - Bottom Left with golden shine */}
+        {/* Medium Cross - Bottom Left */}
         <div className="absolute bottom-[20%] left-[8%] opacity-25 animate-float-slow delay-1000">
           <div className="relative">
-            <div className="absolute inset-0 bg-amber-400/20 blur-lg rounded-full scale-150"></div>
-            <Cross className="w-12 h-12 text-amber-300/60 drop-shadow-lg" strokeWidth={1.5} />
+            <div className="absolute inset-0 bg-amber-400/20 blur-lg rounded-full scale-150 animate-pulse-slow"></div>
+            <Cross className="w-12 h-12 text-amber-300/60 drop-shadow-lg cross-hover" strokeWidth={1.5} />
           </div>
         </div>
 
-        {/* Small Cross - Center Left with pulsing effect */}
+        {/* Small Cross - Center Left */}
         <div className="absolute top-[40%] left-[5%] opacity-20 animate-pulse-slow">
           <div className="relative">
             <div className="absolute inset-0 bg-blue-400/20 blur-md rounded-full scale-150"></div>
-            <Cross className="w-8 h-8 text-blue-300/50" strokeWidth={1.5} />
+            <Cross className="w-8 h-8 text-blue-300/50 cross-hover" strokeWidth={1.5} />
           </div>
         </div>
 
-        {/* Tiny Cross - Decorative with sparkle */}
+        {/* Tiny Cross - Decorative */}
         <div className="absolute bottom-[35%] right-[15%] opacity-15 animate-float-slow delay-2000">
-          <Cross className="w-6 h-6 text-white/40" strokeWidth={1} />
+          <Cross className="w-6 h-6 text-white/40 cross-hover" strokeWidth={1} />
         </div>
 
         {/* Shimmering Particles */}
@@ -209,19 +141,19 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Main Content - With All Restored Content & Smaller Text */}
+      {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         
-        {/* Modern Badge - Smaller */}
+        {/* Modern Badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-2xl mb-5 animate-slide-down">
-          <Sparkles className="w-3 h-3 text-blue-300" />
+          <Sparkles className="w-3 h-3 text-blue-300 animate-pulse" />
           <span className="text-xs font-medium tracking-wide text-white/90">
             ✝️ A Place of Grace & Hope
           </span>
           <div className="w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
         </div>
 
-        {/* Animated Title - Smaller Text */}
+        {/* Animated Title */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up">
           <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
             Where Faith
@@ -232,13 +164,13 @@ const Hero = () => {
           </span>
         </h1>
 
-        {/* Subtitle - With restored welcome text */}
+        {/* Subtitle */}
         <p className="text-sm md:text-base max-w-2xl mx-auto mt-4 text-white/80 animate-fade-up delay-100">
           Join us for uplifting worship, authentic fellowship, and life-changing messages.
           <span className="block text-blue-200 text-xs mt-1 font-light tracking-wide">Everyone is welcome ✨</span>
         </p>
 
-        {/* CTA Buttons - 3 buttons with restored Live button */}
+        {/* CTA Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mt-6 animate-fade-up delay-200">
           <a
             href="#contact"
@@ -246,11 +178,11 @@ const Hero = () => {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-5 py-2.5 rounded-full font-semibold shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 text-xs"
+            className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-5 py-2.5 rounded-full font-semibold shadow-2xl btn-transition flex items-center gap-2 text-xs"
           >
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5 icon-transition group-hover:icon-rotate" />
             <span>Plan Your Visit</span>
-            <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-3 h-3 icon-transition group-hover:icon-translate" />
           </a>
           
           <a
@@ -259,22 +191,22 @@ const Hero = () => {
               e.preventDefault();
               document.getElementById("sermons")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 text-xs"
+            className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 px-5 py-2.5 rounded-full font-semibold btn-transition flex items-center gap-2 text-xs"
           >
-            <Play className="w-3.5 h-3.5" />
+            <Play className="w-3.5 h-3.5 icon-transition group-hover:icon-scale" />
             <span>Watch Online</span>
           </a>
 
-          {/* Restored Live Button */}
+          {/* Live Button */}
           <a
             href="#live-stream"
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("live-stream")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group relative overflow-hidden bg-gradient-to-r from-emerald-600/30 to-blue-600/30 backdrop-blur-md border border-emerald-400/50 hover:border-emerald-400/80 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 text-xs"
+            className="group relative overflow-hidden bg-gradient-to-r from-emerald-600/30 to-blue-600/30 backdrop-blur-md border border-emerald-400/50 hover:border-emerald-400/80 px-5 py-2.5 rounded-full font-semibold btn-transition flex items-center gap-2 text-xs"
           >
-            <div className="relative">
+            <div className="live-pulse relative w-1.5 h-1.5">
               <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
               <div className="relative w-1.5 h-1.5 bg-red-500 rounded-full"></div>
             </div>
@@ -282,24 +214,24 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* Restored Social Proof / Stats Section */}
+        {/* Stats Section */}
         <div className="flex flex-wrap justify-center gap-6 mt-10 pt-6">
-          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 stats-card">
             <div className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">2,500+</div>
             <div className="text-xs text-white/60">Weekly Members</div>
           </div>
-          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 stats-card">
             <div className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">15+</div>
             <div className="text-xs text-white/60">Ministries</div>
           </div>
-          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+          <div className="text-center px-4 py-2 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 stats-card">
             <div className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">50+</div>
             <div className="text-xs text-white/60">Years Serving</div>
           </div>
         </div>
       </div>
 
-      {/* RESTORED WAVE DIVIDER - Beautiful wave at bottom */}
+      {/* Wave Divider */}
       <div className="absolute bottom-0 left-0 w-full z-10">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12 md:h-16">
           <defs>
@@ -321,9 +253,6 @@ const Hero = () => {
           <div className="w-0.5 h-1.5 bg-white/60 rounded-full mt-2 animate-scroll"></div>
         </div>
       </div>
-
-      {/* CSS Animations  here if you want to add inside jsx*/}
-     
     </section>
   );
 };
