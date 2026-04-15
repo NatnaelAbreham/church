@@ -1,4 +1,65 @@
-  @keyframes fadeUp {
+/* Modern 2026 Church Website Design System */
+:root {
+  /* Dark Immersive Base */
+  --bg-deep: #0a0e27;
+  --bg-mid: #0f1535;
+  --bg-dark: #060914;
+  
+  /* Glassmorphism Layers */
+  --glass-base: rgba(255, 255, 255, 0.03);
+  --glass-hover: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-active: rgba(255, 255, 255, 0.12);
+  
+  /* Warm Accent System (Amber/Gold - Spiritual Warmth) */
+  --accent-primary: #f59e0b;
+  --accent-glow: #fbbf24;
+  --accent-deep: #d97706;
+  --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  
+  /* Effects */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.5);
+  --shadow-accent: 0 0 20px rgba(245, 158, 11, 0.2);
+  --shadow-accent-lg: 0 0 40px rgba(245, 158, 11, 0.3);
+  
+  /* Animations */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Global Styles */
+body {
+  background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
+  color: var(--text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-glow);
+}
+ @keyframes fade-up {
           from {
             opacity: 0;
             transform: translateY(20px);
@@ -9,5 +70,5 @@
           }
         }
         .animate-fade-up {
-          animation: fadeUp 0.5s ease-out forwards;
+          animation: fade-up 0.5s ease-out forwards;
         }

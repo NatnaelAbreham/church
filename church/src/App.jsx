@@ -1,12 +1,12 @@
 // App.jsx (updated - final version with Blog)
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
- import About from "./components/About";
+import About from "./components/About";
+import Leadership from "./components/Leadership";
 /*import Ministries from "./components/Ministries";
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
 import Testimonials from "./components/Testimonials";
-import Leadership from "./components/Leadership";
 import ServiceTimes from "./components/ServiceTimes";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
@@ -32,9 +32,9 @@ function App() {
        {/* <Ministries />
       <Events />
       <Sermons />
-      <Testimonials />
+      <Testimonials />*/}
       <Leadership />
-      <ServiceTimes />
+      {/*<ServiceTimes />
       <Gallery />
       <FAQ />
       <Newsletter />
