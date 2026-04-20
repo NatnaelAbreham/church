@@ -1,5 +1,8 @@
 // components/Leadership.jsx
 import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+
 /* import "../css/leadership.css"; */
 
 const Leadership = () => {
@@ -8,6 +11,13 @@ const Leadership = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+const iconMap = {
+  twitter: Twitter,
+  linkedin: Linkedin,
+  instagram: Instagram,
+  email: Mail,
+};
+  
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -226,18 +236,20 @@ const Leadership = () => {
 
   return (
     <section id="leadership" className="relative py-24 sm:py-28 px-4 sm:px-6 overflow-hidden">
-      {/* Dark Immersive Background - Deep Blue/Indigo Base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e27] via-[#0f1535] to-[#060914]">
-        {/* Subtle ambient glow - only for depth, not distraction */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/5 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
-        
-        {/* Minimal grid for texture */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%234f46e5%22 fill-opacity=%220.02%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      {/* Consistent Background from Newsletter Page - Stone/Dark Theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900">
+        {/* Decorative blurs from newsletter */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
+        </div>
+        {/* Animated grid pattern from newsletter */}
+        <div className="absolute inset-0 opacity-30 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.02\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header - Warm accent for emphasis */}
+        {/* Section Header - Warm accent for emphasis (unchanged content) */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full mb-5 border border-amber-500/20">
             <i className="fas fa-crown text-amber-400 text-xs sm:text-sm"></i>
@@ -255,7 +267,7 @@ const Leadership = () => {
           {/* Warm accent divider */}
           <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           
-          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="text-stone-300 max-w-2xl mx-auto text-base sm:text-lg">
             Spirit-led leaders committed to serving God's people with integrity, wisdom, and love
           </p>
         </div>
@@ -287,7 +299,7 @@ const Leadership = () => {
               className="group cursor-pointer animate-fade-up"
               style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
             >
-              <div className="relative bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/10">
+              <div className="relative bg-stone-800/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-stone-700/50 hover:border-amber-500/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/10">
                 {/* Image Container */}
                 <div className="relative overflow-hidden h-64">
                   <img
@@ -295,7 +307,7 @@ const Leadership = () => {
                     alt={leader.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e27] via-[#0a0e27]/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
                   
                   {/* Role Badge - Warm accent */}
                   <div className="absolute top-4 right-4 bg-amber-500/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold text-white shadow-lg">
@@ -350,7 +362,7 @@ const Leadership = () => {
         {filteredLeaders.length === 0 && (
           <div className="text-center py-16">
             <i className="fas fa-users-slash text-5xl sm:text-6xl text-white/20 mb-4"></i>
-            <p className="text-white/40 text-base sm:text-lg">No leaders found in this category</p>
+            <p className="text-stone-300 text-base sm:text-lg">No leaders found in this category</p>
           </div>
         )}
 
@@ -361,12 +373,12 @@ const Leadership = () => {
             { icon: "fa-hand-holding-heart", title: "Servant Leadership", desc: "Leading with humility, grace, and a heart for God's people" },
             { icon: "fa-chart-line", title: "Vision-Driven", desc: "Committed to advancing God's kingdom with excellence and innovation" }
           ].map((value, idx) => (
-            <div key={idx} className="group bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 text-center hover:border-amber-500/30 transition-all duration-300">
+            <div key={idx} className="group bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 text-center hover:border-amber-500/30 transition-all duration-300">
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <i className={`fas ${value.icon} text-amber-400 text-xl sm:text-2xl`}></i>
               </div>
               <h3 className="text-white font-bold text-base sm:text-lg mb-2">{value.title}</h3>
-              <p className="text-white/40 text-xs sm:text-sm">{value.desc}</p>
+              <p className="text-stone-300 text-xs sm:text-sm">{value.desc}</p>
             </div>
           ))}
         </div>
@@ -375,16 +387,17 @@ const Leadership = () => {
       {/* Modal - Detailed View */}
       {isClient && isModalOpen && selectedLeader && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={closeModal}>
-          <div className="relative max-w-4xl w-full bg-gradient-to-br from-[#0f1535] to-[#060914] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-4xl w-full bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
             <button onClick={closeModal} className="absolute top-4 right-4 sm:top-6 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/50 text-white hover:bg-amber-500 transition-colors z-10 flex items-center justify-center">
-              <i className="fas fa-times text-sm sm:text-base"></i>
+
+              <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </button>
             
             <div className="grid md:grid-cols-2">
               {/* Left - Image */}
               <div className="relative h-80 md:h-full min-h-[350px]">
                 <img src={selectedLeader.image} alt={selectedLeader.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1535] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
               </div>
               
               {/* Right - Details */}
@@ -394,7 +407,7 @@ const Leadership = () => {
                     {selectedLeader.title}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{selectedLeader.name}</h2>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-white/40 text-xs sm:text-sm">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-stone-300 text-xs sm:text-sm">
                     <span className="flex items-center gap-1"><i className="fas fa-calendar-alt text-amber-400 text-[10px] sm:text-xs"></i> {selectedLeader.yearsAtChurch} years at GCC</span>
                     <span className="flex items-center gap-1"><i className="fas fa-user-friends text-amber-400 text-[10px] sm:text-xs"></i> {selectedLeader.family}</span>
                   </div>
@@ -402,14 +415,14 @@ const Leadership = () => {
 
                 <div className="mb-5 sm:mb-6">
                   <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-user-graduate text-xs sm:text-sm"></i> Biography</h3>
-                  <p className="text-white/60 text-xs sm:text-sm leading-relaxed">{selectedLeader.bio}</p>
+                  <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">{selectedLeader.bio}</p>
                 </div>
 
                 <div className="mb-5 sm:mb-6">
                   <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-graduation-cap text-xs sm:text-sm"></i> Education</h3>
                   <ul className="space-y-1">
                     {selectedLeader.education.map((edu, idx) => (
-                      <li key={idx} className="text-white/60 text-xs sm:text-sm flex items-start gap-2">
+                      <li key={idx} className="text-stone-300 text-xs sm:text-sm flex items-start gap-2">
                         <i className="fas fa-check-circle text-amber-400 text-[8px] sm:text-xs mt-1"></i>
                         <span>{edu}</span>
                       </li>
@@ -419,23 +432,25 @@ const Leadership = () => {
 
                 <div className="mb-5 sm:mb-6">
                   <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-heart text-xs sm:text-sm"></i> Favorite Verse</h3>
-                  <p className="text-white/60 text-xs sm:text-sm italic bg-white/5 p-3 rounded-xl">{selectedLeader.favoriteVerse}</p>
+                  <p className="text-stone-300 text-xs sm:text-sm italic bg-white/5 p-3 rounded-xl">{selectedLeader.favoriteVerse}</p>
                 </div>
 
                 <div>
                   <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-share-alt text-xs sm:text-sm"></i> Connect</h3>
                   <div className="flex gap-2 sm:gap-3">
-                    {Object.entries(selectedLeader.socialLinks).map(([platform, url]) => (
-                      <a
-                        key={platform}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors"
-                      >
-                        <i className={`fab fa-${platform} text-white/70 text-xs sm:text-sm`}></i>
-                      </a>
-                    ))}
+                    {Object.entries(leader.socialLinks).map(([platform, url]) => {
+  const Icon = iconMap[platform];
+
+  return (
+    <div
+      key={platform}
+      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {Icon && <Icon className="w-4 h-4 text-white/70" />}
+    </div>
+  );
+})}
                   </div>
                 </div>
               </div>

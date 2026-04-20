@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Leadership from "./components/Leadership";
-import Ministries from "./components/Ministries";
+/* import Ministries from "./components/Ministries";
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
 import Testimonials from "./components/Testimonials";
@@ -21,7 +21,7 @@ import GivingProgress from "./components/GivingProgress";
 import Blog from "./components/Blog";
 import Giving from "./components/Giving";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer"; 
+import Footer from "./components/Footer";  */
 
 function App() {
   return (
@@ -29,11 +29,12 @@ function App() {
       <Navbar />
       <Hero />
      <About />
-       <Ministries />
+     <Leadership />
+       {/* <Ministries />
       <Events />
       <Sermons />
       <Testimonials />
-      <Leadership />
+      
       <ServiceTimes />
       <Gallery />
       <FAQ />
@@ -48,7 +49,7 @@ function App() {
       <Blog />
       <Giving />
       <Contact />
-      <Footer /> 
+      <Footer />  */}
     </>
   );
 }
