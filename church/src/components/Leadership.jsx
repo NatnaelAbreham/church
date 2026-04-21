@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
+import { faBible, faHandHoldingHeart, faChartLine } from "@fortawesome/free-solid-svg-icons";
+
 const Leadership = () => {
   const [selectedLeader, setSelectedLeader] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -19,6 +21,11 @@ const Leadership = () => {
   email: faEnvelope,
 };
 
+const valueIconMap = {
+  "fa-bible": faBible,
+  "fa-hand-holding-heart": faHandHoldingHeart,
+  "fa-chart-line": faChartLine,
+};
   
   useEffect(() => {
     setIsClient(true);
@@ -180,9 +187,9 @@ const Leadership = () => {
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Meet Our{" "}
+           
             <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">
-              Leadership Team
+               Meet Our{" "}Leadership Team
             </span>
           </h2>
           
@@ -297,7 +304,11 @@ const Leadership = () => {
           ].map((value, idx) => (
             <div key={idx} className="group bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 text-center hover:border-amber-500/30 transition-all duration-300">
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <i className={`fas ${value.icon} text-amber-400 text-xl sm:text-2xl`}></i>
+                
+                <FontAwesomeIcon
+  icon={valueIconMap[value.icon]}
+  className="text-amber-400 text-xl sm:text-2xl"
+/>
               </div>
               <h3 className="text-white font-bold text-base sm:text-lg mb-2">{value.title}</h3>
               <p className="text-stone-300 text-xs sm:text-sm">{value.desc}</p>
