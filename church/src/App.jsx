@@ -3,10 +3,11 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Leadership from "./components/Leadership";
+import Testimonials from "./components/Testimonials";
 /* import Ministries from "./components/Ministries";
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
-import Testimonials from "./components/Testimonials";
+
 import ServiceTimes from "./components/ServiceTimes";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
@@ -30,10 +31,12 @@ function App() {
       <Hero />
      <About />
      <Leadership />
+     <Testimonials />
+
        {/* <Ministries />
       <Events />
       <Sermons />
-      <Testimonials />
+      
       
       <ServiceTimes />
       <Gallery />

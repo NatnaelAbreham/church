@@ -95,7 +95,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
+    <section id = "testimonials" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
       {/* Modern 2026 decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-200/20 rounded-full blur-3xl"></div>
@@ -164,11 +164,11 @@ const Testimonials = () => {
                   <div className="mb-6">
                     <div className="flex gap-1 mb-4">
                       <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold uppercase tracking-wide">
-                        {testimonials[activeIndex].type === "family" && "👨‍👩‍👧‍👦 Family"}
-                        {testimonials[activeIndex].type === "couple" && "💑 Married Couple"}
-                        {testimonials[activeIndex].type === "leader" && "🙏 Ministry Leader"}
-                        {testimonials[activeIndex].type === "young" && "🌟 Young Adult"}
-                        {testimonials[activeIndex].type === "senior" && "👴👵 Senior Saints"}
+                        {testimonials[activeIndex].type === "family" && " Family"}
+                        {testimonials[activeIndex].type === "couple" && " Married Couple"}
+                        {testimonials[activeIndex].type === "leader" && " Ministry Leader"}
+                        {testimonials[activeIndex].type === "young" && " Young Adult"}
+                        {testimonials[activeIndex].type === "senior" && " Senior Saints"}
                       </span>
                     </div>
                     <i className="fas fa-quote-left text-amber-300 text-3xl mb-3 block opacity-60"></i>
