@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import * as SiIcons from "react-icons/si";
+import * as LuIcons from "react-icons/lu";
 
 const Leadership = () => {
   const [selectedLeader, setSelectedLeader] = useState(null);
@@ -12,11 +11,16 @@ const Leadership = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
-  const iconMap = {
-  twitter: faTwitter,
-  linkedin: faLinkedin,
-  instagram: faInstagram,
-  email: faEnvelope,
+  const linkedinIcon =
+  SiIcons.SiLinkedin ??
+  SiIcons.SiLinkedIn ??
+  null;
+
+const iconMap = {
+  twitter: SiIcons.SiX || SiIcons.SiTwitter,
+  linkedin: linkedinIcon,
+  instagram: SiIcons.SiInstagram,
+  email: LuIcons.LuMail,
 };
 
   
@@ -110,7 +114,87 @@ const Leadership = () => {
       yearsAtChurch: 12,
       family: "Married to Linda with 2 adult children"
     },
-    
+    {
+      id: 5,
+      name: "Sarah Martinez",
+      title: "Youth & Young Adults Pastor",
+      category: "youth",
+      image: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600",
+      bio: "Sarah has grown the youth ministry from 30 to over 200 students through innovative programs and mentorship initiatives.",
+      education: [
+        "M.A. in Youth Ministry - Azusa Pacific University",
+        "B.A. in Psychology - UCLA"
+      ],
+      favoriteVerse: "1 Timothy 4:12 - 'Don't let anyone look down on you because you are young...'",
+      hobbies: ["Coffee", "Hiking", "Podcasting"],
+      socialLinks: {
+        instagram: "https://instagram.com",
+        twitter: "https://twitter.com",
+        email: "sarah@gracecovenant.org"
+      },
+      yearsAtChurch: 5,
+      family: "Single"
+    },
+    {
+      id: 6,
+      name: "Deacon James Wilson",
+      title: "Community Outreach Director",
+      category: "outreach",
+      image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600",
+      bio: "James leads the church's community initiatives including food pantry, homeless outreach, and international missions.",
+      education: [
+        "B.A. in Social Work - University of Texas",
+        "Certificate in Nonprofit Management - Harvard Extension"
+      ],
+      favoriteVerse: "Matthew 25:40 - 'Whatever you did for one of the least of these...'",
+      hobbies: ["Running", "Cooking", "Volunteering"],
+      socialLinks: {
+        linkedin: "https://linkedin.com",
+        email: "james@gracecovenant.org"
+      },
+      yearsAtChurch: 9,
+      family: "Married to Rachel with 4 children"
+    },
+    {
+      id: 7,
+      name: "Dr. Emily Foster",
+      title: "Counseling & Care Pastor",
+      category: "care",
+      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600",
+      bio: "Dr. Emily is a licensed clinical psychologist who leads the church's care ministry, offering pastoral counseling and support groups.",
+      education: [
+        "Psy.D. in Clinical Psychology - Biola University",
+        "M.A. in Pastoral Care - Denver Seminary"
+      ],
+      favoriteVerse: "Psalm 34:18 - 'The Lord is close to the brokenhearted...'",
+      hobbies: ["Reading", "Gardening", "Playing Piano"],
+      socialLinks: {
+        linkedin: "https://linkedin.com",
+        email: "emily@gracecovenant.org"
+      },
+      yearsAtChurch: 6,
+      family: "Married to Mark"
+    },
+    {
+      id: 8,
+      name: "Deacon Maria Garcia",
+      title: "Children's Ministry Director",
+      category: "children",
+      image: "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=600",
+      bio: "Maria brings creativity and passion to children's ministry, serving over 300 families weekly.",
+      education: [
+        "B.A. in Early Childhood Education - Texas State University",
+        "Certificate in Children's Ministry - Azusa Pacific"
+      ],
+      favoriteVerse: "Proverbs 22:6 - 'Train up a child in the way he should go...'",
+      hobbies: ["Arts & Crafts", "Storytelling", "Music"],
+      socialLinks: {
+        instagram: "https://instagram.com",
+        email: "maria@gracecovenant.org"
+      },
+      yearsAtChurch: 4,
+      family: "Married to Carlos with 2 children"
+    }
   ];
 
   const categories = [
@@ -384,17 +468,21 @@ const Leadership = () => {
   </h3>
   <div className="flex gap-2 sm:gap-3">
     {Object.entries(selectedLeader.socialLinks).map(([platform, url]) => {
-  const icon = iconMap[platform];
-
-  return (
-    <div
-      key={platform}
-      className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
-    >
-      <FontAwesomeIcon icon={icon} className="text-white/80 text-sm" />
-    </div>
-  );
-})}
+      const Icon = iconMap[platform];
+      
+      return (
+        <a
+          key={platform}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {Icon && <Icon className="w-4 h-4 text-white/70" />}
+        </a>
+      );
+    })}
   </div>
 </div>
              
