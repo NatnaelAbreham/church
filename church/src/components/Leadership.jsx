@@ -320,13 +320,15 @@ const valueIconMap = {
       {/* Modal - Detailed View */}
       {isClient && isModalOpen && selectedLeader && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={closeModal}>
-          <div className="relative max-w-4xl w-full bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
-            <button onClick={closeModal} className="absolute top-4 right-4 sm:top-6 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/50 text-white hover:bg-amber-500 transition-colors z-10 flex items-center justify-center">
+          {/* <div className="relative max-w-4xl w-full bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
+         */} 
+         <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-amber-500/30 animate-fade-up">
+            <button onClick={closeModal} className="absolute top-3 right-3 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white hover:bg-amber-500 transition-colors z-20 flex items-center justify-center">
 
               <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </button>
             
-            <div className="grid md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Left - Image */}
               <div className="relative h-80 md:h-full min-h-[350px]">
                 <img src={selectedLeader.image} alt={selectedLeader.name} className="w-full h-full object-cover" />
