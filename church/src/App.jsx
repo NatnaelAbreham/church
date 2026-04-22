@@ -5,8 +5,9 @@ import About from "./components/About";
 import Leadership from "./components/Leadership";
 import Testimonials from "./components/Testimonials";
 import LocationMap from "./components/LocationMap";
+import Ministries from "./components/Ministries";
 
-/* import Ministries from "./components/Ministries";
+/* 
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
 
@@ -35,8 +36,9 @@ function App() {
      <Leadership />
      <Testimonials />
      <LocationMap />
+     <Ministries />
 
-       {/* <Ministries />
+       {/* 
       <Events />
       <Sermons />
       
