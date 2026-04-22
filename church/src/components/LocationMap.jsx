@@ -2,6 +2,46 @@
 import { useState, useEffect } from "react";
 import '../css/locationmap.css';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faLocationDot,
+  faCopy,
+  faTrain,
+  faCar,
+  faPersonWalking,
+  faBus,
+  faBicycle,
+  faRoute,
+  faMap,
+  faSquareParking,
+  faWheelchair,
+  faStore,
+  faSpinner,
+  faPlus,
+  faMinus,
+  faChurch,
+  faClock,
+  faArrowRight,
+  faPhone,
+  faEnvelope,
+  faMapMarkerAlt,
+  faExternalLink,
+  faBuilding,
+  faRoad,
+  faEarDeaf,
+  faSchool,
+  faPrint,
+  faPeace,
+  faCube
+} from "@fortawesome/free-solid-svg-icons";
+import { faMugHot, faShoppingBasket, faTree, faPrescriptionBottle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGoogle,
+  faApple,
+  faWaze
+} from "@fortawesome/free-brands-svg-icons";
+
 const LocationMap = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [selectedTab, setSelectedTab] = useState("map");
@@ -34,11 +74,11 @@ const LocationMap = () => {
       sensory: "Sensory-friendly room available during services"
     },
     nearby: [
-      { name: "Starbucks", type: "Coffee", distance: "0.2 miles", icon: "fa-mug-hot" },
-      { name: "Whole Foods", type: "Grocery", distance: "0.3 miles", icon: "fa-shopping-basket" },
-      { name: "Central Park", type: "Park", distance: "0.5 miles", icon: "fa-tree" },
-      { name: "CVS Pharmacy", type: "Pharmacy", distance: "0.1 miles", icon: "fa-prescription-bottle" }
-    ],
+  { name: "Starbucks", type: "Coffee", distance: "0.2 miles", icon: faMugHot },
+  { name: "Whole Foods", type: "Grocery", distance: "0.3 miles", icon: faShoppingBasket },
+  { name: "Central Park", type: "Park", distance: "0.5 miles", icon: faTree },
+  { name: "CVS Pharmacy", type: "Pharmacy", distance: "0.1 miles", icon: faPrescriptionBottle }
+],
     publicTransport: {
       bus: "Bus routes 3, 10, and 20 stop at Grace Ave & 24th St",
       rail: "MetroRail Downtown Station - 0.8 miles away",
@@ -83,7 +123,7 @@ const LocationMap = () => {
   };
 
   return (
-    <section id="location" className="py-28 px-6 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
+    <section id="location-map" className="py-28 px-6 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
       {/* Modern 2026 decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
@@ -95,12 +135,14 @@ const LocationMap = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 border border-amber-500/30">
-            <i className="fas fa-map-marker-alt text-amber-400 text-sm"></i>
+            {/* <i className="fas fa-map-marker-alt text-amber-400 text-sm"></i> */}
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-amber-400 text-sm" />
             <span className="text-amber-300 font-semibold tracking-wide uppercase text-xs">Find Us</span>
-            <i className="fas fa-location-dot text-amber-400 text-sm"></i>
+            {/* <i className="fas fa-location-dot text-amber-400 text-sm"></i> */}
+            <FontAwesomeIcon icon={faLocationDot} className="text-amber-400 text-sm" />
           </div>
           <h2 className="text-4xl md:text-6xl font-bold serif text-white mb-4">
-            Our <span className="text-amber-400">Location</span>
+            <span className="text-amber-400">Our Location</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           <p className="text-stone-300 max-w-2xl mx-auto text-lg">
@@ -115,7 +157,8 @@ const LocationMap = () => {
             <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-location-dot text-amber-400 text-xl"></i>
+                  {/* <i className="fas fa-location-dot text-amber-400 text-xl"></i> */}
+                  <FontAwesomeIcon icon={faLocationDot} className="text-amber-400 text-xl" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-bold text-lg mb-2">Address</h3>
@@ -125,21 +168,23 @@ const LocationMap = () => {
                       onClick={copyAddress}
                       className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
                     >
-                      <i className="fas fa-copy"></i>
+                      <FontAwesomeIcon icon={faCopy} />
                       {copied ? "Copied!" : "Copy Address"}
                     </button>
                     <button
                       onClick={openGoogleMaps}
                       className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
                     >
-                      <i className="fab fa-google"></i>
+
+                      <FontAwesomeIcon icon={faGoogle} />
                       Google Maps
                     </button>
                     <button
                       onClick={openAppleMaps}
                       className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
                     >
-                      <i className="fab fa-apple"></i>
+
+                      <FontAwesomeIcon icon={faApple} />
                       Apple Maps
                     </button>
                   </div>
@@ -151,16 +196,16 @@ const LocationMap = () => {
             <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-phone-alt text-amber-400 text-xl"></i>
+                  <FontAwesomeIcon icon={faPhone} className="text-amber-400 text-xl" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-bold text-lg mb-2">Contact</h3>
                   <p className="text-stone-300 text-sm">
-                    <i className="fas fa-phone mr-2 text-amber-400"></i>
+                    <FontAwesomeIcon icon={faPhone} className="text-amber-400 mr-2" />
                     {churchInfo.phone}
                   </p>
                   <p className="text-stone-300 text-sm mt-2">
-                    <i className="fas fa-envelope mr-2 text-amber-400"></i>
+                    <FontAwesomeIcon icon={faEnvelope} className="text-amber-400 mr-2" />
                     {churchInfo.email}
                   </p>
                 </div>
@@ -171,7 +216,7 @@ const LocationMap = () => {
             <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-directions text-amber-400 text-xl"></i>
+                  <FontAwesomeIcon icon={faRoute} className="text-amber-400 text-xl" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-bold text-lg mb-3">Get Directions</h3>
@@ -180,7 +225,7 @@ const LocationMap = () => {
                       onClick={() => setShowDirections(true)}
                       className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
                     >
-                      <i className="fas fa-car"></i>
+                      <FontAwesomeIcon icon={faCar} />
                       Plan Your Route
                     </button>
                   ) : (
@@ -199,13 +244,23 @@ const LocationMap = () => {
                             key={mode}
                             type="button"
                             onClick={() => setDirections(prev => ({ ...prev, travelMode: mode }))}
-                            className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                              directions.travelMode === mode
-                                ? "bg-amber-500 text-white"
-                                : "bg-stone-700/50 text-stone-400 hover:bg-stone-700"
-                            }`}
+                            className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${directions.travelMode === mode
+                              ? "bg-amber-500 text-white"
+                              : "bg-stone-700/50 text-stone-400 hover:bg-stone-700"
+                              }`}
                           >
-                            <i className={`fas fa-${mode === "driving" ? "car" : mode === "walking" ? "walking" : mode === "transit" ? "bus" : "bicycle"} mr-1`}></i>
+                            <FontAwesomeIcon
+                              icon={
+                                mode === "driving"
+                                  ? faCar
+                                  : mode === "walking"
+                                    ? faPersonWalking
+                                    : mode === "transit"
+                                      ? faBus
+                                      : faBicycle
+                              }
+                              className="mr-1"
+                            />
                             {mode.charAt(0).toUpperCase() + mode.slice(1, 4)}
                           </button>
                         ))}
@@ -237,21 +292,21 @@ const LocationMap = () => {
                 onClick={openWaze}
                 className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
               >
-                <i className="fab fa-waze text-lg"></i>
+                <FontAwesomeIcon icon={faWaze} className="text-lg" />
                 <span className="text-sm">Waze</span>
               </button>
               <button
                 onClick={() => window.open(`https://www.google.com/maps/dir//${encodeURIComponent(churchInfo.address)}`, '_blank')}
                 className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
               >
-                <i className="fab fa-google text-lg"></i>
+                <FontAwesomeIcon icon={faGoogle} className="text-lg" />
                 <span className="text-sm">Google</span>
               </button>
               <button
                 onClick={() => window.open(`https://maps.apple.com/?address=${encodeURIComponent(churchInfo.address)}`, '_blank')}
                 className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
               >
-                <i className="fab fa-apple text-lg"></i>
+                <FontAwesomeIcon icon={faApple} className="text-lg" />
                 <span className="text-sm">Apple</span>
               </button>
             </div>
@@ -265,7 +320,7 @@ const LocationMap = () => {
                 {!mapLoaded ? (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <i className="fas fa-spinner fa-spin text-amber-400 text-3xl mb-3"></i>
+                      <FontAwesomeIcon icon={faSpinner} spin className="text-amber-400 text-3xl mb-3" />
                       <p className="text-stone-400">Loading map...</p>
                     </div>
                   </div>
@@ -283,17 +338,17 @@ const LocationMap = () => {
                       <div className="relative">
                         <div className="absolute inset-0 bg-amber-500 rounded-full animate-ping opacity-75"></div>
                         <div className="relative w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                          <i className="fas fa-church text-white text-sm"></i>
+                          <FontAwesomeIcon icon={faChurch} className="text-white text-sm" />
                         </div>
                       </div>
                     </div>
                     {/* Map Controls */}
                     <div className="absolute bottom-4 right-4 flex gap-2">
                       <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
-                        <i className="fas fa-plus"></i>
+                        <FontAwesomeIcon icon={faPlus} />
                       </button>
                       <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
-                        <i className="fas fa-minus"></i>
+                        <FontAwesomeIcon icon={faMinus} />
                       </button>
                     </div>
                   </>
@@ -307,17 +362,23 @@ const LocationMap = () => {
                     <button
                       key={tab}
                       onClick={() => setSelectedTab(tab)}
-                      className={`flex-1 py-3 text-sm font-medium transition-all ${
-                        selectedTab === tab
-                          ? "text-amber-400 border-b-2 border-amber-400"
-                          : "text-stone-400 hover:text-stone-300"
-                      }`}
+                      className={`flex-1 py-3 text-sm font-medium transition-all ${selectedTab === tab
+                        ? "text-amber-400 border-b-2 border-amber-400"
+                        : "text-stone-400 hover:text-stone-300"
+                        }`}
                     >
-                      <i className={`fas ${
-                        tab === "map" ? "fa-map" :
-                        tab === "parking" ? "fa-parking" :
-                        tab === "accessibility" ? "fa-wheelchair" : "fa-store"
-                      } mr-2`}></i>
+                      <FontAwesomeIcon
+                        icon={
+                          tab === "map"
+                            ? faMap
+                            : tab === "parking"
+                              ? faSquareParking
+                              : tab === "accessibility"
+                                ? faWheelchair
+                                : faStore
+                        }
+                        className="mr-2"
+                      />
                       {tab.charAt(0).toUpperCase() + tab.slice(1)}
                     </button>
                   ))}
@@ -336,7 +397,7 @@ const LocationMap = () => {
                       onClick={openGoogleMaps}
                       className="text-amber-400 text-sm hover:text-amber-300 transition-colors flex items-center gap-1"
                     >
-                      Open in Google Maps <i className="fas fa-external-link-alt text-xs"></i>
+                      Open in Google Maps <FontAwesomeIcon icon={faExternalLink} className="text-xs" />
                     </button>
                   </div>
                 )}
@@ -346,28 +407,28 @@ const LocationMap = () => {
                     <h4 className="text-white font-semibold mb-3">Parking Information</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-building text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faBuilding} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Main Parking Garage</p>
                           <p className="text-stone-400 text-sm">{churchInfo.parking.main}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-road text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faRoad} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Street Parking</p>
                           <p className="text-stone-400 text-sm">{churchInfo.parking.street}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-wheelchair text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faWheelchair} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Handicap Parking</p>
                           <p className="text-stone-400 text-sm">{churchInfo.parking.handicap}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-school text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faSchool} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Overflow Parking</p>
                           <p className="text-stone-400 text-sm">{churchInfo.parking.overflow}</p>
@@ -382,28 +443,28 @@ const LocationMap = () => {
                     <h4 className="text-white font-semibold mb-3">Accessibility Features</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-wheelchair text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faWheelchair} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Wheelchair Access</p>
                           <p className="text-stone-400 text-sm">{churchInfo.accessibility.wheelchair}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-ear-deaf text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faEarDeaf} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Hearing Assistance</p>
                           <p className="text-stone-400 text-sm">{churchInfo.accessibility.hearing}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-print text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faPrint} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Large Print</p>
                           <p className="text-stone-400 text-sm">{churchInfo.accessibility.largePrint}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <i className="fas fa-peace text-amber-400 mt-0.5"></i>
+                        <FontAwesomeIcon icon={faPeace} className="text-amber-400 mt-0.5" />
                         <div>
                           <p className="text-white text-sm font-medium">Sensory-Friendly</p>
                           <p className="text-stone-400 text-sm">{churchInfo.accessibility.sensory}</p>
@@ -420,7 +481,8 @@ const LocationMap = () => {
                       {churchInfo.nearby.map((place, idx) => (
                         <div key={idx} className="flex items-center gap-3 p-2 bg-stone-700/30 rounded-lg">
                           <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                            <i className={`fas ${place.icon} text-amber-400 text-sm`}></i>
+                           {/*  <FontAwesomeIcon icon={icons[place.iconKey]} className="text-amber-400 text-sm" /> */}
+                            <FontAwesomeIcon icon={place.icon} className="text-amber-400 text-sm" />
                           </div>
                           <div>
                             <p className="text-white text-sm font-medium">{place.name}</p>
@@ -432,10 +494,20 @@ const LocationMap = () => {
                     <div className="mt-4 pt-4 border-t border-stone-700">
                       <h5 className="text-white text-sm font-medium mb-2">Public Transportation</h5>
                       <div className="space-y-1">
-                        <p className="text-stone-400 text-sm"><i className="fas fa-bus mr-2 text-amber-400"></i>{churchInfo.publicTransport.bus}</p>
-                        <p className="text-stone-400 text-sm"><i className="fas fa-train mr-2 text-amber-400"></i>{churchInfo.publicTransport.rail}</p>
-                        <p className="text-stone-400 text-sm"><i className="fas fa-bicycle mr-2 text-amber-400"></i>{churchInfo.publicTransport.bike}</p>
-                      </div>
+                        <p className="text-stone-400 text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faBus} className="text-amber-400" />
+                          {churchInfo.publicTransport.bus}
+                        </p>
+
+                        <p className="text-stone-400 text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faTrain} className="text-amber-400" />
+                          {churchInfo.publicTransport.rail}
+                        </p>
+
+                        <p className="text-stone-400 text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faBicycle} className="text-amber-400" />
+                          {churchInfo.publicTransport.bike}
+                        </p>   </div>
                     </div>
                   </div>
                 )}
@@ -449,7 +521,7 @@ const LocationMap = () => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
-                <i className="fas fa-clock text-amber-400 text-xl"></i>
+                <FontAwesomeIcon icon={faClock} className="text-amber-400 text-xl" />
               </div>
               <div className="text-left">
                 <h4 className="text-white font-semibold">Service Times</h4>
@@ -465,7 +537,7 @@ const LocationMap = () => {
               }}
               className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full font-medium transition-all flex items-center gap-2"
             >
-              View Full Schedule <i className="fas fa-arrow-right"></i>
+              View Full Schedule <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </div>
         </div>
@@ -473,9 +545,9 @@ const LocationMap = () => {
         {/* Virtual Tour Link */}
         <div className="text-center mt-8">
           <button className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors">
-            <i className="fas fa-vr-cardboard text-lg"></i>
+            <FontAwesomeIcon icon={faCube} className="text-lg text-amber-400" />
             <span>Take a Virtual Tour of Our Church</span>
-            <i className="fas fa-arrow-right text-sm"></i>
+            <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
           </button>
         </div>
       </div>
