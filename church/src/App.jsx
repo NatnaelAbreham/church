@@ -4,6 +4,8 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Leadership from "./components/Leadership";
 import Testimonials from "./components/Testimonials";
+import LocationMap from "./components/LocationMap";
+
 /* import Ministries from "./components/Ministries";
 import Events from "./components/Events";
 import Sermons from "./components/Sermons";
@@ -16,7 +18,7 @@ import LiveStream from "./components/LiveStream";
 import Announcements from "./components/Announcements";
 import PrayerRequest from "./components/PrayerRequest";
 import Volunteer from "./components/Volunteer";
-import LocationMap from "./components/LocationMap";
+
 import EventsCalendar from "./components/EventsCalendar";
 import GivingProgress from "./components/GivingProgress";
 import Blog from "./components/Blog";
@@ -32,6 +34,7 @@ function App() {
      <About />
      <Leadership />
      <Testimonials />
+     <LocationMap />
 
        {/* <Ministries />
       <Events />
@@ -46,7 +49,7 @@ function App() {
       <Announcements />
       <PrayerRequest />
       <Volunteer />
-      <LocationMap />
+      
       <EventsCalendar />
       <GivingProgress />
       <Blog />
