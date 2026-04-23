@@ -10,9 +10,9 @@ import Volunteer from "./components/Volunteer";
 import PrayerRequest from "./components/PrayerRequest";
 import Giving from "./components/Giving";
 import Sermons from "./components/Sermons";
+import LiveStream from "./components/LiveStream";
 
-
-import Footer from "./components/Footer"; 
+import Footer from "./components/Footer";
 /* 
 import Events from "./components/Events";
 
@@ -21,7 +21,7 @@ import ServiceTimes from "./components/ServiceTimes";
 import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
 import Newsletter from "./components/Newsletter";
-import LiveStream from "./components/LiveStream";
+
 import Announcements from "./components/Announcements";
 
 
@@ -38,19 +38,19 @@ function App() {
     <>
       <Navbar />
       <Hero />
-     <About />
-     <Leadership />
-     <Testimonials />
-     <LocationMap />
-     <Ministries />
-     <Volunteer />
-    <PrayerRequest />
-    <Giving />
-    <Sermons />
+      <About />
+      <Leadership />
+      <Testimonials />
+      <LocationMap />
+      <Ministries />
+      <Volunteer />
+      <PrayerRequest />
+      <Giving />
+      <Sermons />
+<LiveStream />
+      <Footer />
 
-     <Footer />
-
-       {/* 
+      {/* 
       <Events />
       <Sermons />
       
@@ -59,7 +59,7 @@ function App() {
       <Gallery />
       <FAQ />
       <Newsletter />
-      <LiveStream />
+      
       <Announcements />
      
       <Volunteer />

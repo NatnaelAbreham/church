@@ -1,5 +1,36 @@
 // components/LiveStream.jsx
 import { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faVolumeMute,
+  faVolumeUp,
+  faChevronDown,
+  faChevronUp,
+  faComments,
+  faVideo,
+  faEye,
+  faCalendarAlt,
+  faClock,
+  faChurch,
+  faBell,
+  faCommentDots,
+  faPaperPlane,
+  faShieldAlt,
+  faHandsPraying,
+  faUserFriends,
+ 
+  
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faExpand,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faFacebookF,
+  faTwitter,
+  faYoutube,
+   faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
 
 const LiveStream = () => {
   const [isLive, setIsLive] = useState(true);
@@ -137,7 +168,10 @@ const LiveStream = () => {
           <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 border border-red-500/30">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             <span className="text-red-400 font-semibold tracking-wide uppercase text-xs">Live Now</span>
-            <i className="fas fa-video text-red-400 text-sm"></i>
+            <FontAwesomeIcon
+  icon={faVideo}
+  className="text-red-400 text-sm"
+/>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold serif text-white mb-4">
             Watch <span className="text-red-500">Live</span> Stream
@@ -173,7 +207,10 @@ const LiveStream = () => {
                     <span className="text-white text-xs font-bold uppercase">LIVE</span>
                   </div>
                   <div className="flex items-center gap-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <i className="fas fa-eye text-white text-xs"></i>
+                    <FontAwesomeIcon
+  icon={faEye}
+  className="text-white text-xs"
+/>
                     <span className="text-white text-xs font-medium">{viewerCount} watching</span>
                   </div>
                 </div>
@@ -183,10 +220,18 @@ const LiveStream = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <button onClick={toggleMute} className="text-white hover:text-red-400 transition">
-                        <i className={`fas ${isMuted ? "fa-volume-mute" : "fa-volume-up"} text-lg`}></i>
+                        <FontAwesomeIcon
+  icon={isMuted ? faVolumeMute : faVolumeUp}
+  className={`text-lg transition-all duration-300 ${
+    isMuted ? "text-red-400" : "text-amber-400"
+  }`}
+/>
                       </button>
                       <button onClick={toggleFullscreen} className="text-white hover:text-red-400 transition">
-                        <i className="fas fa-expand text-lg"></i>
+                        <FontAwesomeIcon
+  icon={faExpand}
+  className="text-lg"
+/>
                       </button>
                     </div>
                     <div className="text-white text-xs">
@@ -206,16 +251,28 @@ const LiveStream = () => {
                 <div>
                   <h3 className="text-white font-bold text-xl mb-1">Sunday Morning Worship</h3>
                   <div className="flex items-center gap-4 text-stone-400 text-sm">
-                    <span><i className="far fa-calendar-alt mr-1"></i> March 29, 2026</span>
-                    <span><i className="far fa-clock mr-1"></i> 9:00 AM - 10:15 AM</span>
-                    <span><i className="fas fa-church mr-1"></i> Main Sanctuary</span>
+                    <span><FontAwesomeIcon
+  icon={faCalendarAlt}
+  className="mr-1"
+/> March 29, 2026</span>
+                    <span><FontAwesomeIcon
+  icon={faClock}
+  className="mr-1"
+/> 9:00 AM - 10:15 AM</span>
+                    <span><FontAwesomeIcon
+  icon={faChurch}
+  className="mr-1"
+/> Main Sanctuary</span>
                   </div>
                 </div>
                 <button 
                   onClick={requestNotificationPermission}
                   className="flex items-center gap-2 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 rounded-full transition-all border border-amber-500/30"
                 >
-                  <i className="fas fa-bell text-amber-400"></i>
+                  <FontAwesomeIcon
+  icon={faBell}
+  className="text-amber-400"
+/>
                   <span className="text-amber-300 text-sm">Get Notified</span>
                 </button>
               </div>
@@ -224,7 +281,10 @@ const LiveStream = () => {
             {/* Upcoming Streams */}
             <div className="bg-stone-800/30 backdrop-blur-sm rounded-xl p-5 border border-stone-700">
               <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                <i className="fas fa-calendar-alt text-amber-400"></i>
+                <FontAwesomeIcon
+  icon={faCalendarAlt}
+  className="text-amber-400"
+/>
                 Upcoming Live Streams
               </h4>
               <div className="space-y-3">
@@ -241,7 +301,10 @@ const LiveStream = () => {
                       </div>
                     </div>
                     <button className="text-amber-400 text-sm opacity-0 group-hover:opacity-100 transition-all">
-                      Remind Me <i className="fas fa-bell ml-1"></i>
+                      Remind Me <FontAwesomeIcon
+  icon={faBell}
+  className="ml-1"
+/>
                     </button>
                   </div>
                 ))}
@@ -254,7 +317,10 @@ const LiveStream = () => {
             {/* Chat Header */}
             <div className="p-4 border-b border-stone-700 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <i className="fas fa-comments text-amber-400"></i>
+                <FontAwesomeIcon
+  icon={faComments}
+  className="text-amber-400"
+/>
                 <h3 className="text-white font-semibold">Live Chat</h3>
                 <span className="text-stone-400 text-xs bg-stone-700 px-2 py-0.5 rounded-full">
                   {chatMessages.length}
@@ -264,7 +330,9 @@ const LiveStream = () => {
                 onClick={() => setShowChat(!showChat)}
                 className="text-stone-400 hover:text-white transition lg:hidden"
               >
-                <i className={`fas ${showChat ? "fa-chevron-down" : "fa-chevron-up"}`}></i>
+                <FontAwesomeIcon
+  icon={showChat ? faChevronDown : faChevronUp}
+/>
               </button>
             </div>
 
@@ -275,15 +343,20 @@ const LiveStream = () => {
             >
               {chatMessages.length === 0 ? (
                 <div className="text-center text-stone-500 text-sm py-8">
-                  <i className="fas fa-comment-dots text-3xl mb-2 opacity-30"></i>
+                  <FontAwesomeIcon
+  icon={faCommentDots}
+  className="text-3xl mb-2 opacity-30"
+/>
                   <p>No messages yet. Be the first to say hello!</p>
                 </div>
               ) : (
                 chatMessages.map((msg) => (
                   <div key={msg.id} className={`flex items-start gap-3 ${msg.isUser ? 'flex-row-reverse' : ''}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.isUser ? 'bg-amber-500' : 'bg-stone-600'}`}>
-                      <i className={`fas ${msg.isUser ? 'fa-user' : 'fa-user-friends'} text-xs text-white`}></i>
-                    </div>
+                     <FontAwesomeIcon
+  icon={msg.isUser ? faUser : faUserFriends}
+  className="text-xs text-white transition hover:scale-110"
+/>      </div>
                     <div className={`flex-1 ${msg.isUser ? 'text-right' : ''}`}>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-white text-xs font-medium">{msg.name}</span>
@@ -313,11 +386,14 @@ const LiveStream = () => {
                   disabled={!chatInput.trim()}
                   className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <i className="fas fa-paper-plane"></i>
+                  <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
               </div>
               <p className="text-stone-500 text-xs mt-2 text-center">
-                <i className="fas fa-shield-alt mr-1"></i>
+                <FontAwesomeIcon
+  icon={faShieldAlt}
+  className="mr-1"
+/>
                 All messages are moderated
               </p>
             </form>
@@ -329,7 +405,10 @@ const LiveStream = () => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
-                <i className="fas fa-praying-hands text-amber-400 text-xl"></i>
+               <FontAwesomeIcon
+  icon={faHandsPraying}
+  className="text-amber-400 text-xl"
+/>
               </div>
               <div className="text-left">
                 <h4 className="text-white font-semibold">Need Prayer?</h4>
@@ -355,33 +434,34 @@ const LiveStream = () => {
           <p className="text-stone-400 text-sm mb-3">Share this live stream with friends and family</p>
           <div className="flex justify-center gap-3">
             <button className="w-10 h-10 rounded-full bg-stone-800 hover:bg-blue-600 transition-all flex items-center justify-center">
-              <i className="fab fa-facebook-f text-stone-400 hover:text-white text-sm"></i>
+              <FontAwesomeIcon
+  icon={faFacebookF}
+  className="text-stone-400 hover:text-white text-sm"
+/>
             </button>
             <button className="w-10 h-10 rounded-full bg-stone-800 hover:bg-sky-500 transition-all flex items-center justify-center">
-              <i className="fab fa-twitter text-stone-400 hover:text-white text-sm"></i>
+              <FontAwesomeIcon
+  icon={faTwitter}
+  className="text-stone-400 hover:text-white text-sm"
+/>
             </button>
             <button className="w-10 h-10 rounded-full bg-stone-800 hover:bg-green-600 transition-all flex items-center justify-center">
-              <i className="fab fa-whatsapp text-stone-400 hover:text-white text-sm"></i>
+            <FontAwesomeIcon
+  icon={faWhatsapp}
+  className="text-stone-400 hover:text-white text-sm"
+/>
             </button>
             <button className="w-10 h-10 rounded-full bg-stone-800 hover:bg-red-600 transition-all flex items-center justify-center">
-              <i className="fab fa-youtube text-stone-400 hover:text-white text-sm"></i>
+             <FontAwesomeIcon
+  icon={faYoutube}
+  className="text-stone-400 hover:text-white text-sm"
+/>
             </button>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.6; }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        .animate-pulse {
-          animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-      `}</style>
+      
     </section>
   );
 };
