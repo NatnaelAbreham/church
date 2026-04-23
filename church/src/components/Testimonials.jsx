@@ -112,7 +112,7 @@ const Testimonials = () => {
             <i className="fas fa-heart text-amber-500 text-sm"></i>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-            What Our<span className="text-amber-700"> Church Family Says</span>
+            <span className="text-amber-700">What Our Church Family Says</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           <p className="text-stone-600 max-w-2xl mx-auto text-lg">

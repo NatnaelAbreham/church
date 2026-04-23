@@ -8,10 +8,12 @@ import LocationMap from "./components/LocationMap";
 import Ministries from "./components/Ministries";
 import Volunteer from "./components/Volunteer";
 import PrayerRequest from "./components/PrayerRequest";
+import Giving from "./components/Giving";
+import Sermons from "./components/Sermons";
 
 /* 
 import Events from "./components/Events";
-import Sermons from "./components/Sermons";
+
 
 import ServiceTimes from "./components/ServiceTimes";
 import Gallery from "./components/Gallery";
@@ -25,7 +27,7 @@ import Announcements from "./components/Announcements";
 import EventsCalendar from "./components/EventsCalendar";
 import GivingProgress from "./components/GivingProgress";
 import Blog from "./components/Blog";
-import Giving from "./components/Giving";
+
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";  */
 
@@ -41,6 +43,8 @@ function App() {
      <Ministries />
      <Volunteer />
     <PrayerRequest />
+    <Giving />
+    <Sermons />
 
        {/* 
       <Events />
@@ -59,7 +63,7 @@ function App() {
       <EventsCalendar />
       <GivingProgress />
       <Blog />
-      <Giving />
+      
       <Contact />
       <Footer />  */}
     </>
