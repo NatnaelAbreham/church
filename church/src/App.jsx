@@ -11,6 +11,8 @@ import PrayerRequest from "./components/PrayerRequest";
 import Giving from "./components/Giving";
 import Sermons from "./components/Sermons";
 
+
+import Footer from "./components/Footer"; 
 /* 
 import Events from "./components/Events";
 
@@ -29,7 +31,7 @@ import GivingProgress from "./components/GivingProgress";
 import Blog from "./components/Blog";
 
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";  */
+ */
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
     <PrayerRequest />
     <Giving />
     <Sermons />
+
+     <Footer />
 
        {/* 
       <Events />
@@ -65,7 +69,7 @@ function App() {
       <Blog />
       
       <Contact />
-      <Footer />  */}
+       */}
     </>
   );
 }
