@@ -1,5 +1,34 @@
 // components/Volunteer.jsx
 import { useState, useEffect } from "react";
+import '../css/volunteer.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faSearch,
+  faChurch,
+  faBook,
+  faHandPeace,
+  faMusic,
+  faChild,
+  faUsers,
+  faGlobe,
+  faVideo,
+  faCoffee,
+  faClipboardList,
+  faHandsHelping,
+  faCircleExclamation,
+  faFire,
+  faCircleCheck,
+  faUserPlus,
+  faQuestionCircle,
+  faClock,
+  faHourglassHalf,
+  faBirthdayCake,
+  faPenAlt,
+  faTimes,
+  faPaperPlane
+  
+} from "@fortawesome/free-solid-svg-icons";
 
 const Volunteer = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -21,16 +50,16 @@ const Volunteer = () => {
   const [formErrors, setFormErrors] = useState({});
   const [formDirty, setFormDirty] = useState({});
 
-  const categories = [
-    { id: "all", label: "All Opportunities", icon: "fa-hand-peace", color: "amber" },
-    { id: "worship", label: "Worship & Music", icon: "fa-music", color: "purple" },
-    { id: "children", label: "Children's Ministry", icon: "fa-child", color: "blue" },
-    { id: "youth", label: "Youth Ministry", icon: "fa-users", color: "green" },
-    { id: "outreach", label: "Outreach & Missions", icon: "fa-globe", color: "teal" },
-    { id: "technical", label: "Technical & Media", icon: "fa-video", color: "red" },
-    { id: "hospitality", label: "Hospitality", icon: "fa-coffee", color: "orange" },
-    { id: "administration", label: "Administration", icon: "fa-clipboard-list", color: "indigo" }
-  ];
+ const categories = [
+  { id: "all", label: "All Opportunities", icon: faHandPeace, color: "amber" },
+  { id: "worship", label: "Worship & Music", icon: faMusic, color: "purple" },
+  { id: "children", label: "Children's Ministry", icon: faChild, color: "blue" },
+  { id: "youth", label: "Youth Ministry", icon: faUsers, color: "green" },
+  { id: "outreach", label: "Outreach & Missions", icon: faGlobe, color: "teal" },
+  { id: "technical", label: "Technical & Media", icon: faVideo, color: "red" },
+  { id: "hospitality", label: "Hospitality", icon: faCoffee, color: "orange" },
+  { id: "administration", label: "Administration", icon: faClipboardList, color: "indigo" }
+];
 
   const volunteerOpportunities = [
     {
@@ -43,7 +72,7 @@ const Volunteer = () => {
       description: "Join our worship team as a vocalist. Lead the congregation in praise and worship during Sunday services. Rehearsals on Thursdays at 7 PM.",
       requirements: ["Previous vocal experience", "Ability to carry a tune", "Heart for worship", "Team player"],
       benefits: ["Spiritual growth", "Community connection", "Free worship training"],
-      image: "https://images.pexels.com/photos/1383622/pexels-photo-1383622.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/1263349/pexels-photo-1263349.jpeg?auto=compress&cs=tinysrgb&w=400",
       urgency: "high",
       ageRequirement: "16+"
     },
@@ -177,11 +206,11 @@ const Volunteer = () => {
 
   useEffect(() => {
     let filtered = volunteerOpportunities;
-    
+
     if (selectedCategory !== "all") {
       filtered = filtered.filter(opp => opp.category === selectedCategory);
     }
-    
+
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(opp =>
@@ -190,7 +219,7 @@ const Volunteer = () => {
         opp.category.toLowerCase().includes(term)
       );
     }
-    
+
     setFilteredOpportunities(filtered);
   }, [selectedCategory, searchTerm]);
 
@@ -249,34 +278,48 @@ const Volunteer = () => {
       setFormErrors(errors);
       return;
     }
-    
+
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     console.log("Volunteer Application:", {
       opportunity: selectedOpportunity,
       applicant: applicationForm
     });
-    
+
     setIsSubmitting(false);
     setIsSuccess(true);
-    
+
     setTimeout(() => {
       setIsSuccess(false);
       closeApplicationModal();
     }, 3000);
   };
 
-  const getUrgencyBadge = (urgency) => {
-    switch(urgency) {
-      case "urgent":
-        return { bg: "bg-red-500", text: "Urgent Need", icon: "fa-exclamation-circle" };
-      case "high":
-        return { bg: "bg-orange-500", text: "High Demand", icon: "fa-fire" };
-      default:
-        return { bg: "bg-green-500", text: "Open", icon: "fa-check-circle" };
-    }
-  };
+ const getUrgencyBadge = (urgency) => {
+  switch (urgency) {
+    case "urgent":
+      return {
+        bg: "bg-red-500",
+        text: "Urgent Need",
+        icon: faCircleExclamation
+      };
+
+    case "high":
+      return {
+        bg: "bg-orange-500",
+        text: "High Demand",
+        icon: faFire
+      };
+
+    default:
+      return {
+        bg: "bg-green-500",
+        text: "Open",
+        icon: faCircleCheck
+      };
+  }
+};
 
   const getCategoryColor = (categoryId) => {
     const colors = {
@@ -291,18 +334,21 @@ const Volunteer = () => {
     return colors[categoryId] || "from-amber-500 to-amber-600";
   };
 
-  const getCategoryIcon = (categoryId) => {
-    const icons = {
-      worship: "fa-music",
-      children: "fa-child",
-      youth: "fa-users",
-      outreach: "fa-globe",
-      technical: "fa-video",
-      hospitality: "fa-coffee",
-      administration: "fa-clipboard-list"
-    };
-    return icons[categoryId] || "fa-hand-peace";
+ const getCategoryIcon = (categoryId) => {
+  const icons = {
+    worship: faMusic,
+    children: faChild,
+    youth: faUsers,
+    outreach: faGlobe,
+    technical: faVideo,
+    hospitality: faCoffee,
+    administration: faClipboardList
   };
+
+  return icons[categoryId] || faHandPeace;
+};
+
+  
 
   return (
     <section id="volunteer" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
@@ -317,12 +363,12 @@ const Volunteer = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <i className="fas fa-hands-helping text-amber-600 text-sm"></i>
+            <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-sm" />
             <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Serve with Purpose</span>
-            <i className="fas fa-heart text-amber-600 text-sm"></i>
+            <FontAwesomeIcon icon={faHeart} className="text-amber-600 text-sm" />
           </div>
           <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-            Volunteer <span className="text-amber-600">Opportunities</span>
+            <span className="text-amber-600">Volunteer Opportunities</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           <p className="text-stone-600 max-w-2xl mx-auto text-lg">
@@ -354,8 +400,10 @@ const Volunteer = () => {
         <div className="flex flex-wrap gap-4 mb-10">
           <div className="flex-1 min-w-[200px]">
             <div className="relative">
-              <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
-              <input
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"
+              />  <input
                 type="text"
                 placeholder="Search opportunities..."
                 value={searchTerm}
@@ -369,13 +417,12 @@ const Volunteer = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
-                  selectedCategory === cat.id
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${selectedCategory === cat.id
                     ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg"
                     : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
-                }`}
+                  }`}
               >
-                <i className={`fas ${cat.icon} text-sm`}></i>
+                <FontAwesomeIcon icon={cat.icon} className="text-sm" />
                 <span className="text-sm font-medium hidden sm:inline">{cat.label}</span>
               </button>
             ))}
@@ -403,7 +450,7 @@ const Volunteer = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                     <div className="absolute top-4 left-4 flex gap-2">
                       <span className={`${urgency.bg} text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1`}>
-                        <i className={`fas ${urgency.icon} text-xs`}></i>
+                        <FontAwesomeIcon icon={urgency.icon} className="text-xs" />
                         {urgency.text}
                       </span>
                       <span className="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -411,7 +458,7 @@ const Volunteer = () => {
                       </span>
                     </div>
                     <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full text-white text-xs">
-                      <i className="fas fa-user-plus mr-1"></i>
+                      <FontAwesomeIcon icon={faUserPlus} className="mr-1" />
                       {opportunity.spotsAvailable} spots left
                     </div>
                   </div>
@@ -423,22 +470,22 @@ const Volunteer = () => {
                     </h3>
                     <div className="flex flex-wrap gap-3 text-xs text-stone-500 mb-3">
                       <span className="flex items-center gap-1">
-                        <i className="far fa-clock text-amber-500"></i>
+                        <FontAwesomeIcon icon={faClock} className="text-amber-500" />
                         {opportunity.commitment}
                       </span>
                       <span className="flex items-center gap-1">
-                        <i className="fas fa-hourglass-half text-amber-500"></i>
+                        <FontAwesomeIcon icon={faHourglassHalf} className="text-amber-500" />
                         {opportunity.timeCommitment}
                       </span>
                       <span className="flex items-center gap-1">
-                        <i className="fas fa-birthday-cake text-amber-500"></i>
+                        <FontAwesomeIcon icon={faBirthdayCake} className="text-amber-500" />
                         {opportunity.ageRequirement}
                       </span>
                     </div>
                     <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">
                       {opportunity.description}
                     </p>
-                    
+
                     {/* Requirements Preview */}
                     <div className="flex flex-wrap gap-1 mb-4">
                       {opportunity.requirements.slice(0, 2).map((req, idx) => (
@@ -452,12 +499,12 @@ const Volunteer = () => {
                         </span>
                       )}
                     </div>
-                    
+
                     <button
                       onClick={() => openApplicationModal(opportunity)}
                       className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-md transition-all flex items-center justify-center gap-2"
                     >
-                      <i className="fas fa-pen-alt"></i>
+                      <FontAwesomeIcon icon={faPenAlt} />
                       Apply Now
                     </button>
                   </div>
@@ -468,7 +515,7 @@ const Volunteer = () => {
         ) : (
           <div className="text-center py-16">
             <div className="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-hands-helping text-amber-600 text-4xl"></i>
+              <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-4xl" />
             </div>
             <h3 className="text-2xl font-bold text-stone-800 mb-2">No opportunities found</h3>
             <p className="text-stone-600">Try adjusting your search or filter to see more opportunities.</p>
@@ -489,14 +536,14 @@ const Volunteer = () => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                <i className="fas fa-question-circle text-2xl"></i>
+               <FontAwesomeIcon icon={faQuestionCircle} className="text-2xl" />
               </div>
               <div className="text-left">
                 <h4 className="font-bold text-lg">Not sure where to serve?</h4>
                 <p className="text-amber-100 text-sm">Let us help you find your perfect fit</p>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => {
                 const contactSection = document.getElementById("contact");
                 if (contactSection) {
@@ -516,18 +563,18 @@ const Volunteer = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={closeApplicationModal}>
           <div className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <button onClick={closeApplicationModal} className="absolute top-6 right-6 w-10 h-10 rounded-full bg-stone-100 hover:bg-amber-500 hover:text-white transition-colors z-10">
-              <i className="fas fa-times"></i>
+              <FontAwesomeIcon icon={faTimes} />
             </button>
-            
+
             <div className="p-6 md:p-8">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-hands-helping text-amber-600 text-2xl"></i>
+                  <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-2xl" />
                 </div>
                 <h2 className="text-2xl font-bold text-stone-800">Apply to Volunteer</h2>
                 <p className="text-stone-500 mt-1">{selectedOpportunity.title}</p>
               </div>
-              
+
               {!isSuccess ? (
                 <form onSubmit={handleApplicationSubmit} className="space-y-4">
                   <div>
@@ -541,7 +588,7 @@ const Volunteer = () => {
                     />
                     {formDirty.fullName && formErrors.fullName && <p className="text-red-500 text-sm mt-1">{formErrors.fullName}</p>}
                   </div>
-                  
+
                   <div>
                     <label className="block text-stone-700 font-medium mb-1">Email Address *</label>
                     <input
@@ -553,7 +600,7 @@ const Volunteer = () => {
                     />
                     {formDirty.email && formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
                   </div>
-                  
+
                   <div>
                     <label className="block text-stone-700 font-medium mb-1">Phone Number *</label>
                     <input
@@ -565,7 +612,7 @@ const Volunteer = () => {
                     />
                     {formDirty.phone && formErrors.phone && <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>}
                   </div>
-                  
+
                   <div>
                     <label className="block text-stone-700 font-medium mb-1">Availability</label>
                     <textarea
@@ -577,7 +624,7 @@ const Volunteer = () => {
                       placeholder="e.g., Sundays only, weekday evenings, flexible..."
                     ></textarea>
                   </div>
-                  
+
                   <div>
                     <label className="block text-stone-700 font-medium mb-1">Why do you want to volunteer? *</label>
                     <textarea
@@ -590,7 +637,7 @@ const Volunteer = () => {
                     ></textarea>
                     {formDirty.motivation && formErrors.motivation && <p className="text-red-500 text-sm mt-1">{formErrors.motivation}</p>}
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <input
                       type="checkbox"
@@ -604,7 +651,7 @@ const Volunteer = () => {
                     </label>
                   </div>
                   {formDirty.agreeToTerms && formErrors.agreeToTerms && <p className="text-red-500 text-sm">{formErrors.agreeToTerms}</p>}
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -612,12 +659,12 @@ const Volunteer = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        <i className="fas fa-spinner fa-spin"></i>
+                        <FontAwesomeIcon icon={faSpinner} spin />
                         Submitting...
                       </>
                     ) : (
                       <>
-                        <i className="fas fa-paper-plane"></i>
+                       <FontAwesomeIcon icon={faPaperPlane} />
                         Submit Application
                       </>
                     )}
@@ -626,7 +673,7 @@ const Volunteer = () => {
               ) : (
                 <div className="text-center py-8">
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i className="fas fa-check-circle text-green-500 text-4xl"></i>
+                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 text-4xl" />
                   </div>
                   <h3 className="text-2xl font-bold text-stone-800 mb-2">Application Submitted!</h3>
                   <p className="text-stone-600">Thank you for your interest! Our volunteer coordinator will contact you within 3-5 business days.</p>
@@ -637,14 +684,7 @@ const Volunteer = () => {
         </div>
       )}
 
-      <style jsx>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+
     </section>
   );
 };
