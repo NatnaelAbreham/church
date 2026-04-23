@@ -1,5 +1,21 @@
 // components/Gallery.jsx
 import { useState, useEffect } from "react";
+import '../css/gallery.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faImages,
+  faMusic,
+  faUsers,
+  faCalendarAlt,
+  faChild,
+  faGlobe,
+  faWater,
+  faHandsHelping,
+  faCamera,
+  faVideo, 
+     
+} from "@fortawesome/free-solid-svg-icons";
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -10,19 +26,18 @@ const Gallery = () => {
   const imagesPerPage = 9;
 
   const categories = [
-    { id: "all", label: "All Moments", icon: "fa-images", count: 0 },
-    { id: "worship", label: "Worship", icon: "fa-music", count: 0 },
-    { id: "community", label: "Community", icon: "fa-users", count: 0 },
-    { id: "events", label: "Events", icon: "fa-calendar-alt", count: 0 },
-    { id: "youth", label: "Youth", icon: "fa-child", count: 0 },
-    { id: "missions", label: "Missions", icon: "fa-globe", count: 0 },
-    { id: "baptism", label: "Baptism", icon: "fa-water", count: 0 },
-    { id: "volunteer", label: "Volunteer", icon: "fa-hands-helping", count: 0 }
-  ];
-
+  { id: "all", label: "All Moments", icon: faImages/* , count: 0 */ },
+  { id: "worship", label: "Worship", icon: faMusic/* , count: 0 */ },
+  { id: "community", label: "Community", icon: faUsers/* , count: 0 */ },
+  { id: "events", label: "Events", icon: faCalendarAlt/* , count: 0 */ },
+  { id: "youth", label: "Youth", icon: faChild/* , count: 0 */ },
+  { id: "missions", label: "Missions", icon: faGlobe/* , count: 0 */ },
+  { id: "baptism", label: "Baptism", icon: faWater/* , count: 0 */ },
+  { id: "volunteer", label: "Volunteer", icon: faHandsHelping/* , count: 0 */ }
+];
   const galleryImages = [
     // Worship Category
-    {
+   /*  {
       id: 1,
       title: "Sunday Morning Worship",
       description: "Our congregation lifting voices in praise during the 11AM contemporary service.",
@@ -45,7 +60,7 @@ const Gallery = () => {
       photographer: "Michael Chen",
       likes: 128,
       comments: 7
-    },
+    }, */
     {
       id: 3,
       title: "Christmas Candlelight Service",
@@ -329,12 +344,12 @@ const Gallery = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <i className="fas fa-camera text-amber-600 text-sm"></i>
+            <FontAwesomeIcon icon={faCamera} className="text-amber-600 text-sm" />
             <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Our Story in Pictures</span>
-            <i className="fas fa-images text-amber-600 text-sm"></i>
+            <FontAwesomeIcon icon={faImages} className="text-amber-600 text-sm" />
           </div>
           <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-            Ministry <span className="text-amber-600">Gallery</span>
+             <span className="text-amber-600">Ministry Gallery</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           <p className="text-stone-600 max-w-2xl mx-auto text-lg">
@@ -354,7 +369,7 @@ const Gallery = () => {
                   : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
               }`}
             >
-              <i className={`fas ${cat.icon} text-sm`}></i>
+              <FontAwesomeIcon icon={cat.icon} className="text-sm" />
               <span className="text-sm font-medium">{cat.label}</span>
               <span className={`text-xs px-1.5 py-0.5 rounded-full ${
                 selectedCategory === cat.id ? "bg-white/20" : "bg-amber-100 text-amber-700"
@@ -547,14 +562,7 @@ const Gallery = () => {
         )}
       </div>
 
-      <style jsx>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+      
     </section>
   );
 };

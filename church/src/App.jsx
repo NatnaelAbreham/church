@@ -11,6 +11,7 @@ import PrayerRequest from "./components/PrayerRequest";
 import Giving from "./components/Giving";
 import Sermons from "./components/Sermons";
 import LiveStream from "./components/LiveStream";
+import Gallery from "./components/Gallery";
 
 import Footer from "./components/Footer";
 /* 
@@ -47,7 +48,8 @@ function App() {
       <PrayerRequest />
       <Giving />
       <Sermons />
-<LiveStream />
+      <LiveStream />
+      <Gallery />
       <Footer />
 
       {/* 
@@ -56,7 +58,7 @@ function App() {
       
       
       <ServiceTimes />
-      <Gallery />
+      
       <FAQ />
       <Newsletter />
       
