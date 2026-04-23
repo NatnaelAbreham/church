@@ -7,6 +7,7 @@ import Testimonials from "./components/Testimonials";
 import LocationMap from "./components/LocationMap";
 import Ministries from "./components/Ministries";
 import Volunteer from "./components/Volunteer";
+import PrayerRequest from "./components/PrayerRequest";
 
 /* 
 import Events from "./components/Events";
@@ -18,7 +19,7 @@ import FAQ from "./components/FAQ";
 import Newsletter from "./components/Newsletter";
 import LiveStream from "./components/LiveStream";
 import Announcements from "./components/Announcements";
-import PrayerRequest from "./components/PrayerRequest";
+
 
 
 import EventsCalendar from "./components/EventsCalendar";
@@ -39,6 +40,7 @@ function App() {
      <LocationMap />
      <Ministries />
      <Volunteer />
+    <PrayerRequest />
 
        {/* 
       <Events />
@@ -51,7 +53,7 @@ function App() {
       <Newsletter />
       <LiveStream />
       <Announcements />
-      <PrayerRequest />
+     
       <Volunteer />
       
       <EventsCalendar />
