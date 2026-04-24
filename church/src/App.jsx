@@ -12,6 +12,8 @@ import Giving from "./components/Giving";
 import Sermons from "./components/Sermons";
 import LiveStream from "./components/LiveStream";
 import Gallery from "./components/Gallery";
+import Blog from "./components/Blog";
+import EventsCalendar from "./components/EventsCalendar";
 
 import Footer from "./components/Footer";
 /* 
@@ -27,9 +29,9 @@ import Announcements from "./components/Announcements";
 
 
 
-import EventsCalendar from "./components/EventsCalendar";
+
 import GivingProgress from "./components/GivingProgress";
-import Blog from "./components/Blog";
+
 
 import Contact from "./components/Contact";
  */
@@ -50,6 +52,8 @@ function App() {
       <Sermons />
       <LiveStream />
       <Gallery />
+      <Blog />
+      <EventsCalendar />
       <Footer />
 
       {/* 
