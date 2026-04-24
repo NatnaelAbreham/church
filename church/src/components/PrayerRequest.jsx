@@ -1,6 +1,6 @@
 // components/PrayerRequest.jsx
 import { useState, useEffect } from "react";
-import '../css/prayerrequest.css';
+/* import '../css/prayerrequest.css'; */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandsPraying,

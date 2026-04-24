@@ -15,7 +15,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 
 import aboutpage from "../assets/images/aboutpage.jpg";
-import "../css/about.css";
+/* import "../css/about.css"; */
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,6 +1,6 @@
 // components/LocationMap.jsx
 import { useState, useEffect } from "react";
-import '../css/locationmap.css';
+/* import '../css/locationmap.css'; */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 

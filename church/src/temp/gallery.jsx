@@ -1,6 +1,6 @@
 // components/Gallery.jsx
 import { useState, useEffect } from "react";
-/* import '../css/gallery.css';  */
+import '../css/gallery.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -13,6 +13,7 @@ import {
   faWater,
   faHandsHelping,
   faCamera,
+  faVideo,
   faHeart,
   faComment,
   faSearchPlus,
@@ -32,16 +33,16 @@ const Gallery = () => {
   const imagesPerPage = 9;
 
   const categories = [
-    { id: "all", label: "All Moments", icon: faImages/* , count: 0  */},
-    { id: "worship", label: "Worship", icon: faMusic/* , count: 0  */},
-    { id: "community", label: "Community", icon: faUsers/* , count: 0  */},
-    { id: "events", label: "Events", icon: faCalendarAlt/* , count: 0  */},
-    { id: "youth", label: "Youth", icon: faChild/* , count: 0  */},
-    { id: "missions", label: "Missions", icon: faGlobe/* , count: 0  */},
-    { id: "baptism", label: "Baptism", icon: faWater/* , count: 0  */},
-    { id: "volunteer", label: "Volunteer", icon: faHandsHelping/* , count: 0  */}
+    { id: "all", label: "All Moments", icon: faImages },
+    { id: "worship", label: "Worship", icon: faMusic },
+    { id: "community", label: "Community", icon: faUsers },
+    { id: "events", label: "Events", icon: faCalendarAlt },
+    { id: "youth", label: "Youth", icon: faChild },
+    { id: "missions", label: "Missions", icon: faGlobe },
+    { id: "baptism", label: "Baptism", icon: faWater },
+    { id: "volunteer", label: "Volunteer", icon: faHandsHelping }
   ];
-
+  
   const galleryImages = [
     {
       id: 3,
@@ -239,13 +240,15 @@ const Gallery = () => {
 
   // Update category counts
   useEffect(() => {
+    const counts = {};
     categories.forEach(cat => {
       if (cat.id === "all") {
-        cat.count = galleryImages.length;
+        counts[cat.id] = galleryImages.length;
       } else {
-        cat.count = galleryImages.filter(img => img.category === cat.id).length;
+        counts[cat.id] = galleryImages.filter(img => img.category === cat.id).length;
       }
     });
+    categories.forEach(cat => cat.count = counts[cat.id]);
   }, []);
 
   // Filter images based on selected category
@@ -305,11 +308,13 @@ const Gallery = () => {
 
   return (
     <section id="gallery" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/20 relative overflow-hidden">
-      {/* Decorative elements */}
+      {/* Modern 2026 decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-100/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-100/5 to-transparent rounded-full blur-3xl"></div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -320,7 +325,7 @@ const Gallery = () => {
             <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Our Story in Pictures</span>
             <FontAwesomeIcon icon={faImages} className="text-amber-600 text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-stone-800 mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
             <span className="text-amber-600">Ministry Gallery</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
@@ -329,15 +334,15 @@ const Gallery = () => {
           </p>
         </div>
 
-        {/* Category Filters */}
+        {/* Category Filters - Modern Scrollable */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
               className={`group flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ${selectedCategory === cat.id
-                  ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25 scale-105"
-                  : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
+                ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25 scale-105"
+                : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
                 }`}
             >
               <FontAwesomeIcon icon={cat.icon} className="text-sm" />
@@ -352,11 +357,12 @@ const Gallery = () => {
 
         {/* Masonry Gallery Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 mb-12">
-          {currentImages.map((image) => (
+          {currentImages.map((image, index) => (
             <div
               key={image.id}
               className="break-inside-avoid group cursor-pointer relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
               onClick={() => openLightbox(image)}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -406,8 +412,8 @@ const Gallery = () => {
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${currentPage === 1
-                  ? "bg-stone-100 text-stone-400 cursor-not-allowed"
-                  : "bg-white text-amber-600 hover:bg-amber-600 hover:text-white shadow-md"
+                ? "bg-stone-100 text-stone-400 cursor-not-allowed"
+                : "bg-white text-amber-600 hover:bg-amber-600 hover:text-white shadow-md"
                 }`}
             >
               <FontAwesomeIcon icon={faChevronLeft} />
@@ -425,13 +431,14 @@ const Gallery = () => {
                 } else {
                   pageNum = currentPage - 2 + i;
                 }
+
                 return (
                   <button
                     key={pageNum}
                     onClick={() => setCurrentPage(pageNum)}
                     className={`w-10 h-10 rounded-full font-medium transition-all ${currentPage === pageNum
-                        ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md"
-                        : "bg-white text-stone-600 hover:bg-amber-50"
+                      ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md"
+                      : "bg-white text-stone-600 hover:bg-amber-50"
                       }`}
                   >
                     {pageNum}
@@ -444,8 +451,8 @@ const Gallery = () => {
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${currentPage === totalPages
-                  ? "bg-stone-100 text-stone-400 cursor-not-allowed"
-                  : "bg-white text-amber-600 hover:bg-amber-600 hover:text-white shadow-md"
+                ? "bg-stone-100 text-stone-400 cursor-not-allowed"
+                : "bg-white text-amber-600 hover:bg-amber-600 hover:text-white shadow-md"
                 }`}
             >
               <FontAwesomeIcon icon={faChevronRight} />
@@ -453,95 +460,78 @@ const Gallery = () => {
           </div>
         )}
 
-       
-
-        {/* SIMPLE CENTERED LIGHTBOX - Fixed scrollbar and close button */}
+        {/* Lightbox Modal - FIXED VERSION */}
         {isLightboxOpen && selectedImage && (
-          <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}
+          <div 
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center" 
             onClick={closeLightbox}
           >
-            {/* Modal */}
-            <div
-              className="relative max-w-6xl w-full max-h-[90vh] bg-stone-900 rounded-2xl shadow-2xl overflow-hidden"
+            {/* Close button - Top Right */}
+            <button
+              onClick={closeLightbox}
+              className="fixed top-4 right-4 z-[9999] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all flex items-center justify-center backdrop-blur-sm"
+            >
+              <FontAwesomeIcon icon={faTimes} className="text-2xl" />
+            </button>
+
+            {/* Navigation buttons */}
+            <button
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+              className="fixed left-4 top-1/2 -translate-y-1/2 z-[9999] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all flex items-center justify-center backdrop-blur-sm"
+            >
+              <FontAwesomeIcon icon={faChevronLeft} className="text-2xl" />
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+              className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all flex items-center justify-center backdrop-blur-sm"
+            >
+              <FontAwesomeIcon icon={faChevronRight} className="text-2xl" />
+            </button>
+
+            {/* Content container - scrollable */}
+            <div 
+              className="w-full h-full flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button - Moved to top left of image area */}
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 left-4 z-10 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 text-white transition-colors flex items-center justify-center"
-                style={{ backdropFilter: 'blur(4px)' }}
-              >
-                <FontAwesomeIcon icon={faTimes} className="text-xl" />
-              </button>
-
-              {/* Content - Responsive layout */}
-              <div className="flex flex-col md:flex-row">
-                {/* Image section */}
-                <div className="flex-1 bg-black/50 flex items-center justify-center p-6 md:p-8 relative">
+              <div className="max-w-5xl w-full mx-auto">
+                {/* Image container */}
+                <div className="flex items-center justify-center mb-4 bg-black/30 rounded-2xl p-2">
                   <img
                     src={selectedImage.image}
                     alt={selectedImage.title}
-                    className="max-w-full max-h-[50vh] md:max-h-[75vh] w-auto h-auto object-contain rounded-lg"
+                    className="max-w-full max-h-[65vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
                   />
                 </div>
 
-                {/* Info section - with better scrollbar visibility */}
-                <div className="w-full md:w-96 bg-stone-800 flex flex-col">
-                  {/* Navigation */}
-                  <div className="flex justify-between items-center p-6 pb-0">
-                    <button
-                      onClick={prevImage}
-                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center justify-center"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <span className="text-stone-400 text-sm">
-                      {filteredImages.findIndex(img => img.id === selectedImage.id) + 1} / {filteredImages.length}
-                    </span>
-                    <button
-                      onClick={nextImage}
-                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center justify-center"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                  </div>
-
-                  {/* Details with improved scrollbar styling */}
-                  <div
-                    className="flex-1 overflow-y-auto p-6 pt-4"
-                    style={{
-                      maxHeight: 'calc(75vh - 80px)',
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: '#f59e0b #1f2937'
-                    }}
-                  >
-                    <h3 className="text-2xl font-bold text-white mb-3">{selectedImage.title}</h3>
-                    <p className="text-stone-300 text-sm mb-6 leading-relaxed">{selectedImage.description}</p>
-
-                    <div className="space-y-3 mb-8">
-                      <div className="flex items-center gap-3 text-stone-400 text-sm">
-                        <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-400 w-4" />
-                        <span>{formatDate(selectedImage.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-stone-400 text-sm">
-                        <FontAwesomeIcon icon={faCamera} className="text-amber-400 w-4" />
-                        <span>{selectedImage.photographer}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-stone-400 text-sm">
-                        <FontAwesomeIcon icon={faHeart} className="text-red-400 w-4" />
-                        <span>{selectedImage.likes} likes</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-stone-400 text-sm">
-                        <FontAwesomeIcon icon={faComment} className="text-amber-400 w-4" />
-                        <span>{selectedImage.comments} comments</span>
-                      </div>
+                {/* Info panel */}
+                <div className="bg-stone-800/70 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <h3 className="text-2xl font-bold text-white mb-2">{selectedImage.title}</h3>
+                  <p className="text-stone-300 mb-4">{selectedImage.description}</p>
+                  <div className="flex flex-wrap items-center justify-between gap-4 text-sm">
+                    <div className="flex flex-wrap items-center gap-4">
+                      <span className="flex items-center gap-2 text-stone-300">
+                        <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-400" />
+                        {formatDate(selectedImage.date)}
+                      </span>
+                      <span className="flex items-center gap-2 text-stone-300">
+                        <FontAwesomeIcon icon={faCamera} className="text-amber-400" />
+                        {selectedImage.photographer}
+                      </span>
                     </div>
-
-                    <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl transition-colors text-sm font-semibold">
-                      <FontAwesomeIcon icon={faShareAlt} /> Share This Moment
-                    </button>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <span className="flex items-center gap-2 text-stone-300">
+                        <FontAwesomeIcon icon={faHeart} className="text-red-400" />
+                        {selectedImage.likes} likes
+                      </span>
+                      <span className="flex items-center gap-2 text-stone-300">
+                        <FontAwesomeIcon icon={faComment} className="text-amber-400" />
+                        {selectedImage.comments} comments
+                      </span>
+                      <button className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-all text-sm">
+                        <FontAwesomeIcon icon={faShareAlt} /> Share
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

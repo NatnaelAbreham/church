@@ -1,6 +1,6 @@
 // components/Testimonials.jsx
 import { useState, useEffect, useCallback } from "react";
-import '../css/testimonials.css';
+/* import '../css/testimonials.css'; */
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);

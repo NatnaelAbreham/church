@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ChevronRight, Play, Calendar, Heart, Sparkles, Cross } from "lucide-react";
 
 // Import the CSS file
-import "../css/hero.css"; // Adjust path as needed
+ import "../css/hero.css";  // Adjust path as needed
 
 import image2 from '../assets/images/c2.jpg';
 import image5 from '../assets/images/c5.jpg';
