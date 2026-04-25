@@ -14,10 +14,15 @@ import LiveStream from "./components/LiveStream";
 import Gallery from "./components/Gallery";
 import Blog from "./components/Blog";
 import EventsCalendar from "./components/EventsCalendar";
+import Events from "./components/Events";
+import Announcements from "./components/Announcements";
+import ServiceTimes from "./components/ServiceTimes";
 
 import Footer from "./components/Footer";
+import Newsletter from "./components/Newsletter";
+
 /* 
-import Events from "./components/Events";
+
 
 
 import ServiceTimes from "./components/ServiceTimes";
@@ -25,7 +30,7 @@ import Gallery from "./components/Gallery";
 import FAQ from "./components/FAQ";
 import Newsletter from "./components/Newsletter";
 
-import Announcements from "./components/Announcements";
+
 
 
 
@@ -54,6 +59,10 @@ function App() {
       <Gallery />
       <Blog />
       <EventsCalendar />
+      <Events />
+      <Announcements />
+      <ServiceTimes />
+      <Newsletter />
       <Footer />
 
       {/* 
@@ -61,7 +70,7 @@ function App() {
       <Sermons />
       
       
-      <ServiceTimes />
+      
       
       <FAQ />
       <Newsletter />

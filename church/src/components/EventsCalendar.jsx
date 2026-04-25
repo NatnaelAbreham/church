@@ -1,6 +1,31 @@
 // components/EventsCalendar.jsx
 import { useState, useEffect, useCallback, useMemo } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarAlt,
+  faMusic,
+  faUsers,
+  faChild,
+  faGlobe,
+  faBook,
+  faStar,
+  faHandsPraying,
+  faClock,
+  faChevronLeft,
+  faChevronRight,
+  faCalendarDay,
+  faList,
+  faCalendarTimes,
+  faBell,
+  faCalendarPlus,
+  faMapMarkerAlt,
+  faSyncAlt,
+  faTimes,
+  faUserCircle,
+  faTag,
+  
+} from "@fortawesome/free-solid-svg-icons";
 const EventsCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -10,17 +35,16 @@ const EventsCalendar = () => {
   const [currentMonthEvents, setCurrentMonthEvents] = useState([]);
   const [calendarDays, setCalendarDays] = useState([]);
 
-  // Stable categories array - never changes
-  const categories = useMemo(() => [
-    { id: "all", label: "All Events", icon: "fa-calendar-alt", color: "amber" },
-    { id: "worship", label: "Worship", icon: "fa-music", color: "purple" },
-    { id: "community", label: "Community", icon: "fa-users", color: "blue" },
-    { id: "youth", label: "Youth", icon: "fa-child", color: "green" },
-    { id: "outreach", label: "Outreach", icon: "fa-globe", color: "teal" },
-    { id: "education", label: "Education", icon: "fa-book", color: "orange" },
-    { id: "special", label: "Special Events", icon: "fa-star", color: "red" },
-    { id: "prayer", label: "Prayer", icon: "fa-praying-hands", color: "indigo" }
-  ], []);
+ const categories = useMemo(() => [
+  { id: "all", label: "All Events", icon: faCalendarAlt, color: "amber" },
+  { id: "worship", label: "Worship", icon: faMusic, color: "purple" },
+  { id: "community", label: "Community", icon: faUsers, color: "blue" },
+  { id: "youth", label: "Youth", icon: faChild, color: "green" },
+  { id: "outreach", label: "Outreach", icon: faGlobe, color: "teal" },
+  { id: "education", label: "Education", icon: faBook, color: "orange" },
+  { id: "special", label: "Special Events", icon: faStar, color: "red" },
+  { id: "prayer", label: "Prayer", icon: faHandsPraying, color: "indigo" }
+], []);
 
   // Stable events array - using useMemo to prevent re-creation
   const events = useMemo(() => [
@@ -33,7 +57,7 @@ const EventsCalendar = () => {
       time: "9:00 AM",
       endTime: "10:15 AM",
       location: "Main Sanctuary",
-      image: "https://images.pexels.com/photos/2606355/pexels-photo-2606355.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400",
       recurring: "weekly",
       coordinator: "Pastor Michael",
       contact: "michael@gracecovenant.org",
@@ -236,18 +260,19 @@ const EventsCalendar = () => {
     return colors[categoryId] || "border-amber-500 text-amber-700 bg-amber-50";
   }, []);
 
-  const getCategoryIcon = useCallback((categoryId) => {
-    const icons = {
-      worship: "fa-music",
-      community: "fa-users",
-      youth: "fa-child",
-      outreach: "fa-globe",
-      education: "fa-book",
-      special: "fa-star",
-      prayer: "fa-praying-hands"
-    };
-    return icons[categoryId] || "fa-calendar-alt";
-  }, []);
+const getCategoryIcon = useCallback((categoryId) => {
+  const icons = {
+    worship: faMusic,
+    community: faUsers,
+    youth: faChild,
+    outreach: faGlobe,
+    education: faBook,
+    special: faStar,
+    prayer: faHandsPraying,
+  };
+
+  return icons[categoryId] || faCalendarAlt;
+}, []);
 
   // Generate calendar days - now stable with useCallback
   const generateCalendarDays = useCallback((date, eventsList) => {
@@ -373,7 +398,7 @@ const EventsCalendar = () => {
   }, [selectedEvent]);
 
   return (
-    <section className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
+    <section id = "events-calendar" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
@@ -385,12 +410,12 @@ const EventsCalendar = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <i className="fas fa-calendar-alt text-amber-600 text-sm"></i>
+           <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-600 text-sm" />
             <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Stay Connected</span>
-            <i className="fas fa-clock text-amber-600 text-sm"></i>
+           <FontAwesomeIcon icon={faClock} className="text-amber-600 text-sm" />
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-stone-800 mb-4">
-            Events <span className="text-amber-600">Calendar</span>
+             <span className="text-amber-600">Events Calendar</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
           <p className="text-stone-600 max-w-2xl mx-auto text-lg">
@@ -410,7 +435,7 @@ const EventsCalendar = () => {
                   : "bg-white/80 backdrop-blur-sm text-stone-600 hover:bg-amber-50 border border-stone-200"
               }`}
             >
-              <i className={`fas ${cat.icon} text-sm`}></i>
+              <FontAwesomeIcon icon={cat.icon} className="text-sm" />
               <span className="text-sm font-medium hidden sm:inline">{cat.label}</span>
             </button>
           ))}
@@ -443,7 +468,7 @@ const EventsCalendar = () => {
                   onClick={() => changeMonth(-1)}
                   className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
                 >
-                  <i className="fas fa-chevron-left"></i>
+                  <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
                 <h3 className="text-white font-bold text-2xl">
                   {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
@@ -452,7 +477,7 @@ const EventsCalendar = () => {
                   onClick={() => changeMonth(1)}
                   className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
                 >
-                  <i className="fas fa-chevron-right"></i>
+                  <FontAwesomeIcon icon={faChevronRight} />
                 </button>
               </div>
 
@@ -511,7 +536,7 @@ const EventsCalendar = () => {
                   onClick={goToToday}
                   className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium transition-all hover:shadow-lg flex items-center gap-2 mx-auto"
                 >
-                  <i className="fas fa-calendar-day"></i>
+                 <FontAwesomeIcon icon={faCalendarDay} />
                   Today
                 </button>
               </div>
@@ -522,7 +547,7 @@ const EventsCalendar = () => {
           <div>
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20">
               <h3 className="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
-                <i className="fas fa-list text-amber-500"></i>
+                <FontAwesomeIcon icon={faList} className="text-amber-500" />
                 <span>
                   {selectedDate ? `Events for ${selectedDate.date.toLocaleDateString('default', { month: 'short', day: 'numeric' })}` : "Upcoming Events"}
                 </span>
@@ -538,8 +563,10 @@ const EventsCalendar = () => {
                     >
                       <div className="flex items-start gap-3">
                         <div className={`w-12 h-12 rounded-xl ${getCategoryColor(event.category)} bg-opacity-20 flex items-center justify-center flex-shrink-0`}>
-                          <i className={`fas ${getCategoryIcon(event.category)} text-${getCategoryColor(event.category).replace('bg-', '')} text-lg`}></i>
-                        </div>
+                          <FontAwesomeIcon
+  icon={getCategoryIcon(event.category)}
+  className={`text-${getCategoryColor(event.category)} text-lg`}
+/>   </div>
                         <div className="flex-1">
                           <div className="flex items-start justify-between gap-2">
                             <h4 className="font-semibold text-stone-800 group-hover:text-amber-600 transition-colors">{event.title}</h4>
@@ -548,11 +575,11 @@ const EventsCalendar = () => {
                             )}
                           </div>
                           <p className="text-xs text-stone-500 mt-1">
-                            <i className="far fa-calendar-alt mr-1 text-amber-500"></i>
+                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-1 text-amber-500" />
                             {new Date(event.date).toLocaleDateString('default', { month: 'short', day: 'numeric' })} • {formatTimeRange(event)}
                           </p>
                           <p className="text-xs text-stone-500">
-                            <i className="fas fa-map-marker-alt mr-1 text-amber-500"></i>
+                            <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-1 text-amber-500" />
                             {event.location}
                           </p>
                           <div className="mt-2 flex flex-wrap gap-1">
@@ -561,7 +588,7 @@ const EventsCalendar = () => {
                             </span>
                             {event.recurring !== "once" && (
                               <span className="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full">
-                                <i className="fas fa-sync-alt mr-1 text-amber-500"></i>
+                                <FontAwesomeIcon icon={faSyncAlt} className="mr-1 text-amber-500" />
                                 {event.recurring}
                               </span>
                             )}
@@ -572,7 +599,7 @@ const EventsCalendar = () => {
                   ))
                 ) : (
                   <div className="text-center py-16">
-                    <i className="fas fa-calendar-times text-5xl text-stone-300 mb-4"></i>
+                  <FontAwesomeIcon icon={faCalendarTimes} className="text-5xl text-stone-300 mb-4" />
                     <p className="text-stone-500 font-medium">No events found for this period</p>
                     <p className="text-stone-400 text-sm mt-1">Try selecting a different date or category</p>
                   </div>
@@ -583,11 +610,11 @@ const EventsCalendar = () => {
             {/* Subscribe Card */}
             <div className="mt-6 bg-gradient-to-r from-amber-50 to-amber-100/50 rounded-xl p-5 text-center border border-amber-200">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <i className="fas fa-bell text-amber-500"></i>
+                <FontAwesomeIcon icon={faBell} className="text-amber-500" />
                 <p className="text-stone-700 font-semibold">Never miss an event!</p>
               </div>
               <button className="bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium text-sm px-6 py-2.5 rounded-xl flex items-center justify-center gap-2 mx-auto hover:shadow-lg transition-all">
-                <i className="fas fa-calendar-plus"></i>
+                <FontAwesomeIcon icon={faCalendarPlus} />
                 Subscribe to Calendar
               </button>
               <p className="text-stone-500 text-xs mt-3">Get updates directly to your device</p>
@@ -595,84 +622,154 @@ const EventsCalendar = () => {
           </div>
         </div>
 
-        {/* Event Details Modal */}
-        {selectedEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={() => setSelectedEvent(null)}>
-            <div className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setSelectedEvent(null)} className="absolute top-6 right-6 w-10 h-10 rounded-full bg-stone-100/90 backdrop-blur-sm hover:bg-amber-500 hover:text-white transition-all z-10 shadow-md">
-                <i className="fas fa-times"></i>
-              </button>
-              
-              {selectedEvent.image && (
-                <div className="relative h-64 overflow-hidden">
-                  <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-              )}
-              
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-2 mb-4 flex-wrap">
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryBadgeColor(selectedEvent.category)}`}>
-                    {categories.find(c => c.id === selectedEvent.category)?.label}
-                  </span>
-                  {selectedEvent.featured && (
-                    <span className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-3 py-1 rounded-full shadow-sm">Featured Event</span>
-                  )}
-                </div>
-                
-                <h2 className="text-2xl md:text-3xl font-bold text-stone-800 mb-4">{selectedEvent.title}</h2>
-                
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 text-stone-600 p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                    <i className="far fa-calendar-alt text-amber-500 w-5 text-lg"></i>
-                    <span>{new Date(selectedEvent.date).toLocaleDateString('default', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-stone-600 p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                    <i className="far fa-clock text-amber-500 w-5 text-lg"></i>
-                    <span>{formatTimeRange(selectedEvent)}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-stone-600 p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                    <i className="fas fa-map-marker-alt text-amber-500 w-5 text-lg"></i>
-                    <span>{selectedEvent.location}</span>
-                  </div>
-                  {selectedEvent.cost && (
-                    <div className="flex items-center gap-3 text-stone-600 p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                      <i className="fas fa-tag text-amber-500 w-5 text-lg"></i>
-                      <span className="font-semibold text-amber-600">{selectedEvent.cost}</span>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="bg-gradient-to-r from-amber-50 to-stone-50 rounded-xl p-5 mb-6 border-l-4 border-amber-500">
-                  <p className="text-stone-700 leading-relaxed">{selectedEvent.description}</p>
-                </div>
-                
-                <div className="bg-stone-50 rounded-xl p-5 mb-6">
-                  <p className="text-sm text-stone-600 flex items-center gap-2 mb-2">
-                    <i className="fas fa-user-circle text-amber-500 text-lg"></i>
-                    <strong>Coordinator:</strong> {selectedEvent.coordinator}
-                  </p>
-                  <p className="text-sm text-stone-600 flex items-center gap-2">
-                    <i className="fas fa-envelope text-amber-500 text-lg"></i>
-                    <strong>Contact:</strong> <a href={`mailto:${selectedEvent.contact}`} className="text-amber-600 hover:underline">{selectedEvent.contact}</a>
-                  </p>
-                </div>
-                
-                <div className="flex gap-3">
-                  {selectedEvent.registrationRequired && (
-                    <button className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all">
-                      Register Now
-                    </button>
-                  )}
-                  <button className="flex-1 py-3 border-2 border-amber-500 text-amber-600 rounded-xl font-semibold hover:bg-amber-50 transition-all flex items-center justify-center gap-2">
-                    <i className="far fa-calendar-plus"></i>
-                    Add to Calendar
-                  </button>
-                </div>
-              </div>
+       {/* Event Details Modal */}
+{selectedEvent && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-lg"
+    onClick={() => setSelectedEvent(null)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="relative w-full max-w-3xl max-h-[92vh] overflow-hidden rounded-3xl
+                 bg-white/95 backdrop-blur-xl shadow-2xl border border-white/20
+                 animate-[fadeIn_0.25s_ease-out]"
+    >
+      {/* Scroll container */}
+      <div className="max-h-[92vh] overflow-y-auto">
+
+        {/* Close button */}
+        <button
+          onClick={() => setSelectedEvent(null)}
+          className="absolute top-5 right-5 z-20 w-11 h-11 rounded-full
+                     bg-white/80 backdrop-blur-md shadow-lg
+                     hover:bg-amber-500 hover:text-white transition-all
+                     flex items-center justify-center"
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+
+        {/* Hero Image */}
+        {selectedEvent.image && (
+          <div className="relative h-72">
+            <img
+              src={selectedEvent.image}
+              alt={selectedEvent.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+            {/* Floating badge + title */}
+            <div className="absolute bottom-5 left-6 text-white">
+              <p className="text-xs uppercase tracking-widest text-amber-300">
+                {categories.find(c => c.id === selectedEvent.category)?.label}
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                {selectedEvent.title}
+              </h2>
             </div>
           </div>
         )}
+
+        {/* Content */}
+        <div className="p-7 md:p-10 space-y-6">
+
+          {/* Badges */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryBadgeColor(
+                selectedEvent.category
+              )}`}
+            >
+              {categories.find(c => c.id === selectedEvent.category)?.label}
+            </span>
+
+            {selectedEvent.featured && (
+              <span className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-3 py-1 rounded-full shadow-sm">
+                Featured Event
+              </span>
+            )}
+          </div>
+
+          {/* Event Info Grid */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 text-stone-600">
+              <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-500" />
+              <span>
+                {new Date(selectedEvent.date).toLocaleDateString("default", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 text-stone-600">
+              <FontAwesomeIcon icon={faClock} className="text-amber-500" />
+              <span>{formatTimeRange(selectedEvent)}</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-stone-600">
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-amber-500" />
+              <span>{selectedEvent.location}</span>
+            </div>
+
+            {selectedEvent.cost && (
+              <div className="flex items-center gap-3 text-stone-600">
+                <FontAwesomeIcon icon={faTag} className="text-amber-500" />
+                <span className="font-semibold text-amber-600">
+                  {selectedEvent.cost}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Description */}
+          <div className="bg-gradient-to-r from-amber-50 to-white rounded-2xl p-6 border border-amber-100">
+            <p className="text-stone-700 leading-relaxed">
+              {selectedEvent.description}
+            </p>
+          </div>
+
+          {/* Contact Card */}
+          <div className="bg-stone-50 rounded-2xl p-5 space-y-2">
+            <div className="flex items-center gap-2 text-stone-600">
+              <FontAwesomeIcon icon={faUserCircle} className="text-amber-500" />
+              <strong>Coordinator:</strong>
+              <span>{selectedEvent.coordinator}</span>
+            </div>
+
+            <div className="flex items-center gap-2 text-stone-600">
+              <FontAwesomeIcon icon={faEnvelope} className="text-amber-500" />
+              <strong>Contact:</strong>
+              <a
+                href={`mailto:${selectedEvent.contact}`}
+                className="text-amber-600 hover:underline"
+              >
+                {selectedEvent.contact}
+              </a>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3 pt-2">
+            {selectedEvent.registrationRequired && (
+              <button className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all">
+                Register Now
+              </button>
+            )}
+
+            <button className="flex-1 py-3 border border-amber-500 text-amber-600 rounded-xl font-semibold hover:bg-amber-50 transition-all flex items-center justify-center gap-2">
+              <FontAwesomeIcon icon={faCalendarPlus} />
+              Add to Calendar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+)}
       </div>
     </section>
   );
