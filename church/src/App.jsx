@@ -17,9 +17,11 @@ import EventsCalendar from "./components/EventsCalendar";
 import Events from "./components/Events";
 import Announcements from "./components/Announcements";
 import ServiceTimes from "./components/ServiceTimes";
+import Newsletter from "./components/Newsletter";
+import Contact from "./components/Contact";
 
 import Footer from "./components/Footer";
-import Newsletter from "./components/Newsletter";
+
 
 /* 
 
@@ -38,7 +40,7 @@ import Newsletter from "./components/Newsletter";
 import GivingProgress from "./components/GivingProgress";
 
 
-import Contact from "./components/Contact";
+
  */
 
 function App() {
@@ -63,6 +65,7 @@ function App() {
       <Announcements />
       <ServiceTimes />
       <Newsletter />
+       <Contact />
       <Footer />
 
       {/* 
@@ -83,7 +86,7 @@ function App() {
       <GivingProgress />
       <Blog />
       
-      <Contact />
+     
        */}
     </>
   );

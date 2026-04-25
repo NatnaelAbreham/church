@@ -55,7 +55,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="relative py-28 px-6 bg-gradient-to-br from-stone-950 via-black to-stone-900 text-white overflow-hidden">
+    <section id = "newsletter" className="relative py-28 px-6 bg-gradient-to-br from-stone-950 via-black to-stone-900 text-white overflow-hidden">
 
       {/* Glow background */}
       <div className="absolute inset-0 pointer-events-none">
