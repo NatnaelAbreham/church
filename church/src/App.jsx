@@ -19,6 +19,7 @@ import Announcements from "./components/Announcements";
 import ServiceTimes from "./components/ServiceTimes";
 import Newsletter from "./components/Newsletter";
 import Contact from "./components/Contact";
+import FAQ from "./components/FAQ";
 
 import Footer from "./components/Footer";
 
@@ -29,7 +30,7 @@ import Footer from "./components/Footer";
 
 import ServiceTimes from "./components/ServiceTimes";
 import Gallery from "./components/Gallery";
-import FAQ from "./components/FAQ";
+
 import Newsletter from "./components/Newsletter";
 
 
@@ -65,7 +66,8 @@ function App() {
       <Announcements />
       <ServiceTimes />
       <Newsletter />
-       <Contact />
+      <Contact />
+      <FAQ />
       <Footer />
 
       {/* 
