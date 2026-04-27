@@ -19,7 +19,7 @@ import image11 from "../assets/images/c11.jpg";
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const heroImages = [image11, image2, image5, image6];
+  const heroImages = [image11,  image5, image6];
 
   useEffect(() => {
     const interval = setInterval(() => {

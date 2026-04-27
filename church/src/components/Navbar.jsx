@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, Menu, X, Play, User } from "lucide-react";
+import { ChevronDown, ChevronLeft, X, Play, User, Menu } from "lucide-react";
 import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
@@ -64,6 +64,13 @@ const Navbar = () => {
       }
     };
 
+    // Prevent body scroll when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
     window.addEventListener("scroll", handleScroll);
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("mousedown", handleUserClickOutside);
@@ -72,8 +79,9 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("mousedown", handleUserClickOutside);
+      document.body.style.overflow = 'unset';
     };
-  }, []);
+  }, [isMobileMenuOpen]);
 
   // FIX: Add effect to sync darkMode with document class
   useEffect(() => {
@@ -135,9 +143,9 @@ const Navbar = () => {
     <>
       {/* NAVBAR */}
       <nav
-  className={`fixed w-full z-50 transition-all duration-500 ${
-    isScrolled
-      ? `
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          isScrolled
+            ? `
         bg-white/70
         dark:bg-stone-950/70
         backdrop-blur-2xl
@@ -146,29 +154,43 @@ const Navbar = () => {
         shadow-lg
         py-3
       `
-      : `
-        bg-transparent py-3
+            : `
+        [&_*]:!bg-transparent py-3
         [&_*]:!text-white
         border-b border-white/10
         dark:border-white/10
         shadow-lg
       `
-  }`}
->
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
+            {/* MOBILE MENU BUTTON - Left side on mobile */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden group relative p-2 rounded-lg
+                bg-gradient-to-r from-amber-500 to-amber-600
+                hover:from-amber-600 hover:to-amber-700
+                shadow-lg shadow-amber-500/30
+                hover:shadow-xl hover:shadow-amber-500/40
+                transition-all duration-300
+                active:scale-95"
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5 text-white" />
+            </button>
 
-            {/* LOGO */}
+            {/* LOGO - Centered on mobile, normal on desktop */}
             <div
-              className="cursor-pointer"
+              className="cursor-pointer absolute left-1/2 transform -translate-x-1/2 lg:relative lg:left-0 lg:transform-none"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              <div className="text-xl font-semibold tracking-wide theme-heading">
-                 Grace<span className="text-amber-700">Covenant</span>
+              <div className="text-xl font-semibold tracking-wide theme-heading whitespace-nowrap">
+                Grace<span className="text-amber-700">Covenant</span>
               </div>
             </div>
 
-            {/* DESKTOP MENU */}
+            {/* DESKTOP MENU - Hidden on mobile */}
             <div className="hidden lg:flex items-center justify-center flex-1 mx-8">
               <div className="flex items-center gap-6">
                 {Object.entries(navStructure).map(([title, items]) => (
@@ -216,8 +238,8 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* RIGHT ACTIONS */}
-            <div className="flex items-center gap-3">
+            {/* DESKTOP RIGHT ACTIONS - Hidden on mobile */}
+            <div className="hidden lg:flex items-center gap-3">
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-xl theme-hover transition-all duration-300"
@@ -229,7 +251,7 @@ const Navbar = () => {
                   <Moon className="w-5 h-5 text-gray-700" />
                 )}
               </button>
-              
+
               {/* USER */}
               <div className="relative" ref={userMenuRef}>
                 <button
@@ -256,57 +278,91 @@ const Navbar = () => {
               <button
                 onClick={handleJoinLive}
                 className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold
-                  bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500
-                  text-stone-950 shadow-lg shadow-amber-500/20
-                  hover:shadow-amber-500/40 hover:scale-105 transition-all duration-300"
+                  bg-amber-500/90 dark:bg-amber-500/80
+                  text-white
+                  shadow-md shadow-amber-500/10
+                  hover:shadow-lg hover:shadow-amber-500/20
+                  hover:scale-105 transition-all duration-300"
               >
                 <Play className="w-4 h-4" />
                 Join Live
               </button>
-
-              {/* MOBILE MENU */}
-              <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition"
-                aria-label="Mobile menu"
-              >
-                <Menu className="w-6 h-6 theme-text" />
-              </button>
             </div>
+
+            {/* Invisible spacer for mobile to maintain layout */}
+            <div className="lg:hidden w-8"></div>
           </div>
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* SLIDE-IN SIDEBAR MENU FOR MOBILE - Better for responsiveness */}
       {isMobileMenuOpen && (
         <>
+          {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-
-          <div className="fixed right-0 top-0 h-full w-full max-w-sm theme-section z-50 shadow-2xl">
-            <div className="flex justify-between items-center p-6 border-b border-white/10">
-              <div className="text-white font-semibold">
-                Grace<span className="text-amber-400">Covenant</span>
+          
+          {/* Sidebar Menu */}
+          <div className="fixed left-0 top-0 h-full w-full max-w-sm bg-white dark:bg-stone-900 z-50 shadow-2xl transform transition-transform duration-300 ease-out lg:hidden">
+            {/* Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+              <div className="text-xl font-semibold tracking-wide">
+                Grace<span className="text-amber-600 dark:text-amber-500">Covenant</span>
               </div>
-              <button onClick={() => setIsMobileMenuOpen(false)}>
-                <X className="w-6 h-6 text-white" />
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
             </div>
 
-            <div className="p-6 space-y-6 overflow-y-auto h-[calc(100%-160px)]">
+            {/* Menu Items */}
+            <div className="p-6 space-y-6 overflow-y-auto h-[calc(100%-180px)]">
+              {/* Theme Toggle */}
+              <div className="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-700">
+                <span className="text-gray-700 dark:text-gray-300 font-medium">Dark Mode</span>
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 transition-all duration-300"
+                  aria-label="Toggle theme"
+                >
+                  {darkMode ? (
+                    <Sun className="w-5 h-5 text-amber-400" />
+                  ) : (
+                    <Moon className="w-5 h-5 text-gray-700" />
+                  )}
+                </button>
+              </div>
+
+              {/* User Menu */}
+              <div className="space-y-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-amber-600 dark:text-amber-500">Account</h3>
+                <div className="flex flex-col gap-2">
+                  <button className="w-full text-left px-4 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 hover:text-amber-600 dark:hover:text-amber-500 transition-all">
+                    Sign In
+                  </button>
+                  <button className="w-full text-left px-4 py-2.5 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 hover:text-amber-600 dark:hover:text-amber-500 transition-all">
+                    Register
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation Menus */}
               {Object.entries(navStructure).map(([title, items]) => (
-                <div key={title}>
-                  <div className="theme-accent font-semibold mb-2">
+                <div key={title} className="space-y-2">
+                  <h3 className="text-lg font-semibold text-amber-600 dark:text-amber-500">
                     {title}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
+                  </h3>
+                  <div className="flex flex-col gap-1">
                     {items.map((item) => (
                       <button
                         key={item}
                         onClick={() => handleLinkClick(item)}
-                        className="text-left theme-text hover:theme-accent hover:bg-white/5 px-2 py-2 rounded-lg text-sm"
+                        className="w-full text-left px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-amber-950/30 hover:text-amber-600 dark:hover:text-amber-500 transition-all"
                       >
                         {format(item)}
                       </button>
@@ -316,11 +372,13 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="absolute bottom-0 w-full p-6 border-t border-white/10">
+            {/* Footer with Join Live Button */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-stone-950/50">
               <button
                 onClick={handleJoinLive}
-                className="w-full bg-amber-500 text-black py-3 rounded-xl font-semibold"
+                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
               >
+                <Play className="w-4 h-4" />
                 Join Live Stream
               </button>
             </div>
