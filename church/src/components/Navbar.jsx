@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X, Play, User } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,6 +11,15 @@ const Navbar = () => {
 
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
+
+  // FIX: Initialize darkMode properly to avoid hydration mismatch
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check if we're in browser environment
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains("dark");
+    }
+    return false; // Default for SSR
+  });
 
   const navStructure = {
     "About Us": ["about", "leadership", "testimonials", "location-map"],
@@ -65,6 +75,15 @@ const Navbar = () => {
     };
   }, []);
 
+  // FIX: Add effect to sync darkMode with document class
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   const handleLinkClick = (id, e) => {
     e?.preventDefault();
     setIsMobileMenuOpen(false);
@@ -108,16 +127,34 @@ const Navbar = () => {
     setOpenMenu(openMenu === title ? null : title);
   };
 
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <>
       {/* NAVBAR */}
       <nav
-        className={`fixed w-full z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-stone-950/70 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.25)] py-3 border-b border-white/5"
-            : "bg-gradient-to-r from-stone-950/70 via-stone-900/40 to-stone-950/70 backdrop-blur-md py-4"
-        }`}
-      >
+  className={`fixed w-full z-50 transition-all duration-500 ${
+    isScrolled
+      ? `
+        bg-white/70
+        dark:bg-stone-950/70
+        backdrop-blur-2xl
+        border-b border-amber-100
+        dark:border-white/10
+        shadow-lg
+        py-3
+      `
+      : `
+        bg-transparent py-3
+        [&_*]:!text-white
+        border-b border-white/10
+        dark:border-white/10
+        shadow-lg
+      `
+  }`}
+>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
@@ -126,8 +163,8 @@ const Navbar = () => {
               className="cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              <div className="text-xl font-semibold tracking-wide text-white">
-                Grace<span className="text-amber-400">Covenant</span>
+              <div className="text-xl font-semibold tracking-wide theme-heading">
+                 Grace<span className="text-amber-700">Covenant</span>
               </div>
             </div>
 
@@ -138,7 +175,7 @@ const Navbar = () => {
                   <div key={title} className="relative" ref={dropdownRef}>
                     <button
                       onClick={() => toggleDropdown(title)}
-                      className="flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-amber-300 transition-all"
+                      className="flex items-center gap-1.5 text-sm font-medium theme-text hover:text-amber-500 dark:hover:theme-accent transition-all duration-300"
                     >
                       {title}
                       <ChevronDown
@@ -150,14 +187,13 @@ const Navbar = () => {
 
                     {/* DROPDOWN */}
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 mt-3 w-64 
-                      bg-stone-900/80 backdrop-blur-xl 
-                      rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)]
-                      border border-white/10 transition-all duration-300 origin-top ${
-                        openMenu === title
-                          ? "opacity-100 visible scale-100"
-                          : "opacity-0 invisible scale-95"
-                      }`}
+                      className={`absolute left-1/2 -translate-x-1/2 mt-3 w-64
+                        theme-card rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)]
+                        transition-all duration-300 origin-top ${
+                          openMenu === title
+                            ? "opacity-100 visible scale-100"
+                            : "opacity-0 invisible scale-95"
+                        }`}
                     >
                       <div className="p-2 space-y-1">
                         {items.map((item) => (
@@ -166,8 +202,8 @@ const Navbar = () => {
                             onClick={(e) => handleLinkClick(item, e)}
                             className={`block w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all ${
                               activeSection === item
-                                ? "bg-amber-500/10 text-amber-300 font-medium"
-                                : "text-white/70 hover:bg-white/5 hover:text-amber-200"
+                                ? "bg-amber-500/10 text-amber-500 dark:theme-accent font-medium"
+                                : "theme-text hover:bg-amber-50 dark:hover:bg-white/5 hover:text-amber-500 dark:hover:theme-accent"
                             }`}
                           >
                             {format(item)}
@@ -182,22 +218,34 @@ const Navbar = () => {
 
             {/* RIGHT ACTIONS */}
             <div className="flex items-center gap-3">
-
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-xl theme-hover transition-all duration-300"
+                aria-label="Toggle theme"
+              >
+                {darkMode ? (
+                  <Sun className="w-5 h-5 text-amber-400" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-700" />
+                )}
+              </button>
+              
               {/* USER */}
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="p-2 rounded-full hover:bg-white/10 transition"
+                  className="p-2 rounded-full theme-hover transition"
+                  aria-label="User menu"
                 >
-                  <User className="w-5 h-5 text-white/70 hover:text-amber-300 transition" />
+                  <User className="w-5 h-5 theme-text hover:theme-accent transition" />
                 </button>
 
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-stone-900/90 backdrop-blur-xl rounded-xl border border-white/10 shadow-xl overflow-hidden">
-                    <button className="w-full text-left px-4 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-amber-300">
+                  <div className="absolute right-0 mt-2 w-40 theme-card backdrop-blur-xl rounded-xl border border-white/10 shadow-xl overflow-hidden">
+                    <button className="w-full text-left px-4 py-2 text-sm theme-text hover:bg-amber-50 dark:hover:bg-white/5 hover:text-amber-500 dark:hover:theme-accent transition">
                       Sign In
                     </button>
-                    <button className="w-full text-left px-4 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-amber-300">
+                    <button className="w-full text-left px-4 py-2 text-sm theme-text hover:bg-amber-50 dark:hover:bg-white/5 hover:text-amber-500 dark:hover:theme-accent transition">
                       Register
                     </button>
                   </div>
@@ -208,9 +256,9 @@ const Navbar = () => {
               <button
                 onClick={handleJoinLive}
                 className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold
-                bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500
-                text-stone-950 shadow-lg shadow-amber-500/20
-                hover:shadow-amber-500/40 hover:scale-105 transition-all duration-300"
+                  bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500
+                  text-stone-950 shadow-lg shadow-amber-500/20
+                  hover:shadow-amber-500/40 hover:scale-105 transition-all duration-300"
               >
                 <Play className="w-4 h-4" />
                 Join Live
@@ -220,8 +268,9 @@ const Navbar = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition"
+                aria-label="Mobile menu"
               >
-                <Menu className="w-6 h-6 text-white/80" />
+                <Menu className="w-6 h-6 theme-text" />
               </button>
             </div>
           </div>
@@ -236,7 +285,7 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="fixed right-0 top-0 h-full w-full max-w-sm bg-stone-950 z-50 shadow-2xl">
+          <div className="fixed right-0 top-0 h-full w-full max-w-sm theme-section z-50 shadow-2xl">
             <div className="flex justify-between items-center p-6 border-b border-white/10">
               <div className="text-white font-semibold">
                 Grace<span className="text-amber-400">Covenant</span>
@@ -249,7 +298,7 @@ const Navbar = () => {
             <div className="p-6 space-y-6 overflow-y-auto h-[calc(100%-160px)]">
               {Object.entries(navStructure).map(([title, items]) => (
                 <div key={title}>
-                  <div className="text-amber-300 font-semibold mb-2">
+                  <div className="theme-accent font-semibold mb-2">
                     {title}
                   </div>
                   <div className="grid grid-cols-2 gap-2">
@@ -257,7 +306,7 @@ const Navbar = () => {
                       <button
                         key={item}
                         onClick={() => handleLinkClick(item)}
-                        className="text-left text-white/70 hover:text-amber-300 hover:bg-white/5 px-2 py-2 rounded-lg text-sm"
+                        className="text-left theme-text hover:theme-accent hover:bg-white/5 px-2 py-2 rounded-lg text-sm"
                       >
                         {format(item)}
                       </button>

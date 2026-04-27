@@ -1,10 +1,99 @@
-/* src/index.css - CORRECTED VERSION */
-
 @import "tailwindcss";
 
+/* LIGHT / DARK THEME SYSTEM */
 
-/* your custom styles below */
+/* FIX: Add dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
 
+@layer components {
+  /* Main Section */
+  .theme-section {
+    @apply bg-[#fdfaf6] text-gray-900 transition-colors duration-500;
+    @apply dark:bg-stone-950 dark:text-white;
+  }
+
+  /* Secondary Section */
+  .theme-section-secondary {
+    @apply bg-white transition-colors duration-500;
+    @apply dark:bg-black;
+  }
+
+  /* Glass Card */
+  .theme-card {
+    @apply bg-white/80 border border-amber-100 backdrop-blur-xl;
+    @apply dark:bg-white/5 dark:border-white/10;
+  }
+
+  /* Soft Card */
+  .theme-soft-card {
+    @apply bg-amber-50/70 border border-amber-100;
+    @apply dark:bg-stone-900/60 dark:border-white/10;
+  }
+
+  /* Main Heading */
+  .theme-heading {
+    @apply text-gray-900;
+    @apply dark:text-white;
+  }
+
+  /* Paragraph */
+  .theme-text {
+    @apply text-gray-700;
+    @apply dark:text-stone-300;
+  }
+
+  /* Muted Text */
+  .theme-muted {
+    @apply text-gray-500;
+    @apply dark:text-stone-400;
+  }
+
+  /* Accent Text */
+  .theme-accent {
+    @apply text-amber-600;
+    @apply dark:text-amber-400;
+  }
+
+  /* Accent Gradient Text */
+  .theme-gradient-text {
+    @apply bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent;
+  }
+
+  /* Main Button */
+  .theme-button {
+    @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white;
+    @apply hover:shadow-xl hover:scale-[1.02];
+    @apply transition-all duration-300;
+  }
+
+  /* Input */
+  .theme-input {
+    @apply w-full rounded-xl border outline-none transition-all duration-300;
+    @apply bg-white border-amber-100 text-gray-800 placeholder:text-gray-400;
+    @apply focus:border-amber-400;
+    @apply dark:bg-black/40 dark:border-white/10 dark:text-white dark:placeholder:text-stone-500;
+  }
+
+  /* Border */
+  .theme-border {
+    @apply border-amber-100;
+    @apply dark:border-white/10;
+  }
+
+  /* Glow */
+  .theme-glow {
+    @apply bg-amber-200/30;
+    @apply dark:bg-amber-500/10;
+  }
+
+  /* Hover Card */
+  .theme-hover {
+    @apply hover:bg-amber-50/70;
+    @apply dark:hover:bg-white/5;
+  }
+}
+
+/* Your custom styles below */
 html {
   scroll-behavior: smooth;
 }
@@ -14,7 +103,7 @@ body {
   background-color: #fefcf8;
 }
 
-/* custom classes (no @layer needed in v4) */
+/* Custom classes */
 .serif {
   font-family: 'Cormorant Garamond', serif;
 }
@@ -32,7 +121,7 @@ body {
   background: linear-gradient(105deg, rgba(20,15,5,0.65) 0%, rgba(0,0,0,0.3) 100%);
 }
 
-/* Your custom animations - SINGLE DEFINITION ONLY */
+/* Animations */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -97,7 +186,7 @@ body {
   }
 }
 
-/* Animation utility classes - SINGLE DEFINITION ONLY */
+/* Animation utility classes */
 .animate-fade-up {
   animation: fadeUp 0.8s ease-out forwards;
 }
