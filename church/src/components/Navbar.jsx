@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDown, ChevronLeft, X, Play, User, Menu } from "lucide-react";
+import { ChevronDown, ChevronRight, X, Play, User, Menu } from "lucide-react";
 import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
@@ -177,7 +177,7 @@ const Navbar = () => {
                 active:scale-95"
               aria-label="Open menu"
             >
-              <Menu className="w-5 h-5 text-white" />
+              <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform duration-300" />
             </button>
 
             {/* LOGO - Centered on mobile, normal on desktop */}
