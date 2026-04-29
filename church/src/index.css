@@ -7,16 +7,18 @@
 
 @layer components {
   /* Main Section */
-  .theme-section {
-    @apply bg-[#fdfaf6] text-gray-900 transition-colors duration-500;
-    @apply dark:bg-stone-950 dark:text-white;
-  }
+ .theme-section {
+  @apply bg-[#fdfaf6] text-gray-900 transition-colors duration-500;
+
+  @apply dark:bg-transparent;
+  @apply dark:text-white;
+}
 
   /* Secondary Section */
   .theme-section-secondary {
-    @apply bg-white transition-colors duration-500;
-    @apply dark:bg-black;
-  }
+  @apply bg-white transition-colors duration-500;
+  @apply dark:bg-transparent;
+}
 
   /* Glass Card */
   .theme-card {
@@ -27,7 +29,7 @@
   /* Soft Card */
   .theme-soft-card {
     @apply bg-amber-50/70 border border-amber-100;
-    @apply dark:bg-stone-900/60 dark:border-white/10;
+    @apply dark:bg-white/[0.03] dark:border-white/10;
   }
 
   /* Main Heading */
@@ -91,6 +93,18 @@
     @apply hover:bg-amber-50/70;
     @apply dark:hover:bg-white/5;
   }
+  
+html,
+body {
+  scroll-behavior: smooth;
+
+  @apply bg-[#fefcf8];
+
+  @apply dark:bg-gradient-to-b;
+  @apply dark:from-zinc-950;
+  @apply dark:via-zinc-900;
+  @apply dark:to-zinc-950;
+}
 }
 
 /* Your custom styles below */
@@ -98,10 +112,7 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #fefcf8;
-}
+
 
 /* Custom classes */
 .serif {
@@ -118,7 +129,11 @@ body {
 }
 
 .hero-overlay {
-  background: linear-gradient(105deg, rgba(20,15,5,0.65) 0%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.35)
+  );
 }
 
 /* Animations */
