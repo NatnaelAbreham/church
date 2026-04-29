@@ -4,34 +4,51 @@ import { X } from "lucide-react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
+import { faEnvelope  } from "@fortawesome/free-solid-svg-icons";
+import { ArrowRight, Calendar, Users, GraduationCap, Heart, CheckCircle, Share2 } from "lucide-react";
+import {
+  faUsers,
+  faChurch,
+  faCrown,
+  faHandsHelping,
+  faMusic,
+  faChild,
+  faGlobe,
+  faHeart,
+  faSmile,
+  faStar,
+ 
+  faCalendarAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { faBible, faHandHoldingHeart, faChartLine } from "@fortawesome/free-solid-svg-icons";
 
-const Leadership = () => {
-  const [selectedLeader, setSelectedLeader] = useState(null);
-  const [filter, setFilter] = useState("all");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
-  const iconMap = {
-  twitter: faTwitter,
-  linkedin: faLinkedin,
-  instagram: faInstagram,
-  email: faEnvelope,
+ const iconMap = {
+    twitter: faTwitter,
+    linkedin: faLinkedin,
+    instagram: faInstagram,
+    email: faEnvelope,
+  };
+
+  const valueIconMap = {
+    "fa-bible": faBible,
+    "fa-hand-holding-heart": faHandHoldingHeart,
+    "fa-chart-line": faChartLine,
+  };
+
+  const categoryIconMap = {
+  "fa-users": faUsers,
+  "fa-church": faChurch,
+  "fa-crown": faCrown,
+  "fa-hands-helping": faHandsHelping,
+  "fa-music": faMusic,
+  "fa-child": faChild,
+  "fa-globe": faGlobe,
+  "fa-heart": faHeart,
+  "fa-smile": faSmile,
 };
 
-const valueIconMap = {
-  "fa-bible": faBible,
-  "fa-hand-holding-heart": faHandHoldingHeart,
-  "fa-chart-line": faChartLine,
-};
-  
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const leadershipTeam = [
+ const leadershipTeam = [
     {
       id: 1,
       name: "Dr. Michael Thompson",
@@ -117,7 +134,7 @@ const valueIconMap = {
       yearsAtChurch: 12,
       family: "Married to Linda with 2 adult children"
     },
-    
+
   ];
 
   const categories = [
@@ -131,9 +148,22 @@ const valueIconMap = {
     { id: "care", label: "Care Ministry", icon: "fa-heart" },
     { id: "children", label: "Children", icon: "fa-smile" }
   ];
+const Leadership = () => {
+  const [selectedLeader, setSelectedLeader] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
-  const filteredLeaders = filter === "all" 
-    ? leadershipTeam 
+ 
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+ 
+
+  const filteredLeaders = filter === "all"
+    ? leadershipTeam
     : leadershipTeam.filter(leader => leader.category === filter);
 
   const openModal = (leader) => {
@@ -156,7 +186,7 @@ const valueIconMap = {
     const handleEsc = (e) => {
       if (e.key === "Escape") closeModal();
     };
-    
+
     if (typeof document !== 'undefined') {
       document.addEventListener("keydown", handleEsc);
       return () => document.removeEventListener("keydown", handleEsc);
@@ -164,9 +194,12 @@ const valueIconMap = {
   }, []);
 
   return (
-    <section id="leadership" className="relative py-24 sm:py-28 px-4 sm:px-6 overflow-hidden">
+    <section
+      id="leadership"
+      className="theme-section relative py-24 sm:py-28 px-4 sm:px-6 overflow-hidden"
+    >
       {/* Consistent Background from Newsletter Page - Stone/Dark Theme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900">
+      <div className="absolute inset-0 theme-section-secondary">
         {/* Decorative blurs from newsletter */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
@@ -180,23 +213,23 @@ const valueIconMap = {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header - Warm accent for emphasis (unchanged content) */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full mb-5 border border-amber-500/20">
-            <i className="fas fa-crown text-amber-400 text-xs sm:text-sm"></i>
+          <div className="inline-flex items-center gap-2 theme-card px-4 sm:px-5 py-1.5 sm:py-2 rounded-full mb-5">
+            <FontAwesomeIcon icon={faCrown} className="theme-accent text-xs sm:text-sm" />
             <span className="text-amber-300 font-semibold tracking-wide uppercase text-[10px] sm:text-xs">Godly Leadership</span>
-            <i className="fas fa-star text-amber-400 text-xs sm:text-sm"></i>
+            <FontAwesomeIcon icon={faStar} className="theme-accent text-xs sm:text-sm" />
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-           
-            <span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">
-               Meet Our{" "}Leadership Team
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold theme-heading mb-4">
+
+            <span className="theme-gradient-text">
+              Meet Our{" "}Leadership Team
             </span>
           </h2>
-          
+
           {/* Warm accent divider */}
           <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          
-          <p className="text-stone-300 max-w-2xl mx-auto text-base sm:text-lg">
+
+          <p className="theme-text max-w-2xl mx-auto text-base sm:text-lg">
             Spirit-led leaders committed to serving God's people with integrity, wisdom, and love
           </p>
         </div>
@@ -207,13 +240,17 @@ const valueIconMap = {
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id)}
-              className={`group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full transition-all duration-300 text-xs sm:text-sm ${
-                filter === cat.id
-                  ? "bg-amber-500 text-white shadow-lg shadow-amber-500/25 scale-105"
-                  : "bg-white/5 backdrop-blur-sm text-white/70 hover:bg-white/10 border border-white/10"
-              }`}
+              className={`group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full transition-all duration-300 text-xs sm:text-sm ${filter === cat.id
+                  ? "bg-amber-500 theme-heading shadow-lg shadow-amber-500/25 scale-105"
+                  : "theme-card theme-text hover:theme-card"
+                }`}
             >
-              <i className={`fas ${cat.icon} text-[10px] sm:text-sm ${filter === cat.id ? "text-white" : "text-amber-400 group-hover:text-amber-300"}`}></i>
+              <FontAwesomeIcon
+  icon={categoryIconMap[cat.icon]}
+  className={`text-[10px] sm:text-sm transition-colors duration-300 ${
+    filter === cat.id ? "theme-accent" : "theme-muted group-hover:text-amber-300"
+  }`}
+/>
               <span className="font-medium">{cat.label}</span>
             </button>
           ))}
@@ -228,8 +265,7 @@ const valueIconMap = {
               className="group cursor-pointer animate-fade-up"
               style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
             >
-              <div className="relative bg-stone-800/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-stone-700/50 hover:border-amber-500/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/10">
-                {/* Image Container */}
+              <div className="relative theme-card rounded-2xl overflow-hidden hover:border-amber-500/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/10">   {/* Image Container */}
                 <div className="relative overflow-hidden h-64">
                   <img
                     src={leader.image}
@@ -237,28 +273,34 @@ const valueIconMap = {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                  
+
                   {/* Role Badge - Warm accent */}
-                  <div className="absolute top-4 right-4 bg-amber-500/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold text-white shadow-lg">
+                  <div className="absolute top-4 right-4 bg-amber-500/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold theme-heading shadow-lg">
                     {leader.title}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5 sm:p-6 text-center">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold theme-heading mb-1 group-hover:theme-accent transition-colors">
                     {leader.name}
                   </h3>
-                  <p className="text-amber-400 text-xs sm:text-sm mb-4">{leader.title}</p>
-                  
+                  <p className="theme-accent text-xs sm:text-sm mb-4">{leader.title}</p>
+
                   {/* Quick Stats - Subtle */}
-                  <div className="flex justify-center gap-3 sm:gap-4 text-white/40 text-[10px] sm:text-xs mb-4">
+                  <div className="flex justify-center gap-3 sm:gap-4 theme-heading/40 text-[10px] sm:text-xs mb-4">
                     <div className="flex items-center gap-1">
-                      <i className="fas fa-calendar-alt text-amber-400 text-[8px] sm:text-xs"></i>
+                     <FontAwesomeIcon
+  icon={faCalendarAlt}
+  className="theme-accent text-[8px] sm:text-xs"
+/>
                       <span>{leader.yearsAtChurch}+ yrs</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <i className="fas fa-heart text-amber-400 text-[8px] sm:text-xs"></i>
+                     <FontAwesomeIcon
+  icon={faHeart}
+  className="theme-accent text-[8px] sm:text-xs"
+/>
                       <span className="capitalize">{leader.category}</span>
                     </div>
                   </div>
@@ -268,19 +310,21 @@ const valueIconMap = {
                     {Object.keys(leader.socialLinks).map((platform) => (
                       <div
                         key={platform}
-                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full theme-card flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <i className={`fab fa-${platform} text-white/70 text-[10px] sm:text-xs`}></i>
+                       <FontAwesomeIcon
+  icon={iconMap[platform]}
+  className="text-[10px] sm:text-xs text-gray-700/70 hover:text-amber-400 transition-colors"
+/>
                       </div>
                     ))}
                   </div>
 
                   {/* View Details - Warm accent */}
-                  <div className="mt-3 sm:mt-4 inline-flex items-center gap-1 text-amber-400 text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="mt-3 sm:mt-4 inline-flex items-center gap-1 theme-accent text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <span>View Profile</span>
-                    <i className="fas fa-arrow-right text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform"></i>
-                  </div>
+                   <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform theme-accent" />   </div>
                 </div>
               </div>
             </div>
@@ -290,8 +334,8 @@ const valueIconMap = {
         {/* Empty State */}
         {filteredLeaders.length === 0 && (
           <div className="text-center py-16">
-            <i className="fas fa-users-slash text-5xl sm:text-6xl text-white/20 mb-4"></i>
-            <p className="text-stone-300 text-base sm:text-lg">No leaders found in this category</p>
+           <UsersX className="w-12 h-12 sm:w-16 sm:h-16 theme-muted mb-4" />
+            <p className="theme-text text-base sm:text-lg">No leaders found in this category</p>
           </div>
         )}
 
@@ -302,16 +346,16 @@ const valueIconMap = {
             { icon: "fa-hand-holding-heart", title: "Servant Leadership", desc: "Leading with humility, grace, and a heart for God's people" },
             { icon: "fa-chart-line", title: "Vision-Driven", desc: "Committed to advancing God's kingdom with excellence and innovation" }
           ].map((value, idx) => (
-            <div key={idx} className="group bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 text-center hover:border-amber-500/30 transition-all duration-300">
+            <div key={idx} className="group theme-card rounded-2xl p-6  text-center hover:border-amber-500/30 transition-all duration-300">
               <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                
+
                 <FontAwesomeIcon
-  icon={valueIconMap[value.icon]}
-  className="text-amber-400 text-xl sm:text-2xl"
-/>
+                  icon={valueIconMap[value.icon]}
+                  className="theme-accent text-xl sm:text-2xl"
+                />
               </div>
-              <h3 className="text-white font-bold text-base sm:text-lg mb-2">{value.title}</h3>
-              <p className="text-stone-300 text-xs sm:text-sm">{value.desc}</p>
+              <h3 className="theme-heading font-bold text-base sm:text-lg mb-2">{value.title}</h3>
+              <p className="theme-text text-xs sm:text-sm">{value.desc}</p>
             </div>
           ))}
         </div>
@@ -320,45 +364,45 @@ const valueIconMap = {
       {/* Modal - Detailed View */}
       {isClient && isModalOpen && selectedLeader && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={closeModal}>
-          {/* <div className="relative max-w-4xl w-full bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
-         */} 
-         <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-amber-500/30 animate-fade-up">
-            <button onClick={closeModal} className="absolute top-3 right-3 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white hover:bg-amber-500 transition-colors z-20 flex items-center justify-center">
+          {/* <div className="relative max-w-4xl w-full theme-section-secondary rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 animate-fade-up" onClick={(e) => e.stopPropagation()}>
+         */}
+          <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto theme-section-secondary rounded-2xl sm:rounded-3xl shadow-2xl border border-amber-500/30 animate-fade-up">
+            <button onClick={closeModal} className="absolute top-3 right-3 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 theme-heading hover:bg-amber-500 transition-colors z-20 flex items-center justify-center">
 
-              <X className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5 theme-heading" />
             </button>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Left - Image */}
               <div className="relative h-80 md:h-full min-h-[350px]">
                 <img src={selectedLeader.image} alt={selectedLeader.name} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
               </div>
-              
+
               {/* Right - Details */}
               <div className="p-6 sm:p-8 md:p-10">
                 <div className="mb-5 sm:mb-6">
                   <span className="inline-block px-2.5 sm:px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-[10px] sm:text-xs font-semibold mb-3">
                     {selectedLeader.title}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{selectedLeader.name}</h2>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-stone-300 text-xs sm:text-sm">
-                    <span className="flex items-center gap-1"><i className="fas fa-calendar-alt text-amber-400 text-[10px] sm:text-xs"></i> {selectedLeader.yearsAtChurch} years at GCC</span>
-                    <span className="flex items-center gap-1"><i className="fas fa-user-friends text-amber-400 text-[10px] sm:text-xs"></i> {selectedLeader.family}</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold theme-heading mb-2">{selectedLeader.name}</h2>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 theme-text text-xs sm:text-sm">
+                    <span className="flex items-center gap-1"><Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 theme-accent" /> {selectedLeader.yearsAtChurch} years at GCC</span>
+                    <span className="flex items-center gap-1"><Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 theme-accent" /> {selectedLeader.family}</span>
                   </div>
                 </div>
 
                 <div className="mb-5 sm:mb-6">
-                  <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-user-graduate text-xs sm:text-sm"></i> Biography</h3>
-                  <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">{selectedLeader.bio}</p>
+                  <h3 className="theme-accent font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 theme-accent" /> Biography</h3>
+                  <p className="theme-text text-xs sm:text-sm leading-relaxed">{selectedLeader.bio}</p>
                 </div>
 
                 <div className="mb-5 sm:mb-6">
-                  <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-graduation-cap text-xs sm:text-sm"></i> Education</h3>
+                  <h3 className="theme-accent font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 theme-accent" /> Education</h3>
                   <ul className="space-y-1">
                     {selectedLeader.education.map((edu, idx) => (
-                      <li key={idx} className="text-stone-300 text-xs sm:text-sm flex items-start gap-2">
-                        <i className="fas fa-check-circle text-amber-400 text-[8px] sm:text-xs mt-1"></i>
+                      <li key={idx} className="theme-text text-xs sm:text-sm flex items-start gap-2">
+                       <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 theme-accent mt-1" />
                         <span>{edu}</span>
                       </li>
                     ))}
@@ -366,12 +410,12 @@ const valueIconMap = {
                 </div>
 
                 <div className="mb-5 sm:mb-6">
-                  <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-heart text-xs sm:text-sm"></i> Favorite Verse</h3>
-                  <p className="text-stone-300 text-xs sm:text-sm italic bg-white/5 p-3 rounded-xl">{selectedLeader.favoriteVerse}</p>
+                  <h3 className="theme-accent font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><Heart className="w-3 h-3 sm:w-3.5 sm:h-3.5 theme-accent" /> Favorite Verse</h3>
+                  <p className="theme-text text-xs sm:text-sm italic theme-soft-card p-3 rounded-xl">{selectedLeader.favoriteVerse}</p>
                 </div>
 
                 {/* <div>
-                  <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-share-alt text-xs sm:text-sm"></i> Connect</h3>
+                  <h3 className="theme-accent font-semibold mb-2 text-sm sm:text-base flex items-center gap-2"><i className="fas fa-share-alt text-xs sm:text-sm"></i> Connect</h3>
                   <div className="flex gap-2 sm:gap-3">
                     {Object.entries(leader.socialLinks).map(([platform, url]) => {
   const Icon = iconMap[platform];
@@ -379,10 +423,10 @@ const valueIconMap = {
   return (
     <div
       key={platform}
-      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
+      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full theme-card flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
       onClick={(e) => e.stopPropagation()}
     >
-      {Icon && <Icon className="w-4 h-4 text-white/70" />}
+      {Icon && <Icon className="w-4 h-4 theme-heading/70" />}
     </div>
   );
 })}
@@ -390,48 +434,34 @@ const valueIconMap = {
                 </div> */}
 
                 {/* Replace this section in the modal */}
-<div>
-  <h3 className="text-amber-400 font-semibold mb-2 text-sm sm:text-base flex items-center gap-2">
-    <i className="fas fa-share-alt text-xs sm:text-sm"></i> 
-    Connect
-  </h3>
-  <div className="flex gap-2 sm:gap-3">
-    {Object.entries(selectedLeader.socialLinks).map(([platform, url]) => {
-  const icon = iconMap[platform];
+                <div>
+                  <h3 className="theme-accent font-semibold mb-2 text-sm sm:text-base flex items-center gap-2">
+                    <Share2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 theme-accent" />
+                    Connect
+                  </h3>
+                  <div className="flex gap-2 sm:gap-3">
+                    {Object.entries(selectedLeader.socialLinks).map(([platform, url]) => {
+                      const icon = iconMap[platform];
 
-  return (
-    <div
-      key={platform}
-      className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
-    >
-      <FontAwesomeIcon icon={icon} className="text-white/80 text-sm" />
-    </div>
-  );
-})}
-  </div>
-</div>
-             
+                      return (
+                        <div
+                          key={platform}
+                          className="w-8 h-8 rounded-full theme-card flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer"
+                        >
+                          <FontAwesomeIcon icon={icon} className="theme-heading/80 text-sm" />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       )}
 
-     <style>{`
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .animate-fade-up {
-    animation: fade-up 0.5s ease-out forwards;
-  }
-`}</style>
+      
     </section>
   );
 };
