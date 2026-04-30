@@ -15,7 +15,6 @@ import {
   ChevronRight,
   Sparkles,
   ArrowUp,
-  ArrowDown,
   AlertTriangle,
 } from "lucide-react";
 
@@ -177,7 +176,7 @@ const Announcements = () => {
           label: "Urgent",
           icon: AlertTriangle,
           className:
-            "bg-red-500/20 text-red-300 border border-red-500/20",
+            "bg-red-100 text-red-700 border border-red-200 dark:bg-red-500/10 dark:text-red-300 dark:border-red-500/20",
         };
 
       case "high":
@@ -185,7 +184,7 @@ const Announcements = () => {
           label: "High Priority",
           icon: ArrowUp,
           className:
-            "bg-amber-500/20 text-amber-300 border border-amber-500/20",
+            "bg-amber-100 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20",
         };
 
       default:
@@ -193,7 +192,7 @@ const Announcements = () => {
           label: "Normal",
           icon: Sparkles,
           className:
-            "bg-white/10 text-stone-300 border border-white/10",
+            "theme-soft-card theme-text border theme-border",
         };
     }
   };
@@ -201,37 +200,38 @@ const Announcements = () => {
   return (
     <section
       id="announcements"
-      className="relative py-28 px-6 overflow-hidden bg-gradient-to-br from-black via-stone-950 to-amber-950 text-white"
+      className="relative py-28 px-6 overflow-hidden theme-section"
     >
-      {/* Premium Background */}
+      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-3xl"></div>
 
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow-400/10 rounded-full blur-3xl"></div>
-
-        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:70px_70px]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
+
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6">
-            <Bell className="w-4 h-4 text-amber-300" />
-            <span className="uppercase tracking-[0.25em] text-xs font-semibold text-amber-200">
+
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full theme-card backdrop-blur-xl mb-6">
+            <Bell className="w-4 h-4 theme-accent" />
+
+            <span className="uppercase tracking-[0.25em] text-xs font-semibold theme-accent">
               Latest Updates
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[0.95]">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[0.95] theme-heading">
             Church{" "}
-            <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-100 bg-clip-text text-transparent">
+            <span className="theme-gradient-text">
               Announcements
             </span>
           </h2>
 
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-yellow-300 mx-auto rounded-full mt-6 mb-6"></div>
 
-          <p className="max-w-2xl mx-auto text-stone-400 text-lg leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg leading-relaxed theme-text">
             Stay connected with important updates, ministry opportunities,
             gatherings, and upcoming church events.
           </p>
@@ -239,16 +239,17 @@ const Announcements = () => {
 
         {/* Search + Filters */}
         <div className="flex flex-col lg:flex-row gap-5 justify-between mb-12">
+
           {/* Search */}
           <div className="relative max-w-md w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-500 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 theme-muted w-5 h-5" />
 
             <input
               type="text"
               placeholder="Search announcements..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-5 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl text-white placeholder:text-stone-500 focus:outline-none focus:border-amber-400/50 transition-all"
+              className="theme-input pl-12 pr-5 py-4 rounded-2xl"
             />
           </div>
 
@@ -260,8 +261,8 @@ const Announcements = () => {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
                   selectedCategory === cat.id
-                    ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-black shadow-xl"
-                    : "bg-white/5 border border-white/10 text-stone-300 hover:border-amber-400/30 hover:text-white"
+                    ? "theme-button shadow-xl"
+                    : "theme-card theme-text hover:border-amber-400/30"
                 }`}
               >
                 {cat.label}
@@ -272,6 +273,7 @@ const Announcements = () => {
 
         {/* Cards */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
           {currentAnnouncements.map((announcement) => {
             const priority = getPriority(announcement.priority);
             const PriorityIcon = priority.icon;
@@ -280,17 +282,30 @@ const Announcements = () => {
             return (
               <div
                 key={announcement.id}
-                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-700 hover:-translate-y-2 hover:border-amber-400/30 hover:shadow-[0_25px_80px_rgba(251,191,36,0.15)]"
+                className="
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-[2rem]
+                  theme-card
+                  transition-all
+                  duration-700
+                  hover:-translate-y-2
+                  hover:border-amber-400/30
+                  hover:shadow-[0_25px_80px_rgba(251,191,36,0.12)]
+                "
               >
+
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
+
                   <img
                     src={announcement.image}
                     alt={announcement.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                   {/* Badge */}
                   <div className="absolute top-5 left-5">
@@ -305,31 +320,39 @@ const Announcements = () => {
 
                 {/* Content */}
                 <div className="p-7">
+
                   {/* Meta */}
                   <div className="flex flex-wrap gap-3 mb-5">
-                    <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-full text-sm text-stone-300">
-                      <CalendarDays className="w-4 h-4 text-amber-300" />
-                      {announcement.date}
+
+                    <div className="flex items-center gap-2 theme-soft-card px-3 py-2 rounded-full text-sm">
+                      <CalendarDays className="w-4 h-4 theme-accent" />
+                      <span className="theme-text">
+                        {announcement.date}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-full text-sm text-stone-300">
-                      <Clock3 className="w-4 h-4 text-amber-300" />
-                      {announcement.time}
+                    <div className="flex items-center gap-2 theme-soft-card px-3 py-2 rounded-full text-sm">
+                      <Clock3 className="w-4 h-4 theme-accent" />
+                      <span className="theme-text">
+                        {announcement.time}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-full text-sm text-stone-300">
-                      <MapPin className="w-4 h-4 text-amber-300" />
-                      {announcement.location}
+                    <div className="flex items-center gap-2 theme-soft-card px-3 py-2 rounded-full text-sm">
+                      <MapPin className="w-4 h-4 theme-accent" />
+                      <span className="theme-text">
+                        {announcement.location}
+                      </span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-amber-300 transition-colors">
+                  <h3 className="text-2xl font-bold mb-4 theme-heading group-hover:text-amber-400 transition-colors">
                     {announcement.title}
                   </h3>
 
                   {/* Content */}
-                  <p className="text-stone-400 leading-relaxed">
+                  <p className="theme-text leading-relaxed">
                     {isExpanded
                       ? announcement.content
                       : `${announcement.content.substring(0, 110)}...`}
@@ -338,7 +361,7 @@ const Announcements = () => {
                   {/* Expand */}
                   <button
                     onClick={() => toggleExpand(announcement.id)}
-                    className="mt-4 inline-flex items-center gap-2 text-amber-300 hover:text-white transition-colors"
+                    className="mt-4 inline-flex items-center gap-2 theme-accent hover:text-amber-500 transition-colors"
                   >
                     {isExpanded ? "Show Less" : "Read More"}
 
@@ -350,35 +373,37 @@ const Announcements = () => {
                   </button>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between pt-6 mt-6 border-t border-white/10">
+                  <div className="flex items-center justify-between pt-6 mt-6 border-t theme-border">
+
                     <div className="flex items-center gap-5">
-                      <button className="flex items-center gap-2 text-stone-500 hover:text-red-400 transition-colors">
+
+                      <button className="flex items-center gap-2 theme-muted hover:text-red-400 transition-colors">
                         <Heart className="w-4 h-4" />
+
                         <span className="text-sm">
                           {announcement.likes}
                         </span>
                       </button>
 
-                      <button className="flex items-center gap-2 text-stone-500 hover:text-white transition-colors">
+                      <button className="flex items-center gap-2 theme-muted hover:theme-heading transition-colors">
                         <MessageCircle className="w-4 h-4" />
+
                         <span className="text-sm">
                           {announcement.comments}
                         </span>
                       </button>
 
-                      <button className="text-stone-500 hover:text-white transition-colors">
+                      <button className="theme-muted hover:theme-heading transition-colors">
                         <Share2 className="w-4 h-4" />
                       </button>
                     </div>
 
-                    <button className="px-5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 text-black font-semibold hover:scale-105 transition-transform">
+                    <button className="px-5 py-2 rounded-full theme-button font-semibold hover:scale-105 transition-transform">
                       Explore
                     </button>
                   </div>
                 </div>
 
-                {/* Hover Border */}
-                <div className="absolute inset-0 rounded-[2rem] border border-transparent group-hover:border-amber-400/20 transition-all duration-500 pointer-events-none"></div>
               </div>
             );
           })}
@@ -387,13 +412,14 @@ const Announcements = () => {
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-3 mt-14">
+
             <button
               onClick={() =>
                 setCurrentPage((prev) => Math.max(prev - 1, 1))
               }
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-amber-400/30 transition-all"
+              className="w-12 h-12 rounded-full theme-card flex items-center justify-center hover:border-amber-400/30 transition-all"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5 theme-heading" />
             </button>
 
             {Array.from({ length: totalPages }, (_, i) => (
@@ -402,8 +428,8 @@ const Announcements = () => {
                 onClick={() => setCurrentPage(i + 1)}
                 className={`w-12 h-12 rounded-full font-semibold transition-all ${
                   currentPage === i + 1
-                    ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-black"
-                    : "bg-white/5 border border-white/10 text-white hover:border-amber-400/30"
+                    ? "theme-button"
+                    : "theme-card theme-heading hover:border-amber-400/30"
                 }`}
               >
                 {i + 1}
@@ -416,42 +442,60 @@ const Announcements = () => {
                   Math.min(prev + 1, totalPages)
                 )
               }
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-amber-400/30 transition-all"
+              className="w-12 h-12 rounded-full theme-card flex items-center justify-center hover:border-amber-400/30 transition-all"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5 theme-heading" />
             </button>
           </div>
         )}
 
         {/* CTA */}
         <div className="mt-20">
-          <div className="relative overflow-hidden rounded-[2rem] border border-amber-400/20 bg-gradient-to-r from-amber-500/20 via-yellow-400/10 to-amber-500/20 backdrop-blur-2xl p-8">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.2),transparent_40%)]"></div>
+
+          <div className="
+            relative
+            overflow-hidden
+            rounded-[2rem]
+            border
+            border-amber-400/20
+            bg-gradient-to-r
+            from-amber-500/10
+            via-yellow-400/5
+            to-amber-500/10
+            dark:from-amber-500/20
+            dark:via-yellow-400/10
+            dark:to-amber-500/20
+            backdrop-blur-2xl
+            p-8
+          ">
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+
               <div className="flex items-center gap-5">
-                <div className="w-16 h-16 rounded-2xl bg-amber-400/20 border border-amber-400/20 flex items-center justify-center">
-                  <Bell className="w-8 h-8 text-amber-300" />
+
+                <div className="w-16 h-16 rounded-2xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-400/20 flex items-center justify-center">
+                  <Bell className="w-8 h-8 theme-accent" />
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold mb-1">
+                  <h3 className="text-2xl font-bold mb-1 theme-heading">
                     Never Miss an Update
                   </h3>
 
-                  <p className="text-stone-300">
+                  <p className="theme-text">
                     Subscribe to receive important announcements and
                     upcoming event updates.
                   </p>
                 </div>
               </div>
 
-              <button className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 text-black font-bold shadow-2xl hover:scale-105 transition-all">
+              <button className="px-8 py-4 rounded-full theme-button font-bold shadow-2xl hover:scale-105 transition-all">
                 Subscribe Now
               </button>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

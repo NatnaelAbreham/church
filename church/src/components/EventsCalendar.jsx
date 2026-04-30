@@ -24,8 +24,8 @@ import {
   faTimes,
   faUserCircle,
   faTag,
-  
 } from "@fortawesome/free-solid-svg-icons";
+
 const EventsCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -35,16 +35,16 @@ const EventsCalendar = () => {
   const [currentMonthEvents, setCurrentMonthEvents] = useState([]);
   const [calendarDays, setCalendarDays] = useState([]);
 
- const categories = useMemo(() => [
-  { id: "all", label: "All Events", icon: faCalendarAlt, color: "amber" },
-  { id: "worship", label: "Worship", icon: faMusic, color: "purple" },
-  { id: "community", label: "Community", icon: faUsers, color: "blue" },
-  { id: "youth", label: "Youth", icon: faChild, color: "green" },
-  { id: "outreach", label: "Outreach", icon: faGlobe, color: "teal" },
-  { id: "education", label: "Education", icon: faBook, color: "orange" },
-  { id: "special", label: "Special Events", icon: faStar, color: "red" },
-  { id: "prayer", label: "Prayer", icon: faHandsPraying, color: "indigo" }
-], []);
+  const categories = useMemo(() => [
+    { id: "all", label: "All Events", icon: faCalendarAlt, color: "amber" },
+    { id: "worship", label: "Worship", icon: faMusic, color: "purple" },
+    { id: "community", label: "Community", icon: faUsers, color: "blue" },
+    { id: "youth", label: "Youth", icon: faChild, color: "green" },
+    { id: "outreach", label: "Outreach", icon: faGlobe, color: "teal" },
+    { id: "education", label: "Education", icon: faBook, color: "orange" },
+    { id: "special", label: "Special Events", icon: faStar, color: "red" },
+    { id: "prayer", label: "Prayer", icon: faHandsPraying, color: "indigo" }
+  ], []);
 
   // Stable events array - using useMemo to prevent re-creation
   const events = useMemo(() => [
@@ -260,19 +260,18 @@ const EventsCalendar = () => {
     return colors[categoryId] || "border-amber-500 text-amber-700 bg-amber-50";
   }, []);
 
-const getCategoryIcon = useCallback((categoryId) => {
-  const icons = {
-    worship: faMusic,
-    community: faUsers,
-    youth: faChild,
-    outreach: faGlobe,
-    education: faBook,
-    special: faStar,
-    prayer: faHandsPraying,
-  };
-
-  return icons[categoryId] || faCalendarAlt;
-}, []);
+  const getCategoryIcon = useCallback((categoryId) => {
+    const icons = {
+      worship: faMusic,
+      community: faUsers,
+      youth: faChild,
+      outreach: faGlobe,
+      education: faBook,
+      special: faStar,
+      prayer: faHandsPraying,
+    };
+    return icons[categoryId] || faCalendarAlt;
+  }, []);
 
   // Generate calendar days - now stable with useCallback
   const generateCalendarDays = useCallback((date, eventsList) => {
@@ -334,7 +333,7 @@ const getCategoryIcon = useCallback((categoryId) => {
     });
   }, []);
 
-  // Update calendar when currentDate changes - FIXED: removed events from deps since it's stable
+  // Update calendar when currentDate changes
   useEffect(() => {
     const days = generateCalendarDays(currentDate, events);
     const monthEvents = filterMonthEvents(currentDate, events);
@@ -398,27 +397,27 @@ const getCategoryIcon = useCallback((categoryId) => {
   }, [selectedEvent]);
 
   return (
-    <section id = "events-calendar" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
+    <section id="events-calendar" className="py-28 px-6 theme-section relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-400/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-           <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-600 text-sm" />
-            <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Stay Connected</span>
-           <FontAwesomeIcon icon={faClock} className="text-amber-600 text-sm" />
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 theme-border">
+            <FontAwesomeIcon icon={faCalendarAlt} className="theme-accent text-sm" />
+            <span className="theme-accent font-semibold tracking-wide uppercase text-xs">Stay Connected</span>
+            <FontAwesomeIcon icon={faClock} className="theme-accent text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-stone-800 mb-4">
-             <span className="text-amber-600">Events Calendar</span>
+          <h2 className="text-4xl md:text-6xl font-bold theme-heading mb-4">
+            <span className="theme-accent">Events Calendar</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
+          <p className="theme-text max-w-2xl mx-auto text-lg">
             Stay up to date with all our services, programs, and special events
           </p>
         </div>
@@ -431,8 +430,8 @@ const getCategoryIcon = useCallback((categoryId) => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ${
                 selectedCategory === cat.id
-                  ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30 scale-105"
-                  : "bg-white/80 backdrop-blur-sm text-stone-600 hover:bg-amber-50 border border-stone-200"
+                  ? "theme-button shadow-lg scale-105"
+                  : "theme-soft-card theme-text hover:opacity-80"
               }`}
             >
               <FontAwesomeIcon icon={cat.icon} className="text-sm" />
@@ -449,8 +448,8 @@ const getCategoryIcon = useCallback((categoryId) => {
               onClick={() => setViewMode(mode)}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all capitalize ${
                 viewMode === mode
-                  ? 'bg-amber-500 text-white shadow-md'
-                  : 'bg-white text-stone-600 hover:bg-amber-50 border border-stone-200'
+                  ? "theme-button shadow-md"
+                  : "theme-soft-card theme-text hover:opacity-80"
               }`}
             >
               {mode}
@@ -461,93 +460,165 @@ const getCategoryIcon = useCallback((categoryId) => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Calendar Column */}
           <div className="lg:col-span-2">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-white/20">
-              {/* Calendar Header */}
-              <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-5 flex items-center justify-between">
-                <button
-                  onClick={() => changeMonth(-1)}
-                  className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
-                >
-                  <FontAwesomeIcon icon={faChevronLeft} />
-                </button>
-                <h3 className="text-white font-bold text-2xl">
-                  {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
-                </h3>
-                <button
-                  onClick={() => changeMonth(1)}
-                  className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
-                >
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-              </div>
+  <div className="theme-card rounded-2xl shadow-xl overflow-hidden">
 
-              {/* Weekday Headers */}
-              <div className="grid grid-cols-7 gap-px bg-stone-200">
-                {weekDays.map((day, idx) => (
-                  <div key={idx} className="bg-amber-50/50 py-3 text-center">
-                    <span className="text-sm font-semibold text-amber-600 uppercase tracking-wide">{day}</span>
-                  </div>
-                ))}
-              </div>
+    {/* Calendar Header */}
+    <div className="theme-button px-6 py-5 flex items-center justify-between">
+      <button
+        onClick={() => changeMonth(-1)}
+        className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
+      >
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
 
-              {/* Calendar Days */}
-              <div className="grid grid-cols-7 gap-px bg-stone-200">
-                {calendarDays.map((day, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => handleDateClick(day)}
-                    className={`min-h-[120px] bg-white p-2 cursor-pointer transition-all duration-300 hover:bg-amber-50 ${
-                      !day.isCurrentMonth ? "bg-stone-50/50" : ""
-                    } ${selectedDate?.date.toDateString() === day.date.toDateString() ? "ring-2 ring-amber-400 ring-inset shadow-lg" : ""}`}
-                  >
-                    <div className="flex justify-between items-start">
-                      <span className={`text-sm font-medium ${
-                        day.isToday ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white w-7 h-7 rounded-full flex items-center justify-center shadow-md" : "text-stone-600"
-                      }`}>
-                        {day.date.getDate()}
-                      </span>
-                      {day.events.length > 0 && (
-                        <span className="text-xs bg-amber-100 text-amber-600 font-semibold px-1.5 py-0.5 rounded-full">
-                          {day.events.length}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-2 space-y-1">
-                      {day.events.slice(0, 2).map((event, eventIdx) => (
-                        <div
-                          key={eventIdx}
-                          className={`text-xs px-1.5 py-0.5 rounded-md ${getCategoryColor(event.category)} text-white truncate shadow-sm`}
-                          title={event.title}
-                        >
-                          {event.time.substring(0, 5)} {event.title.substring(0, 12)}...
-                        </div>
-                      ))}
-                      {day.events.length > 2 && (
-                        <div className="text-xs text-amber-500 pl-1 font-medium">+{day.events.length - 2} more</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <h3 className="text-white font-bold text-2xl">
+        {currentDate.toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        })}
+      </h3>
 
-              {/* Today Button */}
-              <div className="p-4 border-t border-stone-100 text-center bg-gradient-to-r from-stone-50 to-white">
-                <button
-                  onClick={goToToday}
-                  className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium transition-all hover:shadow-lg flex items-center gap-2 mx-auto"
-                >
-                 <FontAwesomeIcon icon={faCalendarDay} />
-                  Today
-                </button>
-              </div>
-            </div>
+      <button
+        onClick={() => changeMonth(1)}
+        className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all flex items-center justify-center"
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    </div>
+
+    {/* Weekday Headers */}
+    <div className="grid grid-cols-7 gap-px bg-stone-200 dark:bg-white/10 theme-border">
+      {weekDays.map((day, idx) => (
+        <div
+          key={idx}
+          className="theme-soft-card py-3 text-center"
+        >
+          <span className="text-sm font-semibold theme-accent uppercase tracking-wide">
+            {day}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    {/* Calendar Days */}
+    <div className="grid grid-cols-7 gap-px bg-stone-200 dark:bg-white/10 theme-border">
+      {calendarDays.map((day, idx) => (
+        <div
+          key={idx}
+          onClick={() => handleDateClick(day)}
+          className={`
+            min-h-[120px]
+            theme-card
+            p-2
+            cursor-pointer
+            transition-all
+            duration-300
+            hover:opacity-90
+            hover:shadow-md
+            ${!day.isCurrentMonth ? "opacity-50" : ""}
+            ${
+              selectedDate?.date.toDateString() ===
+              day.date.toDateString()
+                ? "ring-2 ring-amber-400 ring-inset shadow-lg"
+                : ""
+            }
+          `}
+        >
+          {/* Date Header */}
+          <div className="flex justify-between items-start">
+
+            {/* Day Number */}
+            <span
+              className={`text-sm font-medium ${
+                day.isToday
+                  ? "theme-button w-7 h-7 rounded-full flex items-center justify-center shadow-md text-white"
+                  : "theme-heading"
+              }`}
+            >
+              {day.date.getDate()}
+            </span>
+
+            {/* Event Count */}
+            {day.events.length > 0 && (
+              <span className="
+                text-xs
+                bg-amber-100
+                text-amber-700
+                dark:bg-amber-500/10
+                dark:text-amber-300
+                font-semibold
+                px-1.5
+                py-0.5
+                rounded-full
+              ">
+                {day.events.length}
+              </span>
+            )}
           </div>
+
+          {/* Events */}
+          <div className="mt-2 space-y-1">
+            {day.events.slice(0, 2).map((event, eventIdx) => (
+              <div
+                key={eventIdx}
+                className={`
+                  text-xs
+                  px-1.5
+                  py-0.5
+                  rounded-md
+                  truncate
+                  shadow-sm
+                  ${getCategoryColor(event.category)}
+                `}
+                title={event.title}
+              >
+                {event.time.substring(0, 5)}{" "}
+                {event.title.substring(0, 12)}...
+              </div>
+            ))}
+
+            {day.events.length > 2 && (
+              <div className="text-xs theme-accent pl-1 font-medium">
+                +{day.events.length - 2} more
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Today Button */}
+    <div className="p-4 border-t theme-border theme-soft-card text-center">
+      <button
+        onClick={goToToday}
+        className="
+          px-6
+          py-2.5
+          theme-button
+          rounded-xl
+          font-medium
+          transition-all
+          hover:shadow-lg
+          hover:scale-[1.02]
+          flex
+          items-center
+          gap-2
+          mx-auto
+        "
+      >
+        <FontAwesomeIcon icon={faCalendarDay} />
+        Today
+      </button>
+    </div>
+
+  </div>
+</div>
 
           {/* Events List Column */}
           <div>
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20">
-              <h3 className="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
-                <FontAwesomeIcon icon={faList} className="text-amber-500" />
+            <div className="theme-card rounded-2xl shadow-xl p-6">
+              <h3 className="text-xl font-bold theme-heading mb-4 flex items-center gap-2">
+                <FontAwesomeIcon icon={faList} className="theme-accent" />
                 <span>
                   {selectedDate ? `Events for ${selectedDate.date.toLocaleDateString('default', { month: 'short', day: 'numeric' })}` : "Upcoming Events"}
                 </span>
@@ -559,27 +630,25 @@ const getCategoryIcon = useCallback((categoryId) => {
                     <div
                       key={event.id}
                       onClick={() => setSelectedEvent(event)}
-                      className="group p-4 rounded-xl border border-stone-100 hover:border-amber-200 hover:shadow-xl transition-all duration-300 cursor-pointer bg-white"
+                      className="group p-4 rounded-xl theme-border hover:border-amber-200 hover:shadow-xl transition-all duration-300 cursor-pointer theme-card"
                     >
                       <div className="flex items-start gap-3">
                         <div className={`w-12 h-12 rounded-xl ${getCategoryColor(event.category)} bg-opacity-20 flex items-center justify-center flex-shrink-0`}>
-                          <FontAwesomeIcon
-  icon={getCategoryIcon(event.category)}
-  className={`text-${getCategoryColor(event.category)} text-lg`}
-/>   </div>
+                          <FontAwesomeIcon icon={getCategoryIcon(event.category)} className="theme-accent text-lg" />
+                        </div>
                         <div className="flex-1">
                           <div className="flex items-start justify-between gap-2">
-                            <h4 className="font-semibold text-stone-800 group-hover:text-amber-600 transition-colors">{event.title}</h4>
+                            <h4 className="font-semibold theme-heading group-hover:theme-accent transition-colors">{event.title}</h4>
                             {event.featured && (
-                              <span className="text-xs bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-0.5 rounded-full shadow-sm">Featured</span>
+                              <span className="text-xs theme-button px-2 py-0.5 rounded-full shadow-sm">Featured</span>
                             )}
                           </div>
-                          <p className="text-xs text-stone-500 mt-1">
-                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-1 text-amber-500" />
+                          <p className="text-xs theme-muted mt-1">
+                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-1 theme-accent" />
                             {new Date(event.date).toLocaleDateString('default', { month: 'short', day: 'numeric' })} • {formatTimeRange(event)}
                           </p>
-                          <p className="text-xs text-stone-500">
-                            <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-1 text-amber-500" />
+                          <p className="text-xs theme-muted">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-1 theme-accent" />
                             {event.location}
                           </p>
                           <div className="mt-2 flex flex-wrap gap-1">
@@ -587,8 +656,8 @@ const getCategoryIcon = useCallback((categoryId) => {
                               {categories.find(c => c.id === event.category)?.label}
                             </span>
                             {event.recurring !== "once" && (
-                              <span className="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full">
-                                <FontAwesomeIcon icon={faSyncAlt} className="mr-1 text-amber-500" />
+                              <span className="text-xs theme-soft-card theme-muted px-2 py-0.5 rounded-full">
+                                <FontAwesomeIcon icon={faSyncAlt} className="mr-1 theme-accent" />
                                 {event.recurring}
                               </span>
                             )}
@@ -599,177 +668,157 @@ const getCategoryIcon = useCallback((categoryId) => {
                   ))
                 ) : (
                   <div className="text-center py-16">
-                  <FontAwesomeIcon icon={faCalendarTimes} className="text-5xl text-stone-300 mb-4" />
-                    <p className="text-stone-500 font-medium">No events found for this period</p>
-                    <p className="text-stone-400 text-sm mt-1">Try selecting a different date or category</p>
+                    <FontAwesomeIcon icon={faCalendarTimes} className="text-5xl theme-muted mb-4" />
+                    <p className="theme-muted font-medium">No events found for this period</p>
+                    <p className="theme-muted text-sm mt-1">Try selecting a different date or category</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Subscribe Card */}
-            <div className="mt-6 bg-gradient-to-r from-amber-50 to-amber-100/50 rounded-xl p-5 text-center border border-amber-200">
+            <div className="mt-6 theme-soft-card rounded-xl p-5 text-center theme-border">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <FontAwesomeIcon icon={faBell} className="text-amber-500" />
-                <p className="text-stone-700 font-semibold">Never miss an event!</p>
+                <FontAwesomeIcon icon={faBell} className="theme-accent" />
+                <p className="theme-heading font-semibold">Never miss an event!</p>
               </div>
-              <button className="bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium text-sm px-6 py-2.5 rounded-xl flex items-center justify-center gap-2 mx-auto hover:shadow-lg transition-all">
+              <button className="theme-button text-white font-medium text-sm px-6 py-2.5 rounded-xl flex items-center justify-center gap-2 mx-auto hover:shadow-lg transition-all">
                 <FontAwesomeIcon icon={faCalendarPlus} />
                 Subscribe to Calendar
               </button>
-              <p className="text-stone-500 text-xs mt-3">Get updates directly to your device</p>
+              <p className="theme-muted text-xs mt-3">Get updates directly to your device</p>
             </div>
           </div>
         </div>
 
-       {/* Event Details Modal */}
-{selectedEvent && (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-lg"
-    onClick={() => setSelectedEvent(null)}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="relative w-full max-w-3xl max-h-[92vh] overflow-hidden rounded-3xl
-                 bg-white/95 backdrop-blur-xl shadow-2xl border border-white/20
-                 animate-[fadeIn_0.25s_ease-out]"
-    >
-      {/* Scroll container */}
-      <div className="max-h-[92vh] overflow-y-auto">
+        {/* Event Details Modal */}
+        {selectedEvent && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-lg"
+            onClick={() => setSelectedEvent(null)}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl max-h-[92vh] overflow-hidden rounded-3xl theme-card shadow-2xl animate-[fadeIn_0.25s_ease-out]"
+            >
+              {/* Scroll container */}
+              <div className="max-h-[92vh] overflow-y-auto">
+                {/* Close button */}
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="absolute top-5 right-5 z-20 w-11 h-11 rounded-full theme-card shadow-lg hover:theme-button hover:text-white transition-all flex items-center justify-center"
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
 
-        {/* Close button */}
-        <button
-          onClick={() => setSelectedEvent(null)}
-          className="absolute top-5 right-5 z-20 w-11 h-11 rounded-full
-                     bg-white/80 backdrop-blur-md shadow-lg
-                     hover:bg-amber-500 hover:text-white transition-all
-                     flex items-center justify-center"
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+                {/* Hero Image */}
+                {selectedEvent.image && (
+                  <div className="relative h-72">
+                    <img
+                      src={selectedEvent.image}
+                      alt={selectedEvent.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                    <div className="absolute bottom-5 left-6 text-white">
+                      <p className="text-xs uppercase tracking-widest text-amber-300">
+                        {categories.find(c => c.id === selectedEvent.category)?.label}
+                      </p>
+                      <h2 className="text-2xl md:text-3xl font-bold">
+                        {selectedEvent.title}
+                      </h2>
+                    </div>
+                  </div>
+                )}
 
-        {/* Hero Image */}
-        {selectedEvent.image && (
-          <div className="relative h-72">
-            <img
-              src={selectedEvent.image}
-              alt={selectedEvent.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                {/* Content */}
+                <div className="p-7 md:p-10 space-y-6">
+                  {/* Badges */}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryBadgeColor(selectedEvent.category)}`}>
+                      {categories.find(c => c.id === selectedEvent.category)?.label}
+                    </span>
+                    {selectedEvent.featured && (
+                      <span className="theme-button text-white text-xs px-3 py-1 rounded-full shadow-sm">
+                        Featured Event
+                      </span>
+                    )}
+                  </div>
 
-            {/* Floating badge + title */}
-            <div className="absolute bottom-5 left-6 text-white">
-              <p className="text-xs uppercase tracking-widest text-amber-300">
-                {categories.find(c => c.id === selectedEvent.category)?.label}
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold">
-                {selectedEvent.title}
-              </h2>
+                  {/* Event Info Grid */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 theme-text">
+                      <FontAwesomeIcon icon={faCalendarAlt} className="theme-accent" />
+                      <span>
+                        {new Date(selectedEvent.date).toLocaleDateString("default", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 theme-text">
+                      <FontAwesomeIcon icon={faClock} className="theme-accent" />
+                      <span>{formatTimeRange(selectedEvent)}</span>
+                    </div>
+                    <div className="flex items-center gap-3 theme-text">
+                      <FontAwesomeIcon icon={faMapMarkerAlt} className="theme-accent" />
+                      <span>{selectedEvent.location}</span>
+                    </div>
+                    {selectedEvent.cost && (
+                      <div className="flex items-center gap-3 theme-text">
+                        <FontAwesomeIcon icon={faTag} className="theme-accent" />
+                        <span className="font-semibold theme-accent">
+                          {selectedEvent.cost}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Description */}
+                  <div className="theme-soft-card rounded-2xl p-6 theme-border">
+                    <p className="theme-text leading-relaxed">
+                      {selectedEvent.description}
+                    </p>
+                  </div>
+
+                  {/* Contact Card */}
+                  <div className="theme-soft-card rounded-2xl p-5 space-y-2">
+                    <div className="flex items-center gap-2 theme-text">
+                      <FontAwesomeIcon icon={faUserCircle} className="theme-accent" />
+                      <strong>Coordinator:</strong>
+                      <span>{selectedEvent.coordinator}</span>
+                    </div>
+                    <div className="flex items-center gap-2 theme-text">
+                      <FontAwesomeIcon icon={faEnvelope} className="theme-accent" />
+                      <strong>Contact:</strong>
+                      <a
+                        href={`mailto:${selectedEvent.contact}`}
+                        className="theme-accent hover:underline"
+                      >
+                        {selectedEvent.contact}
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-3 pt-2">
+                    {selectedEvent.registrationRequired && (
+                      <button className="flex-1 py-3 theme-button rounded-xl font-semibold hover:shadow-xl transition-all">
+                        Register Now
+                      </button>
+                    )}
+                    <button className="flex-1 py-3 theme-border theme-accent rounded-xl font-semibold hover:theme-soft-card transition-all flex items-center justify-center gap-2">
+                      <FontAwesomeIcon icon={faCalendarPlus} />
+                      Add to Calendar
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
-
-        {/* Content */}
-        <div className="p-7 md:p-10 space-y-6">
-
-          {/* Badges */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <span
-              className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryBadgeColor(
-                selectedEvent.category
-              )}`}
-            >
-              {categories.find(c => c.id === selectedEvent.category)?.label}
-            </span>
-
-            {selectedEvent.featured && (
-              <span className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs px-3 py-1 rounded-full shadow-sm">
-                Featured Event
-              </span>
-            )}
-          </div>
-
-          {/* Event Info Grid */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 text-stone-600">
-              <FontAwesomeIcon icon={faCalendarAlt} className="text-amber-500" />
-              <span>
-                {new Date(selectedEvent.date).toLocaleDateString("default", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3 text-stone-600">
-              <FontAwesomeIcon icon={faClock} className="text-amber-500" />
-              <span>{formatTimeRange(selectedEvent)}</span>
-            </div>
-
-            <div className="flex items-center gap-3 text-stone-600">
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-amber-500" />
-              <span>{selectedEvent.location}</span>
-            </div>
-
-            {selectedEvent.cost && (
-              <div className="flex items-center gap-3 text-stone-600">
-                <FontAwesomeIcon icon={faTag} className="text-amber-500" />
-                <span className="font-semibold text-amber-600">
-                  {selectedEvent.cost}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Description */}
-          <div className="bg-gradient-to-r from-amber-50 to-white rounded-2xl p-6 border border-amber-100">
-            <p className="text-stone-700 leading-relaxed">
-              {selectedEvent.description}
-            </p>
-          </div>
-
-          {/* Contact Card */}
-          <div className="bg-stone-50 rounded-2xl p-5 space-y-2">
-            <div className="flex items-center gap-2 text-stone-600">
-              <FontAwesomeIcon icon={faUserCircle} className="text-amber-500" />
-              <strong>Coordinator:</strong>
-              <span>{selectedEvent.coordinator}</span>
-            </div>
-
-            <div className="flex items-center gap-2 text-stone-600">
-              <FontAwesomeIcon icon={faEnvelope} className="text-amber-500" />
-              <strong>Contact:</strong>
-              <a
-                href={`mailto:${selectedEvent.contact}`}
-                className="text-amber-600 hover:underline"
-              >
-                {selectedEvent.contact}
-              </a>
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex gap-3 pt-2">
-            {selectedEvent.registrationRequired && (
-              <button className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all">
-                Register Now
-              </button>
-            )}
-
-            <button className="flex-1 py-3 border border-amber-500 text-amber-600 rounded-xl font-semibold hover:bg-amber-50 transition-all flex items-center justify-center gap-2">
-              <FontAwesomeIcon icon={faCalendarPlus} />
-              Add to Calendar
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-)}
       </div>
     </section>
   );

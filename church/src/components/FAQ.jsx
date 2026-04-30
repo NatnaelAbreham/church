@@ -1,5 +1,32 @@
 // components/FAQ.jsx
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faQuestionCircle,
+  faComments,
+  faSearch,
+  faTimesCircle,
+  faCompress,
+  faExpand,
+  faChevronDown,
+  faStar,
+  faReplyAll,
+  faThumbsUp,
+  faCommentDots,
+  faEnvelope,
+  faPhoneAlt,
+  faQuestion,
+
+ 
+  faMusic,
+  faChurch,
+  faUserPlus,
+  faChild,
+  faHandHoldingHeart,
+  faCalendarAlt,
+  faVideo,
+  faPrayingHands
+} from "@fortawesome/free-solid-svg-icons";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -8,17 +35,17 @@ const FAQ = () => {
   const [filteredFaqs, setFilteredFaqs] = useState([]);
   const [expandedAll, setExpandedAll] = useState(false);
 
-  const categories = [
-    { id: "all", label: "All Questions", icon: "fa-question-circle", color: "amber" },
-    { id: "worship", label: "Worship Services", icon: "fa-music", color: "amber" },
-    { id: "visiting", label: "Visiting", icon: "fa-church", color: "blue" },
-    { id: "membership", label: "Membership", icon: "fa-user-plus", color: "green" },
-    { id: "children", label: "Children & Youth", icon: "fa-child", color: "purple" },
-    { id: "giving", label: "Giving & Tithes", icon: "fa-hand-holding-heart", color: "red" },
-    { id: "events", label: "Events & Programs", icon: "fa-calendar-alt", color: "orange" },
-    { id: "online", label: "Online & Livestream", icon: "fa-video", color: "teal" },
-    { id: "prayer", label: "Prayer & Care", icon: "fa-praying-hands", color: "indigo" }
-  ];
+ const categories = [
+  { id: "all", label: "All Questions", icon: faQuestionCircle, color: "amber" },
+  { id: "worship", label: "Worship Services", icon: faMusic, color: "amber" },
+  { id: "visiting", label: "Visiting", icon: faChurch, color: "blue" },
+  { id: "membership", label: "Membership", icon: faUserPlus, color: "green" },
+  { id: "children", label: "Children & Youth", icon: faChild, color: "purple" },
+  { id: "giving", label: "Giving & Tithes", icon: faHandHoldingHeart, color: "red" },
+  { id: "events", label: "Events & Programs", icon: faCalendarAlt, color: "orange" },
+  { id: "online", label: "Online & Livestream", icon: faVideo, color: "teal" },
+  { id: "prayer", label: "Prayer & Care", icon: faPrayingHands, color: "indigo" }
+];
 
   const faqs = [
     // Worship Services Category
@@ -336,11 +363,6 @@ const FAQ = () => {
   const toggleExpandAll = () => {
     if (expandedAll) {
       setActiveIndex(null);
-    } else {
-      // Expand all by setting active to a special value
-      // We'll handle this in the rendering
-      setExpandedAll(true);
-      // For now, we'll just set a flag
     }
     setExpandedAll(!expandedAll);
   };
@@ -354,14 +376,14 @@ const FAQ = () => {
   const getCategoryColor = (categoryId) => {
     const category = categories.find(c => c.id === categoryId);
     const colors = {
-      amber: "border-l-amber-500 bg-amber-50",
-      blue: "border-l-blue-500 bg-blue-50",
-      green: "border-l-green-500 bg-green-50",
-      purple: "border-l-purple-500 bg-purple-50",
-      red: "border-l-red-500 bg-red-50",
-      orange: "border-l-orange-500 bg-orange-50",
-      teal: "border-l-teal-500 bg-teal-50",
-      indigo: "border-l-indigo-500 bg-indigo-50"
+       amber: "border-l-amber-500 bg-amber-50 dark:bg-amber-500/10",
+  blue: "border-l-blue-500 bg-blue-50 dark:bg-blue-500/10",
+  green: "border-l-green-500 bg-green-50 dark:bg-green-500/10",
+  purple: "border-l-purple-500 bg-purple-50 dark:bg-purple-500/10",
+  red: "border-l-red-500 bg-red-50 dark:bg-red-500/10",
+  orange: "border-l-orange-500 bg-orange-50 dark:bg-orange-500/10",
+  teal: "border-l-teal-500 bg-teal-50 dark:bg-teal-500/10",
+  indigo: "border-l-indigo-500 bg-indigo-50 dark:bg-indigo-500/10",
     };
     return colors[category?.color] || colors.amber;
   };
@@ -382,7 +404,6 @@ const FAQ = () => {
   };
 
   const markHelpful = (id) => {
-    // In a real app, you'd send this to an API
     const faq = faqs.find(f => f.id === id);
     if (faq) {
       faq.helpful += 1;
@@ -391,29 +412,29 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-28 px-6 bg-gradient-to-br from-white via-stone-50 to-amber-50/30 relative overflow-hidden">
+    <section id="faq" className="py-28 px-6 theme-section relative overflow-hidden">
       {/* Modern 2026 decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 right-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-100/5 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <i className="fas fa-question-circle text-amber-600 text-sm"></i>
-            <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Got Questions?</span>
-            <i className="fas fa-comments text-amber-600 text-sm"></i>
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 theme-border">
+            <FontAwesomeIcon icon={faQuestionCircle} className="theme-accent text-sm" />
+            <span className="theme-accent font-semibold tracking-wide uppercase text-xs">Got Questions?</span>
+            <FontAwesomeIcon icon={faComments} className="theme-accent text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-            Frequently Asked <span className="text-amber-600">Questions</span>
+          <h2 className="text-4xl md:text-6xl font-bold serif theme-heading mb-4">
+            Frequently Asked <span className="theme-accent">Questions</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
+          <p className="theme-text max-w-2xl mx-auto text-lg">
             Find answers to common questions about our church, services, and ministries
           </p>
         </div>
@@ -421,20 +442,20 @@ const FAQ = () => {
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-10">
           <div className="relative">
-            <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+            <FontAwesomeIcon icon={faSearch} className="absolute left-4 top-1/2 -translate-y-1/2 theme-muted" />
             <input
               type="text"
               placeholder="Search questions, topics, or keywords..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all shadow-sm bg-white"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl theme-input shadow-sm"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+                className="absolute right-4 top-1/2 -translate-y-1/2 theme-muted hover:theme-text"
               >
-                <i className="fas fa-times-circle"></i>
+                <FontAwesomeIcon icon={faTimesCircle} />
               </button>
             )}
           </div>
@@ -448,11 +469,11 @@ const FAQ = () => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`group flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
                 selectedCategory === cat.id
-                  ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25"
-                  : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
+                  ? "theme-button shadow-lg"
+                  : "theme-soft-card theme-text hover:opacity-80"
               }`}
             >
-              <i className={`fas ${cat.icon} text-sm`}></i>
+              <FontAwesomeIcon icon={cat.icon} className="text-sm" />
               <span className="text-sm font-medium hidden sm:inline">{cat.label}</span>
             </button>
           ))}
@@ -463,9 +484,9 @@ const FAQ = () => {
           <div className="flex justify-end mb-6">
             <button
               onClick={toggleExpandAll}
-              className="flex items-center gap-2 text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors"
+              className="flex items-center gap-2 text-sm theme-accent hover:opacity-80 font-medium transition-colors"
             >
-              <i className={`fas ${expandedAll ? "fa-compress" : "fa-expand"}`}></i>
+              <FontAwesomeIcon icon={expandedAll ? faCompress : faExpand} />
               {expandedAll ? "Collapse All" : "Expand All"}
             </button>
           </div>
@@ -477,7 +498,7 @@ const FAQ = () => {
             {filteredFaqs.map((faq, index) => (
               <div
                 key={faq.id}
-                className={`bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-stone-100 overflow-hidden ${getCategoryColor(faq.category)} border-l-4`}
+                className={`theme-card rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border-l-4 ${getCategoryColor(faq.category)}`}
               >
                 <button
                   onClick={() => toggleAccordion(index)}
@@ -485,22 +506,22 @@ const FAQ = () => {
                 >
                   <div className="flex items-start gap-4 flex-1">
                     <div className={`mt-1 ${getIconColor(faq.category)}`}>
-                      <i className="fas fa-question-circle text-lg"></i>
+                      <FontAwesomeIcon icon={faQuestionCircle} className="text-lg" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-stone-800 text-lg group-hover:text-amber-700 transition-colors">
+                      <h3 className="font-semibold theme-heading text-lg group-hover:theme-accent transition-colors">
                         {faq.question}
                       </h3>
                       {faq.featured && (
-                        <span className="inline-flex items-center gap-1 mt-1 text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
-                          <i className="fas fa-star text-xs"></i>
+                        <span className="inline-flex items-center gap-1 mt-1 text-xs theme-accent theme-soft-card px-2 py-0.5 rounded-full">
+                          <FontAwesomeIcon icon={faStar} className="text-xs" />
                           Featured
                         </span>
                       )}
                     </div>
                   </div>
                   <div className={`transform transition-transform duration-300 ${isExpanded(index) ? "rotate-180" : ""}`}>
-                    <i className="fas fa-chevron-down text-stone-400"></i>
+                    <FontAwesomeIcon icon={faChevronDown} className="theme-muted" />
                   </div>
                 </button>
                 
@@ -511,11 +532,11 @@ const FAQ = () => {
                 >
                   <div className="px-6 pb-5 pt-0">
                     <div className="flex items-start gap-4 pl-8">
-                      <div className="text-amber-400 mt-1">
-                        <i className="fas fa-reply-all text-sm"></i>
+                      <div className="theme-accent mt-1">
+                        <FontAwesomeIcon icon={faReplyAll} className="text-sm" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-stone-600 leading-relaxed mb-4">
+                        <p className="theme-text leading-relaxed mb-4">
                           {faq.answer}
                         </p>
                         
@@ -524,7 +545,7 @@ const FAQ = () => {
                           {faq.tags.map((tag, idx) => (
                             <span
                               key={idx}
-                              className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full"
+                              className="text-xs theme-soft-card theme-muted px-2 py-1 rounded-full"
                             >
                               #{tag}
                             </span>
@@ -534,9 +555,9 @@ const FAQ = () => {
                         {/* Helpful Button */}
                         <button
                           onClick={() => markHelpful(faq.id)}
-                          className="flex items-center gap-2 text-sm text-stone-500 hover:text-amber-600 transition-colors"
+                          className="flex items-center gap-2 text-sm theme-muted hover:theme-accent transition-colors"
                         >
-                          <i className="far fa-thumbs-up"></i>
+                          <FontAwesomeIcon icon={faThumbsUp} />
                           <span>Was this helpful? ({faq.helpful})</span>
                         </button>
                       </div>
@@ -548,11 +569,11 @@ const FAQ = () => {
           </div>
         ) : (
           <div className="text-center py-16">
-            <div className="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-search text-amber-600 text-4xl"></i>
+            <div className="w-24 h-24 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FontAwesomeIcon icon={faSearch} className="theme-accent text-4xl" />
             </div>
-            <h3 className="text-2xl font-bold text-stone-800 mb-2">No questions found</h3>
-            <p className="text-stone-600">
+            <h3 className="text-2xl font-bold theme-heading mb-2">No questions found</h3>
+            <p className="theme-text">
               We couldn't find any questions matching "{searchTerm}". Try a different search term or browse our categories.
             </p>
             <button
@@ -560,7 +581,7 @@ const FAQ = () => {
                 setSearchTerm("");
                 setSelectedCategory("all");
               }}
-              className="mt-6 text-amber-600 hover:text-amber-700 font-medium"
+              className="mt-6 theme-accent hover:opacity-80 font-medium"
             >
               Clear filters
             </button>
@@ -568,8 +589,8 @@ const FAQ = () => {
         )}
 
         {/* Still Have Questions? */}
-        <div className="mt-16 bg-gradient-to-r from-amber-600 to-amber-700 rounded-3xl p-8 md:p-10 text-center text-white">
-          <i className="fas fa-comment-dots text-4xl mb-4 opacity-80"></i>
+        <div className="mt-16 theme-button rounded-3xl p-8 md:p-10 text-center text-white">
+          <FontAwesomeIcon icon={faCommentDots} className="text-4xl mb-4 opacity-80" />
           <h3 className="text-2xl md:text-3xl font-bold serif mb-3">Still Have Questions?</h3>
           <p className="text-amber-100 mb-6 max-w-2xl mx-auto">
             Can't find what you're looking for? We're here to help! Reach out to our team and we'll get back to you promptly.
@@ -582,16 +603,16 @@ const FAQ = () => {
                   contactSection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="bg-white text-amber-700 px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105 flex items-center gap-2"
+              className="bg-white theme-accent px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105 flex items-center gap-2"
             >
-              <i className="fas fa-envelope"></i>
+              <FontAwesomeIcon icon={faEnvelope} />
               Contact Us
             </button>
             <button
               onClick={() => window.open("tel:+15125551234")}
               className="bg-transparent border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition-all flex items-center gap-2"
             >
-              <i className="fas fa-phone-alt"></i>
+              <FontAwesomeIcon icon={faPhoneAlt} />
               Call (512) 555-1234
             </button>
           </div>
@@ -599,21 +620,21 @@ const FAQ = () => {
 
         {/* FAQ Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-          <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{faqs.length}</div>
-            <div className="text-stone-500 text-sm">Total FAQs</div>
+          <div className="text-center p-4 theme-soft-card rounded-xl shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{faqs.length}</div>
+            <div className="theme-muted text-sm">Total FAQs</div>
           </div>
-          <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{categories.length - 1}</div>
-            <div className="text-stone-500 text-sm">Categories</div>
+          <div className="text-center p-4 theme-soft-card rounded-xl shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{categories.length - 1}</div>
+            <div className="theme-muted text-sm">Categories</div>
           </div>
-          <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">24/7</div>
-            <div className="text-stone-500 text-sm">Available Online</div>
+          <div className="text-center p-4 theme-soft-card rounded-xl shadow-sm">
+            <div className="text-2xl font-bold theme-accent">24/7</div>
+            <div className="theme-muted text-sm">Available Online</div>
           </div>
-          <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">⭐ 4.9</div>
-            <div className="text-stone-500 text-sm">Helpful Rating</div>
+          <div className="text-center p-4 theme-soft-card rounded-xl shadow-sm">
+            <div className="text-2xl font-bold theme-accent">⭐ 4.9</div>
+            <div className="theme-muted text-sm">Helpful Rating</div>
           </div>
         </div>
       </div>

@@ -1,8 +1,12 @@
 // components/Newsletter.jsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Newsletter = () => {
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -19,7 +23,9 @@ const Newsletter = () => {
 
   const toggleInterest = (id) => {
     setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((x) => x !== id)
+        : [...prev, id]
     );
   };
 
@@ -28,6 +34,7 @@ const Newsletter = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+
     setError("");
 
     if (!form.name || !form.email) {
@@ -44,22 +51,33 @@ const Newsletter = () => {
 
     await new Promise((r) => setTimeout(r, 1200));
 
-    console.log({ ...form, interests: selected });
+    console.log({
+      ...form,
+      interests: selected,
+    });
 
     setLoading(false);
     setSuccess(true);
-    setForm({ name: "", email: "" });
+
+    setForm({
+      name: "",
+      email: "",
+    });
+
     setSelected([]);
 
     setTimeout(() => setSuccess(false), 5000);
   };
 
   return (
-    <section id = "newsletter" className="relative py-28 px-6 bg-gradient-to-br from-stone-950 via-black to-stone-900 text-white overflow-hidden">
-
-      {/* Glow background */}
+    <section
+      id="newsletter"
+      className="relative py-28 px-6 overflow-hidden theme-section"
+    >
+      {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-amber-500/10 blur-3xl rounded-full" />
+
         <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-amber-400/10 blur-3xl rounded-full" />
       </div>
 
@@ -67,84 +85,161 @@ const Newsletter = () => {
 
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-amber-300 uppercase tracking-[0.3em] text-xs">
+
+          <p className="theme-accent uppercase tracking-[0.3em] text-xs font-semibold">
             Stay Connected
           </p>
-          <h2 className="text-4xl md:text-6xl font-bold mt-3">
-            Church <span className="text-amber-400">Newsletter</span>
+
+          <h2 className="text-4xl md:text-6xl font-bold mt-3 theme-heading">
+            Church{" "}
+            <span className="theme-gradient-text">
+              Newsletter
+            </span>
           </h2>
-          <p className="text-stone-400 max-w-2xl mx-auto mt-4">
-            Weekly updates, devotionals, events, and prayer requests delivered directly to you.
+
+          <p className="theme-text max-w-2xl mx-auto mt-4 text-lg leading-relaxed">
+            Weekly updates, devotionals, events,
+            and prayer requests delivered directly to you.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
 
           {/* FORM */}
-          <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+          <div className="
+            theme-card
+            rounded-3xl
+            p-8
+            shadow-2xl
+          ">
 
             {success ? (
               <div className="text-center py-10">
-                <div className="text-5xl mb-4">🎉</div>
-                <h3 className="text-2xl font-bold text-amber-300">
+
+                <div className="text-5xl mb-4">
+                  🎉
+                </div>
+
+                <h3 className="text-2xl font-bold theme-accent">
                   Welcome to the Family
                 </h3>
-                <p className="text-stone-300 mt-2">
+
+                <p className="theme-text mt-2">
                   You are successfully subscribed.
                 </p>
               </div>
             ) : (
-              <form onSubmit={submit} className="space-y-5">
+              <form
+                onSubmit={submit}
+                className="space-y-5"
+              >
 
+                {/* Name */}
                 <input
-                  className="w-full p-4 rounded-xl bg-black/40 border border-white/10 focus:border-amber-400 outline-none"
+                  className="theme-input p-4"
                   placeholder="Your Name"
                   value={form.name}
                   onChange={(e) =>
-                    setForm({ ...form, name: e.target.value })
+                    setForm({
+                      ...form,
+                      name: e.target.value,
+                    })
                   }
                 />
 
+                {/* Email */}
                 <input
-                  className="w-full p-4 rounded-xl bg-black/40 border border-white/10 focus:border-amber-400 outline-none"
+                  className="theme-input p-4"
                   placeholder="Email Address"
                   value={form.email}
                   onChange={(e) =>
-                    setForm({ ...form, email: e.target.value })
+                    setForm({
+                      ...form,
+                      email: e.target.value,
+                    })
                   }
                 />
 
                 {/* Interests */}
-                <div className="grid grid-cols-2 gap-3">
-                  {interests.map((i) => (
-                    <button
-                      type="button"
-                      key={i.id}
-                      onClick={() => toggleInterest(i.id)}
-                      className={`p-3 rounded-xl border text-sm flex items-center gap-2 transition ${
-                        selected.includes(i.id)
-                          ? "border-amber-400 bg-amber-500/10"
-                          : "border-white/10 hover:border-white/30"
-                      }`}
-                    >
-                      <i className={`fas ${i.icon} text-amber-400`} />
-                      {i.label}
-                    </button>
-                  ))}
+                <div>
+                  <p className="theme-heading font-semibold mb-3">
+                    Select Interests
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3">
+
+                    {interests.map((i) => (
+                      <button
+                        type="button"
+                        key={i.id}
+                        onClick={() => toggleInterest(i.id)}
+                        className={`
+                          p-3
+                          rounded-xl
+                          border
+                          text-sm
+                          flex
+                          items-center
+                          gap-2
+                          transition-all
+                          duration-300
+                          ${
+                            selected.includes(i.id)
+                              ? `
+                                border-amber-400
+                                bg-amber-100
+                                text-amber-700
+                                dark:bg-amber-500/10
+                                dark:text-amber-300
+                              `
+                              : `
+                                theme-border
+                                theme-soft-card
+                                hover:border-amber-400/40
+                              `
+                          }
+                        `}
+                      >
+                        <i
+                          className={`fas ${i.icon} theme-accent`}
+                        />
+
+                        <span className="theme-text">
+                          {i.label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
+                {/* Error */}
                 {error && (
-                  <p className="text-red-400 text-sm">{error}</p>
+                  <p className="text-red-500 dark:text-red-400 text-sm">
+                    {error}
+                  </p>
                 )}
 
+                {/* Button */}
                 <button
                   disabled={loading}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 font-semibold hover:scale-[1.02] transition"
+                  className="
+                    w-full
+                    py-4
+                    rounded-xl
+                    theme-button
+                    font-semibold
+                    hover:scale-[1.02]
+                    transition-all
+                    duration-300
+                    disabled:opacity-70
+                  "
                 >
-                  {loading ? "Subscribing..." : "Subscribe Now"}
+                  {loading
+                    ? "Subscribing..."
+                    : "Subscribe Now"}
                 </button>
 
-                <p className="text-xs text-stone-500 text-center">
+                <p className="theme-muted text-xs text-center">
                   No spam. Unsubscribe anytime.
                 </p>
               </form>
@@ -154,11 +249,17 @@ const Newsletter = () => {
           {/* RIGHT SIDE */}
           <div className="space-y-6">
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h3 className="text-xl font-semibold mb-2">
+            {/* Why Subscribe */}
+            <div className="
+              theme-card
+              rounded-2xl
+              p-6
+            ">
+              <h3 className="text-xl font-semibold mb-3 theme-heading">
                 Why Subscribe?
               </h3>
-              <ul className="text-stone-300 space-y-2 text-sm">
+
+              <ul className="theme-text space-y-2 text-sm">
                 <li>• Weekly spiritual updates</li>
                 <li>• Event notifications</li>
                 <li>• Prayer support updates</li>
@@ -166,28 +267,77 @@ const Newsletter = () => {
               </ul>
             </div>
 
-            <div className="bg-gradient-to-r from-amber-500/10 to-transparent border border-amber-500/20 rounded-2xl p-6">
-              <p className="italic text-stone-300">
-                “This newsletter keeps me spiritually grounded every week.”
+            {/* Quote */}
+            <div className="
+              rounded-2xl
+              p-6
+              border
+              border-amber-400/20
+              bg-gradient-to-r
+              from-amber-500/10
+              to-transparent
+              dark:from-amber-500/20
+            ">
+              <p className="italic theme-text">
+                “This newsletter keeps me spiritually
+                grounded every week.”
               </p>
-              <p className="text-amber-300 mt-3 text-sm">
+
+              <p className="theme-accent mt-3 text-sm font-medium">
                 — Church Member
               </p>
             </div>
 
-            <div className="grid grid-cols-3 text-center gap-3 text-sm text-stone-400">
-              <div>
-                <div className="text-amber-400 text-xl font-bold">5K+</div>
-                Subscribers
+            {/* Stats */}
+            <div className="
+              grid
+              grid-cols-3
+              gap-3
+              text-center
+            ">
+
+              <div className="
+                theme-soft-card
+                rounded-2xl
+                p-4
+              ">
+                <div className="theme-accent text-2xl font-bold">
+                  5K+
+                </div>
+
+                <p className="theme-muted text-sm mt-1">
+                  Subscribers
+                </p>
               </div>
-              <div>
-                <div className="text-amber-400 text-xl font-bold">98%</div>
-                Open Rate
+
+              <div className="
+                theme-soft-card
+                rounded-2xl
+                p-4
+              ">
+                <div className="theme-accent text-2xl font-bold">
+                  98%
+                </div>
+
+                <p className="theme-muted text-sm mt-1">
+                  Open Rate
+                </p>
               </div>
-              <div>
-                <div className="text-amber-400 text-xl font-bold">Weekly</div>
-                Delivery
+
+              <div className="
+                theme-soft-card
+                rounded-2xl
+                p-4
+              ">
+                <div className="theme-accent text-2xl font-bold">
+                  Weekly
+                </div>
+
+                <p className="theme-muted text-sm mt-1">
+                  Delivery
+                </p>
               </div>
+
             </div>
 
           </div>
