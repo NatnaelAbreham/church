@@ -62,20 +62,7 @@ const Volunteer = () => {
 ];
 
   const volunteerOpportunities = [
-    {
-      id: 1,
-      title: "Worship Team Vocalist",
-      category: "worship",
-      commitment: "Weekly (Sundays)",
-      timeCommitment: "2-3 hours/week",
-      spotsAvailable: 3,
-      description: "Join our worship team as a vocalist. Lead the congregation in praise and worship during Sunday services. Rehearsals on Thursdays at 7 PM.",
-      requirements: ["Previous vocal experience", "Ability to carry a tune", "Heart for worship", "Team player"],
-      benefits: ["Spiritual growth", "Community connection", "Free worship training"],
-      image: "https://images.pexels.com/photos/1263349/pexels-photo-1263349.jpeg?auto=compress&cs=tinysrgb&w=400",
-      urgency: "high",
-      ageRequirement: "16+"
-    },
+    
     {
       id: 2,
       title: "Children's Sunday School Teacher",
@@ -104,20 +91,7 @@ const Volunteer = () => {
       urgency: "normal",
       ageRequirement: "16+"
     },
-    {
-      id: 4,
-      title: "Youth Group Leader",
-      category: "youth",
-      commitment: "Weekly (Fridays)",
-      timeCommitment: "3 hours/week",
-      spotsAvailable: 4,
-      description: "Mentor and lead activities for middle and high school students. Plan games, lead small group discussions, and build meaningful relationships.",
-      requirements: ["Passion for youth", "Good communication skills", "Background check required", "Commitment to mentorship"],
-      benefits: ["Impact next generation", "Leadership experience", "Fun and energetic environment"],
-      image: "https://images.pexels.com/photos/1263349/pexels-photo-1263349.jpeg?auto=compress&cs=tinysrgb&w=400",
-      urgency: "high",
-      ageRequirement: "21+"
-    },
+    
     {
       id: 5,
       title: "Food Pantry Coordinator",

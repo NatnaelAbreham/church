@@ -49,20 +49,20 @@ const Ministries = () => {
   return (
     <section
       id="ministries"
-      className="relative py-28 px-6 bg-gradient-to-b from-amber-50/60 via-white to-white"
+      className="relative py-28 px-6 theme-section-secondary"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-amber-700 font-semibold tracking-widest uppercase text-sm">
+          <span className="theme-accent font-semibold tracking-widest uppercase text-sm">
             Get Involved
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 text-stone-800 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 theme-heading tracking-tight">
             Our Ministries
           </h2>
 
-          <p className="text-stone-500 mt-4 max-w-xl mx-auto">
+          <p className="theme-muted mt-4 max-w-xl mx-auto">
             Discover places where you can grow, serve, and belong in our church family.
           </p>
         </div>
@@ -89,20 +89,20 @@ const Ministries = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-br from-amber-200/40 to-amber-400/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
 
                 {/* Card */}
-                <div className="relative h-full bg-white/80 backdrop-blur-xl border border-amber-100 rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-300">
+                <div className="relative h-full theme-card rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-300">
                   
                   {/* Icon */}
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                    <Icon className="text-amber-700 w-6 h-6" />
+                    <Icon className="theme-accent w-6 h-6" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-stone-800 group-hover:text-amber-800 transition">
+                  <h3 className="text-xl font-semibold theme-heading group-hover:theme-accent transition">
                     {ministry.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-stone-600 mt-3 leading-relaxed text-sm">
+                  <p className="theme-text mt-3 leading-relaxed text-sm">
                     {ministry.desc}
                   </p>
 
