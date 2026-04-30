@@ -230,17 +230,18 @@ const categories = [
     setTimeout(() => setShowPrayedModal(null), 2000);
   };
 
-  const getCategoryColor = (categoryId) => {
-    const colors = {
-      personal: "border-l-blue-500 bg-blue-50",
-      family: "border-l-green-500 bg-green-50",
-      health: "border-l-red-500 bg-red-50",
-      work: "border-l-purple-500 bg-purple-50",
-      community: "border-l-teal-500 bg-teal-50",
-      thanksgiving: "border-l-orange-500 bg-orange-50"
-    };
-    return colors[categoryId] || "border-l-amber-500 bg-amber-50";
+ const getCategoryColor = (categoryId) => {
+  const colors = {
+    personal: "border-l-blue-500 bg-blue-50 dark:bg-blue-500/10",
+    family: "border-l-green-500 bg-green-50 dark:bg-green-500/10",
+    health: "border-l-red-500 bg-red-50 dark:bg-red-500/10",
+    work: "border-l-purple-500 bg-purple-50 dark:bg-purple-500/10",
+    community: "border-l-teal-500 bg-teal-50 dark:bg-teal-500/10",
+    thanksgiving: "border-l-orange-500 bg-orange-50 dark:bg-orange-500/10"
   };
+
+  return colors[categoryId] || "border-l-amber-500 bg-amber-50 dark:bg-amber-500/10";
+};
 
 const getCategoryIcon = (categoryId) => {
   const icons = {
@@ -268,14 +269,15 @@ const getCategoryIcon = (categoryId) => {
   };
 
   const colorMap = {
-  blue: "border-blue-500 bg-blue-50 text-blue-700",
-  green: "border-green-500 bg-green-50 text-green-700",
-  red: "border-red-500 bg-red-50 text-red-700",
-  purple: "border-purple-500 bg-purple-50 text-purple-700",
-  teal: "border-teal-500 bg-teal-50 text-teal-700",
-  orange: "border-orange-500 bg-orange-50 text-orange-700",
-  amber: "border-amber-500 bg-amber-50 text-amber-700"
+  blue: "border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300",
+  green: "border-green-500 bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-300",
+  red: "border-red-500 bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-300",
+  purple: "border-purple-500 bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-300",
+  teal: "border-teal-500 bg-teal-50 text-teal-700 dark:bg-teal-500/10 dark:text-teal-300",
+  orange: "border-orange-500 bg-orange-50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-300",
+  amber: "border-amber-500 bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300"
 };
+
   const filteredPrayers = prayerRequests
     .filter(prayer => prayer.isPublic)
     .filter(prayer => selectedCategory === "all" || prayer.category === selectedCategory)
