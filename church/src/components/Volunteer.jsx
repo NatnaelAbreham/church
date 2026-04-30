@@ -1,6 +1,5 @@
 // components/Volunteer.jsx
 import { useState, useEffect } from "react";
-  /* import '../css/volunteer.css'; */ 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -26,7 +25,9 @@ import {
   faBirthdayCake,
   faPenAlt,
   faTimes,
-  faPaperPlane
+  faPaperPlane,
+  faSpinner,
+  faCheckCircle
   
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -325,48 +326,48 @@ const Volunteer = () => {
   
 
   return (
-    <section id="volunteer" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
+    <section id="volunteer" className="theme-section py-28 px-6 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-100/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-sm" />
-            <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Serve with Purpose</span>
-            <FontAwesomeIcon icon={faHeart} className="text-amber-600 text-sm" />
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 theme-border">
+            <FontAwesomeIcon icon={faHandsHelping} className="theme-accent text-sm" />
+            <span className="theme-accent font-semibold tracking-wide uppercase text-xs">Serve with Purpose</span>
+            <FontAwesomeIcon icon={faHeart} className="theme-accent text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-            <span className="text-amber-600">Volunteer Opportunities</span>
+          <h2 className="text-4xl md:text-6xl font-bold serif theme-heading mb-4">
+            <span className="theme-accent">Volunteer Opportunities</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
+          <p className="theme-text max-w-2xl mx-auto text-lg">
             Use your God-given gifts to serve others and make a difference in our community
           </p>
         </div>
 
         {/* Impact Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{volunteerOpportunities.length}</div>
-            <div className="text-stone-500 text-sm">Active Roles</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{volunteerOpportunities.length}</div>
+            <div className="theme-muted text-sm">Active Roles</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">250+</div>
-            <div className="text-stone-500 text-sm">Active Volunteers</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">250+</div>
+            <div className="theme-muted text-sm">Active Volunteers</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">5,000+</div>
-            <div className="text-stone-500 text-sm">Hours Served/Year</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">5,000+</div>
+            <div className="theme-muted text-sm">Hours Served/Year</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">8</div>
-            <div className="text-stone-500 text-sm">Ministry Areas</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">8</div>
+            <div className="theme-muted text-sm">Ministry Areas</div>
           </div>
         </div>
 
@@ -376,13 +377,14 @@ const Volunteer = () => {
             <div className="relative">
               <FontAwesomeIcon
                 icon={faSearch}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"
-              />  <input
+                className="absolute left-4 top-1/2 -translate-y-1/2 theme-muted"
+              />  
+              <input
                 type="text"
                 placeholder="Search opportunities..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-xl border border-stone-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all bg-white"
+                className="theme-input pl-11 pr-4 py-3"
               />
             </div>
           </div>
@@ -391,10 +393,11 @@ const Volunteer = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${selectedCategory === cat.id
-                    ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg"
-                    : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
-                  }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                  selectedCategory === cat.id
+                    ? "theme-button shadow-lg"
+                    : "theme-soft-card theme-text hover:opacity-80"
+                }`}
               >
                 <FontAwesomeIcon icon={cat.icon} className="text-sm" />
                 <span className="text-sm font-medium hidden sm:inline">{cat.label}</span>
@@ -411,7 +414,7 @@ const Volunteer = () => {
               return (
                 <div
                   key={opportunity.id}
-                  className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-stone-100 hover:border-amber-200"
+                  className="group theme-card rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden theme-hover"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Image */}
@@ -427,7 +430,7 @@ const Volunteer = () => {
                         <FontAwesomeIcon icon={urgency.icon} className="text-xs" />
                         {urgency.text}
                       </span>
-                      <span className="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="theme-button text-xs font-bold px-3 py-1 rounded-full">
                         {categories.find(c => c.id === opportunity.category)?.label}
                       </span>
                     </div>
@@ -439,36 +442,36 @@ const Volunteer = () => {
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="text-xl font-bold text-stone-800 mb-2 group-hover:text-amber-700 transition-colors">
+                    <h3 className="text-xl font-bold theme-heading mb-2 group-hover:theme-accent transition-colors">
                       {opportunity.title}
                     </h3>
-                    <div className="flex flex-wrap gap-3 text-xs text-stone-500 mb-3">
+                    <div className="flex flex-wrap gap-3 text-xs theme-muted mb-3">
                       <span className="flex items-center gap-1">
-                        <FontAwesomeIcon icon={faClock} className="text-amber-500" />
+                        <FontAwesomeIcon icon={faClock} className="theme-accent" />
                         {opportunity.commitment}
                       </span>
                       <span className="flex items-center gap-1">
-                        <FontAwesomeIcon icon={faHourglassHalf} className="text-amber-500" />
+                        <FontAwesomeIcon icon={faHourglassHalf} className="theme-accent" />
                         {opportunity.timeCommitment}
                       </span>
                       <span className="flex items-center gap-1">
-                        <FontAwesomeIcon icon={faBirthdayCake} className="text-amber-500" />
+                        <FontAwesomeIcon icon={faBirthdayCake} className="theme-accent" />
                         {opportunity.ageRequirement}
                       </span>
                     </div>
-                    <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                    <p className="theme-text text-sm leading-relaxed mb-4 line-clamp-2">
                       {opportunity.description}
                     </p>
 
                     {/* Requirements Preview */}
                     <div className="flex flex-wrap gap-1 mb-4">
                       {opportunity.requirements.slice(0, 2).map((req, idx) => (
-                        <span key={idx} className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full">
+                        <span key={idx} className="text-xs theme-soft-card theme-text px-2 py-1 rounded-full">
                           {req}
                         </span>
                       ))}
                       {opportunity.requirements.length > 2 && (
-                        <span className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded-full">
+                        <span className="text-xs theme-soft-card theme-text px-2 py-1 rounded-full">
                           +{opportunity.requirements.length - 2} more
                         </span>
                       )}
@@ -476,7 +479,7 @@ const Volunteer = () => {
 
                     <button
                       onClick={() => openApplicationModal(opportunity)}
-                      className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-md transition-all flex items-center justify-center gap-2"
+                      className="w-full py-2.5 theme-button rounded-xl font-medium transition-all flex items-center justify-center gap-2"
                     >
                       <FontAwesomeIcon icon={faPenAlt} />
                       Apply Now
@@ -488,17 +491,17 @@ const Volunteer = () => {
           </div>
         ) : (
           <div className="text-center py-16">
-            <div className="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-4xl" />
+            <div className="w-24 h-24 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FontAwesomeIcon icon={faHandsHelping} className="theme-accent text-4xl" />
             </div>
-            <h3 className="text-2xl font-bold text-stone-800 mb-2">No opportunities found</h3>
-            <p className="text-stone-600">Try adjusting your search or filter to see more opportunities.</p>
+            <h3 className="text-2xl font-bold theme-heading mb-2">No opportunities found</h3>
+            <p className="theme-text">Try adjusting your search or filter to see more opportunities.</p>
             <button
               onClick={() => {
                 setSearchTerm("");
                 setSelectedCategory("all");
               }}
-              className="mt-4 text-amber-600 hover:text-amber-700 font-medium"
+              className="mt-4 theme-accent hover:opacity-80 font-medium"
             >
               Clear all filters
             </button>
@@ -506,14 +509,14 @@ const Volunteer = () => {
         )}
 
         {/* Call to Action Banner */}
-        <div className="mt-12 bg-gradient-to-r from-amber-600 to-amber-700 rounded-2xl p-6 text-center text-white">
+        <div className="mt-12 theme-button rounded-2xl p-6 text-center">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-               <FontAwesomeIcon icon={faQuestionCircle} className="text-2xl" />
+               <FontAwesomeIcon icon={faQuestionCircle} className="text-2xl text-white" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-lg">Not sure where to serve?</h4>
+                <h4 className="font-bold text-lg text-white">Not sure where to serve?</h4>
                 <p className="text-amber-100 text-sm">Let us help you find your perfect fit</p>
               </div>
             </div>
@@ -524,7 +527,7 @@ const Volunteer = () => {
                   contactSection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="px-6 py-2 bg-white text-amber-700 rounded-full font-semibold hover:shadow-lg transition-all"
+              className="px-6 py-2 bg-white theme-accent rounded-full font-semibold hover:shadow-lg transition-all"
             >
               Talk to Our Volunteer Coordinator
             </button>
@@ -535,78 +538,78 @@ const Volunteer = () => {
       {/* Application Modal */}
       {showApplicationModal && selectedOpportunity && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={closeApplicationModal}>
-          <div className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <button onClick={closeApplicationModal} className="absolute top-6 right-6 w-10 h-10 rounded-full bg-stone-100 hover:bg-amber-500 hover:text-white transition-colors z-10">
+          <div className="relative max-w-2xl w-full theme-card rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <button onClick={closeApplicationModal} className="absolute top-6 right-6 w-10 h-10 rounded-full theme-soft-card hover:theme-button hover:text-white transition-colors z-10 theme-text">
               <FontAwesomeIcon icon={faTimes} />
             </button>
 
             <div className="p-6 md:p-8">
               <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FontAwesomeIcon icon={faHandsHelping} className="text-amber-600 text-2xl" />
+                <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FontAwesomeIcon icon={faHandsHelping} className="theme-accent text-2xl" />
                 </div>
-                <h2 className="text-2xl font-bold text-stone-800">Apply to Volunteer</h2>
-                <p className="text-stone-500 mt-1">{selectedOpportunity.title}</p>
+                <h2 className="text-2xl font-bold theme-heading">Apply to Volunteer</h2>
+                <p className="theme-muted mt-1">{selectedOpportunity.title}</p>
               </div>
 
               {!isSuccess ? (
                 <form onSubmit={handleApplicationSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-stone-700 font-medium mb-1">Full Name *</label>
+                    <label className="block theme-text font-medium mb-1">Full Name *</label>
                     <input
                       type="text"
                       name="fullName"
                       value={applicationForm.fullName}
                       onChange={handleApplicationChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${formDirty.fullName && formErrors.fullName ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all`}
+                      className={`theme-input w-full px-4 py-3 ${formDirty.fullName && formErrors.fullName ? 'border-red-500' : ''}`}
                     />
                     {formDirty.fullName && formErrors.fullName && <p className="text-red-500 text-sm mt-1">{formErrors.fullName}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-stone-700 font-medium mb-1">Email Address *</label>
+                    <label className="block theme-text font-medium mb-1">Email Address *</label>
                     <input
                       type="email"
                       name="email"
                       value={applicationForm.email}
                       onChange={handleApplicationChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${formDirty.email && formErrors.email ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all`}
+                      className={`theme-input w-full px-4 py-3 ${formDirty.email && formErrors.email ? 'border-red-500' : ''}`}
                     />
                     {formDirty.email && formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-stone-700 font-medium mb-1">Phone Number *</label>
+                    <label className="block theme-text font-medium mb-1">Phone Number *</label>
                     <input
                       type="tel"
                       name="phone"
                       value={applicationForm.phone}
                       onChange={handleApplicationChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${formDirty.phone && formErrors.phone ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all`}
+                      className={`theme-input w-full px-4 py-3 ${formDirty.phone && formErrors.phone ? 'border-red-500' : ''}`}
                     />
                     {formDirty.phone && formErrors.phone && <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-stone-700 font-medium mb-1">Availability</label>
+                    <label className="block theme-text font-medium mb-1">Availability</label>
                     <textarea
                       name="availability"
                       value={applicationForm.availability}
                       onChange={handleApplicationChange}
                       rows="2"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all resize-none"
+                      className="theme-input w-full px-4 py-3 resize-none"
                       placeholder="e.g., Sundays only, weekday evenings, flexible..."
                     ></textarea>
                   </div>
 
                   <div>
-                    <label className="block text-stone-700 font-medium mb-1">Why do you want to volunteer? *</label>
+                    <label className="block theme-text font-medium mb-1">Why do you want to volunteer? *</label>
                     <textarea
                       name="motivation"
                       value={applicationForm.motivation}
                       onChange={handleApplicationChange}
                       rows="3"
-                      className={`w-full px-4 py-3 rounded-xl border ${formDirty.motivation && formErrors.motivation ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all resize-none`}
+                      className={`theme-input w-full px-4 py-3 resize-none ${formDirty.motivation && formErrors.motivation ? 'border-red-500' : ''}`}
                       placeholder="Tell us about your passion for serving..."
                     ></textarea>
                     {formDirty.motivation && formErrors.motivation && <p className="text-red-500 text-sm mt-1">{formErrors.motivation}</p>}
@@ -618,9 +621,9 @@ const Volunteer = () => {
                       name="agreeToTerms"
                       checked={applicationForm.agreeToTerms}
                       onChange={handleApplicationChange}
-                      className="w-5 h-5 rounded border-stone-300 text-amber-600 focus:ring-amber-500"
+                      className="w-5 h-5 rounded theme-border text-amber-600 focus:ring-amber-500"
                     />
-                    <label className="text-stone-600 text-sm">
+                    <label className="theme-text text-sm">
                       I agree to the volunteer terms and conditions and consent to a background check *
                     </label>
                   </div>
@@ -629,7 +632,7 @@ const Volunteer = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full theme-button py-3 rounded-xl font-semibold disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -649,8 +652,8 @@ const Volunteer = () => {
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 text-4xl" />
                   </div>
-                  <h3 className="text-2xl font-bold text-stone-800 mb-2">Application Submitted!</h3>
-                  <p className="text-stone-600">Thank you for your interest! Our volunteer coordinator will contact you within 3-5 business days.</p>
+                  <h3 className="text-2xl font-bold theme-heading mb-2">Application Submitted!</h3>
+                  <p className="theme-text">Thank you for your interest! Our volunteer coordinator will contact you within 3-5 business days.</p>
                 </div>
               )}
             </div>

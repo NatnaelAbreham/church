@@ -1,6 +1,5 @@
 // components/PrayerRequest.jsx
 import { useState, useEffect } from "react";
-/* import '../css/prayerrequest.css'; */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHandsPraying,
@@ -14,7 +13,8 @@ import {
   faPenAlt,
   faSearch,
   faFlag,
-  faCheckCircle
+  faCheckCircle,
+  faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 
 const PrayerRequest = () => {
@@ -288,68 +288,68 @@ const getCategoryIcon = (categoryId) => {
   const answeredPrayers = filteredPrayers.filter(p => p.isAnswered).length;
 
   return (
-    <section id="prayer-request" className="py-28 px-6 bg-gradient-to-br from-stone-50 via-white to-amber-50/30 relative overflow-hidden">
+    <section id="prayer-request" className="theme-section py-28 px-6 relative overflow-hidden">
       {/* Modern 2026 decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-100/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-amber-400/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-100/80 backdrop-blur-sm px-5 py-2 rounded-full mb-5 shadow-sm">
-            <FontAwesomeIcon icon={faHandsPraying} className="text-amber-600 text-sm" />
-            <span className="text-amber-700 font-semibold tracking-wide uppercase text-xs">Prayer Wall</span>
-            <FontAwesomeIcon icon={faHeart} className="text-amber-600 text-sm" />
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 theme-border">
+            <FontAwesomeIcon icon={faHandsPraying} className="theme-accent text-sm" />
+            <span className="theme-accent font-semibold tracking-wide uppercase text-xs">Prayer Wall</span>
+            <FontAwesomeIcon icon={faHeart} className="theme-accent text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold serif text-stone-800 mb-4">
-             <span className="text-amber-600">Prayer Requests</span>
+          <h2 className="text-4xl md:text-6xl font-bold serif theme-heading mb-4">
+             <span className="theme-accent">Prayer Requests</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
+          <p className="theme-text max-w-2xl mx-auto text-lg">
             Share your burdens and join us in praying for one another. You are not alone.
           </p>
         </div>
 
         {/* Prayer Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{prayerRequests.length}</div>
-            <div className="text-stone-500 text-sm">Total Prayers</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{prayerRequests.length}</div>
+            <div className="theme-muted text-sm">Total Prayers</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{answeredPrayers}</div>
-            <div className="text-stone-500 text-sm">Answered</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{answeredPrayers}</div>
+            <div className="theme-muted text-sm">Answered</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">{prayerCount}</div>
-            <div className="text-stone-500 text-sm">Prayers Offered</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">{prayerCount}</div>
+            <div className="theme-muted text-sm">Prayers Offered</div>
           </div>
-          <div className="bg-white rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-amber-600">24/7</div>
-            <div className="text-stone-500 text-sm">Prayer Team</div>
+          <div className="theme-soft-card rounded-xl p-4 text-center shadow-sm">
+            <div className="text-2xl font-bold theme-accent">24/7</div>
+            <div className="theme-muted text-sm">Prayer Team</div>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Column - Prayer Request Form */}
-          <div className="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-stone-100">
+          <div className="theme-card rounded-3xl shadow-xl p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
-                <FontAwesomeIcon icon={faPenAlt} className="text-amber-600" />
+              <div className="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                <FontAwesomeIcon icon={faPenAlt} className="theme-accent" />
               </div>
-              <h3 className="text-2xl font-bold text-stone-800">Submit a Prayer Request</h3>
+              <h3 className="text-2xl font-bold theme-heading">Submit a Prayer Request</h3>
             </div>
             
             {!isSuccess ? (
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Anonymous Toggle */}
-                <div className="flex items-center justify-between p-4 bg-stone-50 rounded-xl">
+                <div className="flex items-center justify-between p-4 theme-soft-card rounded-xl">
                   <div>
-                    <p className="font-medium text-stone-800">Share Anonymously</p>
-                    <p className="text-stone-500 text-sm">Your name won't be displayed publicly</p>
+                    <p className="font-medium theme-heading">Share Anonymously</p>
+                    <p className="theme-muted text-sm">Your name won't be displayed publicly</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
@@ -366,13 +366,13 @@ const getCategoryIcon = (categoryId) => {
                 {/* Name Field (conditional) */}
                 {!formData.isAnonymous && (
                   <div>
-                    <label className="block text-stone-700 font-medium mb-2">Your Name *</label>
+                    <label className="block theme-text font-medium mb-2">Your Name *</label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${dirty.name && errors.name ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all`}
+                      className={`theme-input w-full px-4 py-3 ${dirty.name && errors.name ? 'border-red-500' : ''}`}
                       placeholder="John Doe"
                     />
                     {dirty.name && errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -381,13 +381,13 @@ const getCategoryIcon = (categoryId) => {
 
                 {/* Prayer Request Field */}
                 <div>
-                  <label className="block text-stone-700 font-medium mb-2">Prayer Request *</label>
+                  <label className="block theme-text font-medium mb-2">Prayer Request *</label>
                   <textarea
                     name="prayerRequest"
                     value={formData.prayerRequest}
                     onChange={handleChange}
                     rows="4"
-                    className={`w-full px-4 py-3 rounded-xl border ${dirty.prayerRequest && errors.prayerRequest ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all resize-none`}
+                    className={`theme-input w-full px-4 py-3 resize-none ${dirty.prayerRequest && errors.prayerRequest ? 'border-red-500' : ''}`}
                     placeholder="What would you like us to pray about?"
                   ></textarea>
                   {dirty.prayerRequest && errors.prayerRequest && <p className="text-red-500 text-sm mt-1">{errors.prayerRequest}</p>}
@@ -395,33 +395,33 @@ const getCategoryIcon = (categoryId) => {
 
                 {/* Category Selection */}
                 <div>
-                  <label className="block text-stone-700 font-medium mb-2">Category</label>
+                  <label className="block theme-text font-medium mb-2">Category</label>
                   <div className="grid grid-cols-2 gap-2">
-  {categories.slice(1).map((cat) => (
-    <button
-      key={cat.id}
-      type="button"
-      onClick={() =>
-        setFormData((prev) => ({ ...prev, category: cat.id }))
-      }
-      className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all ${
-        formData.category === cat.id
-          ? colorMap[cat.color]
-          : "border-stone-200 hover:border-amber-300"
-      }`}
-    >
-      <FontAwesomeIcon icon={getCategoryIcon(cat.id)} className="text-sm" />
-      <span className="text-sm">{cat.label}</span>
-    </button>
-  ))}
-</div>
+                    {categories.slice(1).map((cat) => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() =>
+                          setFormData((prev) => ({ ...prev, category: cat.id }))
+                        }
+                        className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all ${
+                          formData.category === cat.id
+                            ? colorMap[cat.color]
+                            : "theme-border hover:border-amber-300"
+                        }`}
+                      >
+                        <FontAwesomeIcon icon={getCategoryIcon(cat.id)} className="text-sm" />
+                        <span className="text-sm theme-text">{cat.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Public/Private Toggle */}
-                <div className="flex items-center justify-between p-4 bg-stone-50 rounded-xl">
+                <div className="flex items-center justify-between p-4 theme-soft-card rounded-xl">
                   <div>
-                    <p className="font-medium text-stone-800">Share on Prayer Wall</p>
-                    <p className="text-stone-500 text-sm">Others can see and pray for your request</p>
+                    <p className="font-medium theme-heading">Share on Prayer Wall</p>
+                    <p className="theme-muted text-sm">Others can see and pray for your request</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
@@ -436,10 +436,10 @@ const getCategoryIcon = (categoryId) => {
                 </div>
 
                 {/* Allow Contact Option */}
-                <div className="flex items-center justify-between p-4 bg-stone-50 rounded-xl">
+                <div className="flex items-center justify-between p-4 theme-soft-card rounded-xl">
                   <div>
-                    <p className="font-medium text-stone-800">Allow Prayer Team to Contact Me</p>
-                    <p className="text-stone-500 text-sm">Our prayer team may reach out for follow-up</p>
+                    <p className="font-medium theme-heading">Allow Prayer Team to Contact Me</p>
+                    <p className="theme-muted text-sm">Our prayer team may reach out for follow-up</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
@@ -456,13 +456,13 @@ const getCategoryIcon = (categoryId) => {
                 {/* Email Field (conditional) */}
                 {formData.allowContact && (
                   <div>
-                    <label className="block text-stone-700 font-medium mb-2">Email Address *</label>
+                    <label className="block theme-text font-medium mb-2">Email Address *</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${dirty.email && errors.email ? 'border-red-500' : 'border-stone-200'} focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all`}
+                      className={`theme-input w-full px-4 py-3 ${dirty.email && errors.email ? 'border-red-500' : ''}`}
                       placeholder="you@example.com"
                     />
                     {dirty.email && errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -472,7 +472,7 @@ const getCategoryIcon = (categoryId) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full theme-button py-4 rounded-xl font-semibold disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -492,8 +492,8 @@ const getCategoryIcon = (categoryId) => {
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 text-4xl" />
                 </div>
-                <h3 className="text-2xl font-bold text-stone-800 mb-2">Prayer Request Submitted!</h3>
-                <p className="text-stone-600">Thank you for sharing. Our prayer team is lifting you up.</p>
+                <h3 className="text-2xl font-bold theme-heading mb-2">Prayer Request Submitted!</h3>
+                <p className="theme-text">Thank you for sharing. Our prayer team is lifting you up.</p>
               </div>
             )}
           </div>
@@ -504,14 +504,15 @@ const getCategoryIcon = (categoryId) => {
             <div className="mb-6 space-y-4">
               <div className="relative">
                 <FontAwesomeIcon
-  icon={faSearch}
-  className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"
-/>   <input
+                  icon={faSearch}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 theme-muted"
+                />   
+                <input
                   type="text"
                   placeholder="Search prayer requests..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-stone-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 transition-all bg-white"
+                  className="theme-input w-full pl-11 pr-4 py-3"
                 />
               </div>
               
@@ -522,8 +523,8 @@ const getCategoryIcon = (categoryId) => {
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all ${
                       selectedCategory === cat.id
-                        ? "bg-amber-500 text-white"
-                        : "bg-white text-stone-600 hover:bg-amber-50 border border-stone-200"
+                        ? "theme-button"
+                        : "theme-soft-card theme-text hover:opacity-80"
                     }`}
                   >
                     <FontAwesomeIcon icon={getCategoryIcon(cat.id)} className="text-xs" />
@@ -539,18 +540,19 @@ const getCategoryIcon = (categoryId) => {
                 filteredPrayers.map((prayer) => (
                   <div
                     key={prayer.id}
-                    className={`bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 ${getCategoryColor(prayer.category)}`}
+                    className={`theme-soft-card rounded-xl p-5 shadow-sm hover:shadow-md transition-all border-l-4 ${getCategoryColor(prayer.category)}`}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                         <FontAwesomeIcon
-  icon={getCategoryIcon(prayer.category)}
-  className="text-amber-600 text-sm"
-/>   </div>
+                        <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
+                          <FontAwesomeIcon
+                            icon={getCategoryIcon(prayer.category)}
+                            className="theme-accent text-sm"
+                          />   
+                        </div>
                         <div>
-                          <p className="font-medium text-stone-800">{prayer.name}</p>
-                          <p className="text-xs text-stone-400">{formatRelativeTime(prayer.date)}</p>
+                          <p className="font-medium theme-heading">{prayer.name}</p>
+                          <p className="text-xs theme-muted">{formatRelativeTime(prayer.date)}</p>
                         </div>
                       </div>
                       {prayer.isAnswered && (
@@ -560,19 +562,19 @@ const getCategoryIcon = (categoryId) => {
                       )}
                     </div>
                     
-                    <p className="text-stone-600 text-sm leading-relaxed mb-4">
+                    <p className="theme-text text-sm leading-relaxed mb-4">
                       {prayer.prayerRequest}
                     </p>
                     
                     <div className="flex items-center justify-between">
                       <button
                         onClick={() => handlePrayed(prayer.id)}
-                        className="flex items-center gap-2 text-stone-500 hover:text-amber-600 transition-colors text-sm"
+                        className="flex items-center gap-2 theme-muted hover:theme-accent transition-colors text-sm"
                       >
                         <FontAwesomeIcon icon={faHandsPraying} />
                         <span>Prayed ({prayer.prayedCount})</span>
                       </button>
-                      <button className="text-stone-400 hover:text-amber-500 transition-colors">
+                      <button className="theme-muted hover:theme-accent transition-colors">
                         <FontAwesomeIcon icon={faFlag} />
                       </button>
                     </div>
@@ -589,23 +591,23 @@ const getCategoryIcon = (categoryId) => {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-12 bg-white rounded-xl">
+                <div className="text-center py-12 theme-card rounded-xl">
                   <FontAwesomeIcon
-  icon={faHandsPraying}
-  className="text-4xl text-stone-300 mb-3"
-/>
-                  <p className="text-stone-500">No prayer requests found</p>
+                    icon={faHandsPraying}
+                    className="text-4xl theme-muted mb-3"
+                  />
+                  <p className="theme-muted">No prayer requests found</p>
                 </div>
               )}
             </div>
 
             {/* Prayer Team Note */}
-            <div className="mt-6 bg-amber-50 rounded-xl p-4 border border-amber-200">
+            <div className="mt-6 theme-soft-card rounded-xl p-4 theme-border">
               <div className="flex items-start gap-3">
-                <FontAwesomeIcon icon={faUsers} className="text-amber-600 text-lg" />
+                <FontAwesomeIcon icon={faUsers} className="theme-accent text-lg" />
                 <div>
-                  <p className="text-stone-700 font-medium mb-1">Our Prayer Team</p>
-                  <p className="text-stone-600 text-sm">
+                  <p className="theme-heading font-medium mb-1">Our Prayer Team</p>
+                  <p className="theme-text text-sm">
                     A dedicated team of prayer warriors is interceding for each request. 
                     All prayers are handled with confidentiality and care.
                   </p>
@@ -615,8 +617,6 @@ const getCategoryIcon = (categoryId) => {
           </div>
         </div>
       </div>
-
-      
     </section>
   );
 };
