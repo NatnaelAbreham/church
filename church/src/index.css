@@ -94,17 +94,17 @@
     @apply dark:hover:bg-white/5;
   }
   
-html,
-body {
-  scroll-behavior: smooth;
 
-  @apply bg-[#fefcf8];
-
-  @apply dark:bg-gradient-to-b;
-  @apply dark:from-zinc-950;
-  @apply dark:via-zinc-900;
-  @apply dark:to-zinc-950;
 }
+
+/* BASE LAYER (GLOBAL STYLES) */
+@layer base {
+  html,
+  body {
+    scroll-behavior: smooth;
+    @apply bg-[#fefcf8];
+    @apply dark:bg-gradient-to-b dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950;
+  }
 }
 
 /* Your custom styles below */

@@ -1,8 +1,6 @@
 // components/LocationMap.jsx
 import { useState, useEffect } from "react";
-/* import '../css/locationmap.css'; */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 
 import {
   faLocationDot,
@@ -74,11 +72,11 @@ const LocationMap = () => {
       sensory: "Sensory-friendly room available during services"
     },
     nearby: [
-  { name: "Starbucks", type: "Coffee", distance: "0.2 miles", icon: faMugHot },
-  { name: "Whole Foods", type: "Grocery", distance: "0.3 miles", icon: faShoppingBasket },
-  { name: "Central Park", type: "Park", distance: "0.5 miles", icon: faTree },
-  { name: "CVS Pharmacy", type: "Pharmacy", distance: "0.1 miles", icon: faPrescriptionBottle }
-],
+      { name: "Starbucks", type: "Coffee", distance: "0.2 miles", icon: faMugHot },
+      { name: "Whole Foods", type: "Grocery", distance: "0.3 miles", icon: faShoppingBasket },
+      { name: "Central Park", type: "Park", distance: "0.5 miles", icon: faTree },
+      { name: "CVS Pharmacy", type: "Pharmacy", distance: "0.1 miles", icon: faPrescriptionBottle }
+    ],
     publicTransport: {
       bus: "Bus routes 3, 10, and 20 stop at Grace Ave & 24th St",
       rail: "MetroRail Downtown Station - 0.8 miles away",
@@ -123,7 +121,7 @@ const LocationMap = () => {
   };
 
   return (
-    <section id="location-map" className="py-28 px-6 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 relative overflow-hidden">
+    <section id="location-map" className="theme-section py-28 px-6 relative overflow-hidden">
       {/* Modern 2026 decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
@@ -134,18 +132,16 @@ const LocationMap = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 border border-amber-500/30">
-            {/* <i className="fas fa-map-marker-alt text-amber-400 text-sm"></i> */}
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-5 py-2 rounded-full mb-5 theme-border">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="text-amber-400 text-sm" />
-            <span className="text-amber-300 font-semibold tracking-wide uppercase text-xs">Find Us</span>
-            {/* <i className="fas fa-location-dot text-amber-400 text-sm"></i> */}
+            <span className="theme-accent font-semibold tracking-wide uppercase text-xs">Find Us</span>
             <FontAwesomeIcon icon={faLocationDot} className="text-amber-400 text-sm" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold serif text-white mb-4">
-            <span className="text-amber-400">Our Location</span>
+          <h2 className="text-4xl md:text-6xl font-bold serif theme-heading mb-4">
+            <span className="theme-accent">Our Location</span>
           </h2>
           <div className="w-28 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-stone-300 max-w-2xl mx-auto text-lg">
+          <p className="theme-text max-w-2xl mx-auto text-lg">
             Conveniently located in the heart of Austin with easy access from anywhere in the city
           </p>
         </div>
@@ -154,36 +150,33 @@ const LocationMap = () => {
           {/* Left Column - Info Cards */}
           <div className="space-y-6">
             {/* Address Card */}
-            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
+            <div className="theme-soft-card rounded-2xl p-6 theme-hover transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  {/* <i className="fas fa-location-dot text-amber-400 text-xl"></i> */}
-                  <FontAwesomeIcon icon={faLocationDot} className="text-amber-400 text-xl" />
+                  <FontAwesomeIcon icon={faLocationDot} className="theme-accent text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white font-bold text-lg mb-2">Address</h3>
-                  <p className="text-stone-300 text-sm leading-relaxed">{churchInfo.address}</p>
+                  <h3 className="theme-heading font-bold text-lg mb-2">Address</h3>
+                  <p className="theme-text text-sm leading-relaxed">{churchInfo.address}</p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <button
                       onClick={copyAddress}
-                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                      className="flex items-center gap-1 text-xs theme-accent hover:opacity-80 transition-colors"
                     >
                       <FontAwesomeIcon icon={faCopy} />
                       {copied ? "Copied!" : "Copy Address"}
                     </button>
                     <button
                       onClick={openGoogleMaps}
-                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                      className="flex items-center gap-1 text-xs theme-accent hover:opacity-80 transition-colors"
                     >
-
                       <FontAwesomeIcon icon={faGoogle} />
                       Google Maps
                     </button>
                     <button
                       onClick={openAppleMaps}
-                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition-colors"
+                      className="flex items-center gap-1 text-xs theme-accent hover:opacity-80 transition-colors"
                     >
-
                       <FontAwesomeIcon icon={faApple} />
                       Apple Maps
                     </button>
@@ -193,19 +186,19 @@ const LocationMap = () => {
             </div>
 
             {/* Contact Card */}
-            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-amber-500/30 transition-all duration-300">
+            <div className="theme-soft-card rounded-2xl p-6 theme-hover transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FontAwesomeIcon icon={faPhone} className="text-amber-400 text-xl" />
+                  <FontAwesomeIcon icon={faPhone} className="theme-accent text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white font-bold text-lg mb-2">Contact</h3>
-                  <p className="text-stone-300 text-sm">
-                    <FontAwesomeIcon icon={faPhone} className="text-amber-400 mr-2" />
+                  <h3 className="theme-heading font-bold text-lg mb-2">Contact</h3>
+                  <p className="theme-muted text-sm">
+                    <FontAwesomeIcon icon={faPhone} className="theme-accent mr-2" />
                     {churchInfo.phone}
                   </p>
-                  <p className="text-stone-300 text-sm mt-2">
-                    <FontAwesomeIcon icon={faEnvelope} className="text-amber-400 mr-2" />
+                  <p className="theme-text text-sm mt-2">
+                    <FontAwesomeIcon icon={faEnvelope} className="theme-accent mr-2" />
                     {churchInfo.email}
                   </p>
                 </div>
@@ -213,17 +206,17 @@ const LocationMap = () => {
             </div>
 
             {/* Get Directions Card */}
-            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50">
+            <div className="theme-card p-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FontAwesomeIcon icon={faRoute} className="text-amber-400 text-xl" />
+                  <FontAwesomeIcon icon={faRoute} className="theme-accent text-xl" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white font-bold text-lg mb-3">Get Directions</h3>
+                  <h3 className="theme-heading font-bold text-lg mb-3">Get Directions</h3>
                   {!showDirections ? (
                     <button
                       onClick={() => setShowDirections(true)}
-                      className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                      className="w-full py-2.5 theme-button rounded-xl font-medium flex items-center justify-center gap-2"
                     >
                       <FontAwesomeIcon icon={faCar} />
                       Plan Your Route
@@ -235,7 +228,7 @@ const LocationMap = () => {
                         value={directions.from}
                         onChange={(e) => setDirections(prev => ({ ...prev, from: e.target.value }))}
                         placeholder="Enter your starting address"
-                        className="w-full px-4 py-2 rounded-xl bg-stone-700/50 border border-stone-600 text-white placeholder-stone-400 focus:outline-none focus:border-amber-500 transition-all"
+                        className="theme-input"
                         autoFocus
                       />
                       <div className="flex gap-2">
@@ -245,8 +238,8 @@ const LocationMap = () => {
                             type="button"
                             onClick={() => setDirections(prev => ({ ...prev, travelMode: mode }))}
                             className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${directions.travelMode === mode
-                              ? "bg-amber-500 text-white"
-                              : "bg-stone-700/50 text-stone-400 hover:bg-stone-700"
+                              ? "theme-button"
+                              : "theme-soft-card theme-text hover:opacity-80"
                               }`}
                           >
                             <FontAwesomeIcon
@@ -268,14 +261,14 @@ const LocationMap = () => {
                       <div className="flex gap-2">
                         <button
                           type="submit"
-                          className="flex-1 py-2 bg-amber-500 text-white rounded-xl font-medium hover:bg-amber-600 transition-all"
+                          className="flex-1 py-2 theme-button rounded-xl font-medium"
                         >
                           Get Directions
                         </button>
                         <button
                           type="button"
                           onClick={() => setShowDirections(false)}
-                          className="py-2 px-4 bg-stone-700 text-stone-300 rounded-xl hover:bg-stone-600 transition-all"
+                          className="py-2 px-4 theme-soft-card theme-text rounded-xl hover:opacity-80 transition-all"
                         >
                           Cancel
                         </button>
@@ -290,21 +283,21 @@ const LocationMap = () => {
             <div className="flex gap-3">
               <button
                 onClick={openWaze}
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 py-3 theme-soft-card theme-text theme-hover rounded-xl transition-all"
               >
                 <FontAwesomeIcon icon={faWaze} className="text-lg" />
                 <span className="text-sm">Waze</span>
               </button>
               <button
                 onClick={() => window.open(`https://www.google.com/maps/dir//${encodeURIComponent(churchInfo.address)}`, '_blank')}
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 py-3 theme-soft-card theme-text theme-hover rounded-xl transition-all"
               >
                 <FontAwesomeIcon icon={faGoogle} className="text-lg" />
                 <span className="text-sm">Google</span>
               </button>
               <button
                 onClick={() => window.open(`https://maps.apple.com/?address=${encodeURIComponent(churchInfo.address)}`, '_blank')}
-                className="flex-1 flex items-center justify-center gap-2 py-3 bg-stone-800/40 backdrop-blur-sm rounded-xl border border-stone-700/50 text-stone-300 hover:border-amber-500/30 hover:text-amber-400 transition-all"
+                className="flex-1 flex items-center justify-center gap-2 py-3 theme-soft-card theme-text theme-hover rounded-xl transition-all"
               >
                 <FontAwesomeIcon icon={faApple} className="text-lg" />
                 <span className="text-sm">Apple</span>
@@ -315,13 +308,13 @@ const LocationMap = () => {
           {/* Right Column - Map and Tabs */}
           <div className="lg:col-span-2">
             {/* Map Container */}
-            <div className="bg-stone-800/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-stone-700/50">
-              <div className="relative h-[400px] md:h-[450px] bg-stone-800">
+            <div className="theme-soft-card rounded-2xl overflow-hidden">
+              <div className="relative h-[400px] md:h-[450px] theme-glow">
                 {!mapLoaded ? (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <FontAwesomeIcon icon={faSpinner} spin className="text-amber-400 text-3xl mb-3" />
-                      <p className="text-stone-400">Loading map...</p>
+                      <FontAwesomeIcon icon={faSpinner} spin className="theme-accent text-3xl mb-3" />
+                      <p className="theme-muted">Loading map...</p>
                     </div>
                   </div>
                 ) : (
@@ -333,7 +326,7 @@ const LocationMap = () => {
                       className="w-full h-full object-cover opacity-80"
                     />
                     {/* Map Overlay with Pin */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <div className="relative">
                         <div className="absolute inset-0 bg-amber-500 rounded-full animate-ping opacity-75"></div>
@@ -344,10 +337,10 @@ const LocationMap = () => {
                     </div>
                     {/* Map Controls */}
                     <div className="absolute bottom-4 right-4 flex gap-2">
-                      <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
+                      <button className="w-10 h-10 theme-card rounded-lg flex items-center justify-center theme-text hover:opacity-80 transition-all">
                         <FontAwesomeIcon icon={faPlus} />
                       </button>
-                      <button className="w-10 h-10 bg-stone-800/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-amber-500 transition-all">
+                      <button className="w-10 h-10 theme-card rounded-lg flex items-center justify-center theme-text hover:opacity-80 transition-all">
                         <FontAwesomeIcon icon={faMinus} />
                       </button>
                     </div>
@@ -356,15 +349,15 @@ const LocationMap = () => {
               </div>
 
               {/* Tabs Navigation */}
-              <div className="border-b border-stone-700">
+              <div className="theme-border border-b">
                 <div className="flex">
                   {["map", "parking", "accessibility", "nearby"].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setSelectedTab(tab)}
                       className={`flex-1 py-3 text-sm font-medium transition-all ${selectedTab === tab
-                        ? "text-amber-400 border-b-2 border-amber-400"
-                        : "text-stone-400 hover:text-stone-300"
+                        ? "theme-accent border-b-2 border-amber-400"
+                        : "theme-muted hover:theme-text"
                         }`}
                     >
                       <FontAwesomeIcon
@@ -389,13 +382,13 @@ const LocationMap = () => {
               <div className="p-5">
                 {selectedTab === "map" && (
                   <div>
-                    <h4 className="text-white font-semibold mb-3">Interactive Map</h4>
-                    <p className="text-stone-400 text-sm mb-4">
+                    <h4 className="theme-heading font-semibold mb-3">Interactive Map</h4>
+                    <p className="theme-muted text-sm mb-4">
                       Use the controls to zoom and pan. Click the pin for more information about our location.
                     </p>
                     <button
                       onClick={openGoogleMaps}
-                      className="text-amber-400 text-sm hover:text-amber-300 transition-colors flex items-center gap-1"
+                      className="theme-accent text-sm hover:opacity-80 transition-colors flex items-center gap-1"
                     >
                       Open in Google Maps <FontAwesomeIcon icon={faExternalLink} className="text-xs" />
                     </button>
@@ -404,34 +397,34 @@ const LocationMap = () => {
 
                 {selectedTab === "parking" && (
                   <div className="space-y-3">
-                    <h4 className="text-white font-semibold mb-3">Parking Information</h4>
+                    <h4 className="theme-heading font-semibold mb-3">Parking Information</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faBuilding} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faBuilding} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Main Parking Garage</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.parking.main}</p>
+                          <p className="theme-text text-sm font-medium">Main Parking Garage</p>
+                          <p className="theme-muted text-sm">{churchInfo.parking.main}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faRoad} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faRoad} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Street Parking</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.parking.street}</p>
+                          <p className="theme-text text-sm font-medium">Street Parking</p>
+                          <p className="theme-muted text-sm">{churchInfo.parking.street}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faWheelchair} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faWheelchair} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Handicap Parking</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.parking.handicap}</p>
+                          <p className="theme-text text-sm font-medium">Handicap Parking</p>
+                          <p className="theme-muted text-sm">{churchInfo.parking.handicap}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faSchool} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faSchool} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Overflow Parking</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.parking.overflow}</p>
+                          <p className="theme-text text-sm font-medium">Overflow Parking</p>
+                          <p className="theme-muted text-sm">{churchInfo.parking.overflow}</p>
                         </div>
                       </div>
                     </div>
@@ -440,34 +433,34 @@ const LocationMap = () => {
 
                 {selectedTab === "accessibility" && (
                   <div className="space-y-3">
-                    <h4 className="text-white font-semibold mb-3">Accessibility Features</h4>
+                    <h4 className="theme-heading font-semibold mb-3">Accessibility Features</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faWheelchair} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faWheelchair} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Wheelchair Access</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.wheelchair}</p>
+                          <p className="theme-text text-sm font-medium">Wheelchair Access</p>
+                          <p className="theme-muted text-sm">{churchInfo.accessibility.wheelchair}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faEarDeaf} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faEarDeaf} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Hearing Assistance</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.hearing}</p>
+                          <p className="theme-text text-sm font-medium">Hearing Assistance</p>
+                          <p className="theme-muted text-sm">{churchInfo.accessibility.hearing}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faPrint} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faPrint} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Large Print</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.largePrint}</p>
+                          <p className="theme-text text-sm font-medium">Large Print</p>
+                          <p className="theme-muted text-sm">{churchInfo.accessibility.largePrint}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <FontAwesomeIcon icon={faPeace} className="text-amber-400 mt-0.5" />
+                        <FontAwesomeIcon icon={faPeace} className="theme-accent mt-0.5" />
                         <div>
-                          <p className="text-white text-sm font-medium">Sensory-Friendly</p>
-                          <p className="text-stone-400 text-sm">{churchInfo.accessibility.sensory}</p>
+                          <p className="theme-text text-sm font-medium">Sensory-Friendly</p>
+                          <p className="theme-muted text-sm">{churchInfo.accessibility.sensory}</p>
                         </div>
                       </div>
                     </div>
@@ -476,38 +469,36 @@ const LocationMap = () => {
 
                 {selectedTab === "nearby" && (
                   <div>
-                    <h4 className="text-white font-semibold mb-3">Nearby Amenities</h4>
+                    <h4 className="theme-heading font-semibold mb-3">Nearby Amenities</h4>
                     <div className="grid grid-cols-2 gap-3">
                       {churchInfo.nearby.map((place, idx) => (
-                        <div key={idx} className="flex items-center gap-3 p-2 bg-stone-700/30 rounded-lg">
+                        <div key={idx} className="flex items-center gap-3 p-2 theme-soft-card rounded-lg">
                           <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                           {/*  <FontAwesomeIcon icon={icons[place.iconKey]} className="text-amber-400 text-sm" /> */}
-                            <FontAwesomeIcon icon={place.icon} className="text-amber-400 text-sm" />
+                            <FontAwesomeIcon icon={place.icon} className="theme-accent text-sm" />
                           </div>
                           <div>
-                            <p className="text-white text-sm font-medium">{place.name}</p>
-                            <p className="text-stone-400 text-xs">{place.type} • {place.distance}</p>
+                            <p className="theme-text text-sm font-medium">{place.name}</p>
+                            <p className="theme-muted text-xs">{place.type} • {place.distance}</p>
                           </div>
                         </div>
                       ))}
                     </div>
-                    <div className="mt-4 pt-4 border-t border-stone-700">
-                      <h5 className="text-white text-sm font-medium mb-2">Public Transportation</h5>
+                    <div className="mt-4 pt-4 theme-border border-t">
+                      <h5 className="theme-text text-sm font-medium mb-2">Public Transportation</h5>
                       <div className="space-y-1">
-                        <p className="text-stone-400 text-sm flex items-center gap-2">
-                          <FontAwesomeIcon icon={faBus} className="text-amber-400" />
+                        <p className="theme-muted text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faBus} className="theme-accent" />
                           {churchInfo.publicTransport.bus}
                         </p>
-
-                        <p className="text-stone-400 text-sm flex items-center gap-2">
-                          <FontAwesomeIcon icon={faTrain} className="text-amber-400" />
+                        <p className="theme-muted text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faTrain} className="theme-accent" />
                           {churchInfo.publicTransport.rail}
                         </p>
-
-                        <p className="text-stone-400 text-sm flex items-center gap-2">
-                          <FontAwesomeIcon icon={faBicycle} className="text-amber-400" />
+                        <p className="theme-muted text-sm flex items-center gap-2">
+                          <FontAwesomeIcon icon={faBicycle} className="theme-accent" />
                           {churchInfo.publicTransport.bike}
-                        </p>   </div>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -517,15 +508,15 @@ const LocationMap = () => {
         </div>
 
         {/* Service Times Banner */}
-        <div className="mt-12 bg-gradient-to-r from-amber-600/20 to-amber-700/20 backdrop-blur-sm rounded-2xl p-6 border border-amber-500/20 text-center">
+        <div className="mt-12 theme-glow rounded-2xl p-6 theme-border text-center">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center">
-                <FontAwesomeIcon icon={faClock} className="text-amber-400 text-xl" />
+                <FontAwesomeIcon icon={faClock} className="theme-accent text-xl" />
               </div>
               <div className="text-left">
-                <h4 className="text-white font-semibold">Service Times</h4>
-                <p className="text-stone-300 text-sm">Sunday 9:00 AM & 11:00 AM | Wednesday 7:00 PM | Saturday 6:00 PM</p>
+                <h4 className="theme-heading font-semibold">Service Times</h4>
+                <p className="theme-muted text-sm">Sunday 9:00 AM & 11:00 AM | Wednesday 7:00 PM | Saturday 6:00 PM</p>
               </div>
             </div>
             <button
@@ -535,7 +526,7 @@ const LocationMap = () => {
                   serviceTimesSection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full font-medium transition-all flex items-center gap-2"
+              className="px-6 py-2 theme-button rounded-full font-medium transition-all flex items-center gap-2"
             >
               View Full Schedule <FontAwesomeIcon icon={faArrowRight} />
             </button>
@@ -544,8 +535,8 @@ const LocationMap = () => {
 
         {/* Virtual Tour Link */}
         <div className="text-center mt-8">
-          <button className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors">
-            <FontAwesomeIcon icon={faCube} className="text-lg text-amber-400" />
+          <button className="inline-flex items-center gap-2 theme-accent hover:opacity-80 transition-colors">
+            <FontAwesomeIcon icon={faCube} className="text-lg" />
             <span>Take a Virtual Tour of Our Church</span>
             <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
           </button>

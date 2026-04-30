@@ -15,7 +15,6 @@ import {
 import { useState, useEffect, useRef } from "react";
 
 import aboutpage from "../assets/images/aboutpage.jpg";
-/* import "../css/about.css"; */
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,9 +80,9 @@ const About = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="inline-flex items-center gap-2 bg-amber-100/50 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-amber-200/50 mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-2 bg-amber-100/50 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full theme-border mb-4 sm:mb-6">
             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 theme-accent" />
-            <span className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-amber-700">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-widest uppercase theme-accent">
               Since 1998
             </span>
           </div>
@@ -102,7 +101,7 @@ const About = () => {
             <div className="w-2 sm:w-3 h-1 bg-amber-200 rounded-full"></div>
           </div>
 
-          <p className="max-w-2xl mx-auto mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
+          <p className="max-w-2xl mx-auto mt-4 sm:mt-6 text-sm sm:text-base md:text-lg theme-text leading-relaxed px-2">
             A Christ-centered community built on faith, connection, and purpose,
             where everyone belongs and no one walks alone.
           </p>
@@ -119,16 +118,6 @@ const About = () => {
             }`}
           >
             <div className="space-y-4 sm:space-y-6">
-              {/*  <div className="relative">
-                <div className="absolute -left-3 sm:-left-4 top-0 w-0.5 sm:w-1 h-12 sm:h-16 bg-gradient-to-b from-amber-400 to-orange-400 rounded-full"></div>
-                <p className="text-sm sm:text-base md:text-lg theme-text leading-relaxed pl-4 sm:pl-6">
-                  Grace Covenant Church was founded in 1998 with a vision to create
-                  a spiritual family where everyone belongs. We are a diverse
-                  community committed to biblical truth, authentic worship, and
-                  serving people with compassion.
-                </p>
-              </div> */}
-
               <div className="relative group max-w-2xl">
                 {/* Gradient line */}
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber-400 via-orange-400 to-amber-500 rounded-full"></div>
@@ -152,9 +141,9 @@ const About = () => {
               </div>
 
               <div className="theme-soft-card rounded-xl sm:rounded-2xl p-4 sm:p-6">
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base theme-text leading-relaxed">
                   Our mission is simple yet powerful:
-                  <span className="block mt-1 sm:mt-2 font-semibold text-transparent bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-lg sm:text-xl">
+                  <span className="block mt-1 sm:mt-2 font-semibold theme-gradient-text text-lg sm:text-xl">
                     “To know Christ and make Him known.”
                   </span>
                 </p>
@@ -187,7 +176,7 @@ const About = () => {
                   return (
                     <div
                       key={idx}
-                     className="group relative cursor-pointer text-center rounded-xl sm:rounded-2xl theme-card hover:border-amber-300/70 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                      className="group relative cursor-pointer text-center rounded-xl sm:rounded-2xl theme-card theme-hover transition-all duration-300"
                       onMouseEnter={() => setActiveIndex(idx)}
                       onMouseLeave={() => setActiveIndex(null)}
                     >
@@ -243,7 +232,7 @@ const About = () => {
                         </p>
 
                         {/* Description */}
-                        <p className="hidden md:block text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-w-[90px] mx-auto">
+                        <p className="hidden md:block text-xs theme-muted mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-w-[90px] mx-auto">
                           {item.description}
                         </p>
 
@@ -259,7 +248,7 @@ const About = () => {
             </div>
 
             {/* Stats Section - Responsive */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4 sm:pt-6 border-t theme-border">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4 sm:pt-6 theme-border border-t">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 const [count, setCount] = useState(0);
@@ -287,17 +276,17 @@ const About = () => {
                 return (
                   <div
                     key={idx}
-                    className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl hover:bg-amber-50/50 transition-all duration-300 group cursor-pointer"
+                    className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl theme-hover transition-all duration-300 group cursor-pointer"
                   >
                     <div className="p-1.5 sm:p-2 bg-amber-100 rounded-lg group-hover:bg-amber-200 transition-colors duration-300">
                       <Icon className="w-4 h-4 sm:w-5 sm:h-5 theme-accent" />
                     </div>
                     <div>
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-gray-800">
+                      <div className="text-base sm:text-lg md:text-xl font-bold theme-heading">
                         {count.toLocaleString()}
                         {stat.suffix}
                       </div>
-                      <div className="text-[10px] sm:text-xs text-gray-500">
+                      <div className="text-[10px] sm:text-xs theme-muted">
                         {stat.label}
                       </div>
                     </div>
@@ -337,7 +326,8 @@ const About = () => {
               />
 
               {/* Glass Card - RESPONSIVE & BETTER POSITIONING */}
-             <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 right-3 sm:right-auto z-30 theme-card rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 py-2 sm:py-3 shadow-xl animate-slide-up group-hover:translate-y-[-3px] sm:group-hover:translate-y-[-5px] transition-transform duration-300">    <div className="flex items-center justify-between gap-2 sm:gap-3">
+              <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 right-3 sm:right-auto z-30 theme-card rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 py-2 sm:py-3 shadow-xl animate-slide-up group-hover:translate-y-[-3px] sm:group-hover:translate-y-[-5px] transition-transform duration-300">
+                <div className="flex items-center justify-between gap-2 sm:gap-3">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
                     <p className="text-xs sm:text-sm theme-text font-semibold">
@@ -349,7 +339,7 @@ const About = () => {
               </div>
 
               {/* Floating badge - RESPONSIVE & HIDDEN ON VERY SMALL */}
-              <div className="absolute -top-2 sm:-top-3 md:-top-4 -right-2 sm:-right-3 md:-right-4 z-30 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 shadow-xl animate-float-slow hidden sm:block">
+              <div className="absolute -top-2 sm:-top-3 md:-top-4 -right-2 sm:-right-3 md:-right-4 z-30 theme-button rounded-xl sm:rounded-2xl px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 shadow-xl animate-float-slow hidden sm:block">
                 <div className="flex items-center gap-1 sm:gap-2">
                   <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                   <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap">
@@ -359,7 +349,7 @@ const About = () => {
               </div>
 
               {/* Mobile badge - SHOWN ON SMALL SCREENS */}
-              <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-30 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg sm:rounded-xl px-2 py-1 shadow-xl sm:hidden">
+              <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-30 theme-button rounded-lg sm:rounded-xl px-2 py-1 shadow-xl sm:hidden">
                 <div className="flex items-center gap-1">
                   <Clock className="w-2.5 h-2.5 text-white" />
                   <span className="text-white text-[9px] font-semibold">
@@ -377,16 +367,16 @@ const About = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 theme-soft-card backdrop-blur-sm rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-3 shadow-md border theme-border">
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 theme-soft-card backdrop-blur-sm rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-3 shadow-md theme-border">
             <div className="flex items-center gap-1 sm:gap-2">
               <Heart className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 theme-accent fill-amber-600" />
               <span className="text-xs sm:text-sm theme-text font-medium">
                 2,500+ lives transformed
               </span>
             </div>
-            <div className="w-px h-4 sm:h-5 md:h-6 bg-amber-200"></div>
+            <div className="w-px h-4 sm:h-5 md:h-6 theme-border bg-amber-200"></div>
             <div className="flex items-center gap-1 sm:gap-2">
-              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-orange-500" />
+              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 theme-accent" />
               <span className="text-xs sm:text-sm theme-text font-medium">
                 Growing together in faith
               </span>
