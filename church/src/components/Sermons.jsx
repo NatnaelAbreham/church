@@ -1,6 +1,8 @@
 // components/Sermons.jsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Sermons = () => {
   const [activeVideo, setActiveVideo] = useState(null);
@@ -33,7 +35,7 @@ const Sermons = () => {
   ];
 
   return (
-    <section id="sermons" className="relative py-28 px-6 bg-gradient-to-b from-[#fdfaf6] to-white overflow-hidden">
+    <section id="sermons" className="relative py-28 px-6 theme-section overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -44,14 +46,13 @@ const Sermons = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <span className="text-amber-700 font-semibold tracking-widest uppercase text-sm">
+          <span className="theme-accent font-semibold tracking-widest uppercase text-sm">
             Watch & Listen
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
-         
-            <span className="text-amber-700">   Recent Sermons</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 theme-heading">
+            <span className="theme-accent">Recent Sermons</span>
           </h2>
-          <p className="text-stone-500 mt-3 max-w-xl mx-auto">
+          <p className="theme-muted mt-3 max-w-xl mx-auto">
             Fresh teachings designed to inspire, strengthen, and guide your spiritual journey.
           </p>
         </motion.div>
@@ -66,7 +67,7 @@ const Sermons = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
               whileHover={{ y: -10 }}
-              className="group relative bg-white/70 backdrop-blur-xl rounded-2xl overflow-hidden shadow-lg border border-white/40 cursor-pointer"
+              className="group relative theme-card rounded-2xl overflow-hidden shadow-lg cursor-pointer"
               onClick={() => setActiveVideo(sermon.video)}
             >
               {/* Image */}
@@ -80,20 +81,20 @@ const Sermons = () => {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                   <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center animate-pulse">
-                    <i className="fas fa-play text-white text-2xl"></i>
+                    <FontAwesomeIcon icon={faPlay} className="text-white text-2xl" />
                   </div>
                 </div>
               </div>
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold group-hover:text-amber-700 transition">
+                <h3 className="text-xl font-bold theme-heading group-hover:theme-accent transition">
                   {sermon.title}
                 </h3>
-                <p className="text-stone-500 mt-1 text-sm">
+                <p className="theme-muted mt-1 text-sm">
                   {sermon.pastor} • {sermon.duration}
                 </p>
-                <p className="text-stone-600 mt-3 text-sm leading-relaxed">
+                <p className="theme-text mt-3 text-sm leading-relaxed">
                   {sermon.desc}
                 </p>
               </div>
@@ -103,9 +104,9 @@ const Sermons = () => {
 
         {/* CTA */}
         <div className="text-center mt-14">
-          <button className="relative inline-flex items-center gap-2 text-amber-800 font-semibold group">
+          <button className="relative inline-flex items-center gap-2 theme-accent font-semibold group">
             Watch all sermons
-            <i className="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            <FontAwesomeIcon icon={faArrowRight} className="transition-transform group-hover:translate-x-1" />
             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-amber-500 group-hover:w-full transition-all"></span>
           </button>
         </div>

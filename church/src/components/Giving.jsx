@@ -66,8 +66,8 @@ const Giving = () => {
               Share your burden and let our prayer team stand with you.
             </p>
             <button
-  onClick={handlePrayerRequest}
-  className="
+              onClick={handlePrayerRequest}
+              className="
     w-full
     bg-amber-500 text-white
     dark:bg-amber-500/20 dark:text-amber-300
@@ -77,9 +77,9 @@ const Giving = () => {
     transition-all transform
     hover:scale-[1.02] hover:shadow-md
   "
->
-  Request Prayer
-</button>
+            >
+              Request Prayer
+            </button>
           </div>
 
         </div>

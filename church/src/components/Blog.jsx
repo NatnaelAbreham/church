@@ -1,4 +1,3 @@
-
 // components/Blog.jsx
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -148,7 +147,6 @@ const Blog = () => {
       `,
     },
 
-   
     {
       id: 6,
       title: "A Testimony of Healing and Hope",
@@ -217,36 +215,33 @@ const Blog = () => {
   return (
     <section
       id="blog"
-      className="relative overflow-hidden bg-[#050505] text-white py-32 px-6"
+      className="relative overflow-hidden theme-section py-32 px-6"
     >
       {/* Ambient Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/20 rounded-full blur-[140px]" />
-
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[140px]" />
-
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-yellow-500/5 rounded-full blur-[180px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-5xl mx-auto mb-24">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl mb-8">
-            <Sparkles className="w-4 h-4 text-amber-300" />
-
-            <span className="uppercase tracking-[0.3em] text-xs text-amber-200 font-semibold">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full theme-border backdrop-blur-2xl mb-8">
+            <Sparkles className="w-4 h-4 theme-accent" />
+            <span className="uppercase tracking-[0.3em] text-xs theme-accent font-semibold">
               Faith • Stories • Growth
             </span>
           </div>
 
-          <h2 className="text-6xl md:text-8xl font-black leading-[0.95] tracking-tight mb-8">
+          <h2 className="text-6xl md:text-8xl font-black leading-[0.95] tracking-tight mb-8 theme-heading">
             Spiritual
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-orange-500">
+            <span className="block theme-gradient-text">
               Insights
             </span>
           </h2>
 
-          <p className="text-zinc-400 text-xl leading-relaxed max-w-3xl mx-auto">
+          <p className="theme-text text-xl leading-relaxed max-w-3xl mx-auto">
             Discover devotionals, sermons, testimonies, and powerful stories
             crafted to strengthen your spiritual journey.
           </p>
@@ -255,16 +250,14 @@ const Blog = () => {
         {/* Search */}
         <div className="relative max-w-2xl mx-auto mb-10">
           <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl blur opacity-20" />
-
-          <div className="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-2xl overflow-hidden">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
-
+          <div className="relative theme-card rounded-2xl overflow-hidden">
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 theme-muted" />
             <input
               type="text"
               placeholder="Search inspiration..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-transparent py-5 pl-14 pr-6 text-white placeholder:text-zinc-500 outline-none"
+              className="w-full bg-transparent py-5 pl-14 pr-6 theme-heading placeholder:theme-muted outline-none"
             />
           </div>
         </div>
@@ -280,8 +273,8 @@ const Blog = () => {
                 transition-all duration-500
                 ${
                   selectedCategory === category.id
-                    ? "bg-gradient-to-r from-amber-400 to-orange-500 text-black border-transparent shadow-[0_0_40px_rgba(251,191,36,0.35)]"
-                    : "bg-white/5 border-white/10 text-zinc-300 hover:bg-white/10"
+                    ? "theme-button shadow-[0_0_40px_rgba(251,191,36,0.35)]"
+                    : "theme-card theme-text hover:opacity-80"
                 }
               `}
             >
@@ -293,51 +286,41 @@ const Blog = () => {
         {/* Featured Hero */}
         {featuredPost && selectedCategory === "all" && !searchTerm && (
           <div
-            className="group relative overflow-hidden rounded-[40px] mb-28 border border-white/10"
+            className="group relative overflow-hidden rounded-[40px] mb-28 theme-border cursor-pointer"
             onClick={() => setSelectedPost(featuredPost)}
           >
             <div className="absolute inset-0 bg-black/40 z-10" />
-
             <img
               src={featuredPost.image}
               alt={featuredPost.title}
               className="w-full h-[750px] object-cover group-hover:scale-105 transition-transform duration-[4000ms]"
             />
-
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-20" />
-
             <div className="absolute bottom-0 left-0 p-8 md:p-16 z-30 max-w-4xl">
-              <div className="inline-flex items-center gap-3 bg-white/10 border border-white/10 backdrop-blur-xl rounded-full px-5 py-3 mb-8">
+              <div className="inline-flex items-center gap-3 theme-card rounded-full px-5 py-3 mb-8">
                 <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-
-                <span className="uppercase tracking-[0.25em] text-xs text-amber-200 font-semibold">
+                <span className="uppercase tracking-[0.25em] text-xs theme-accent font-semibold">
                   Featured Story
                 </span>
               </div>
-
-              <h3 className="text-4xl md:text-7xl font-black leading-[0.95] mb-8 max-w-4xl">
+              <h3 className="text-4xl md:text-7xl font-black leading-[0.95] mb-8 max-w-4xl text-white">
                 {featuredPost.title}
               </h3>
-
               <p className="text-zinc-300 text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
                 {featuredPost.excerpt}
               </p>
-
               <div className="flex flex-wrap items-center gap-6 text-zinc-300 mb-10">
                 <div className="flex items-center gap-2">
                   <CalendarDays className="w-4 h-4" />
                   <span>{formatDate(featuredPost.date)}</span>
                 </div>
-
                 <div className="flex items-center gap-2">
                   <Clock3 className="w-4 h-4" />
                   <span>{featuredPost.readTime} min read</span>
                 </div>
               </div>
-
-              <button className="group/btn inline-flex items-center gap-3 px-8 py-5 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold hover:scale-105 transition-all duration-500 shadow-[0_10px_60px_rgba(251,191,36,0.35)]">
+              <button className="group/btn inline-flex items-center gap-3 px-8 py-5 rounded-2xl theme-button font-bold hover:scale-105 transition-all duration-500 shadow-[0_10px_60px_rgba(251,191,36,0.35)]">
                 Read Story
-
                 <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -350,7 +333,7 @@ const Blog = () => {
             <div
               key={post.id}
               onClick={() => setSelectedPost(post)}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl hover:border-amber-400/30 transition-all duration-700 cursor-pointer hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
+              className="group relative overflow-hidden rounded-[32px] theme-card hover:border-amber-400/30 transition-all duration-700 cursor-pointer hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
             >
               <div className="relative h-[320px] overflow-hidden">
                 <img
@@ -358,48 +341,39 @@ const Blog = () => {
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
                 />
-
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               </div>
-
               <div className="relative -mt-24 z-10 px-6 pb-6">
-                <div className="rounded-[28px] border border-white/10 bg-black/60 backdrop-blur-2xl p-6">
+                <div className="rounded-[28px] theme-card backdrop-blur-2xl p-6">
                   <div className="flex items-center justify-between mb-5">
-                    <span className="px-4 py-2 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs uppercase tracking-[0.2em]">
+                    <span className="px-4 py-2 rounded-full bg-amber-400/10 theme-border border-amber-400/20 theme-accent text-xs uppercase tracking-[0.2em]">
                       {post.category}
                     </span>
-
-                    <div className="flex items-center gap-2 text-zinc-500 text-sm">
+                    <div className="flex items-center gap-2 theme-muted text-sm">
                       <Clock3 className="w-4 h-4" />
                       <span>{post.readTime}m</span>
                     </div>
                   </div>
-
-                  <h3 className="text-2xl font-bold leading-tight mb-4 text-white group-hover:text-amber-300 transition-colors duration-500">
+                  <h3 className="text-2xl font-bold leading-tight mb-4 theme-heading group-hover:theme-accent transition-colors duration-500">
                     {post.title}
                   </h3>
-
-                  <p className="text-zinc-400 leading-relaxed mb-6 line-clamp-3">
+                  <p className="theme-text leading-relaxed mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
-
-                  <div className="flex items-center justify-between pt-5 border-t border-white/10">
+                  <div className="flex items-center justify-between pt-5 theme-border border-t">
                     <div>
-                      <p className="font-semibold text-white text-sm">
+                      <p className="font-semibold theme-heading text-sm">
                         {post.author}
                       </p>
-
-                      <p className="text-zinc-500 text-xs mt-1">
+                      <p className="theme-muted text-xs mt-1">
                         {formatDate(post.date)}
                       </p>
                     </div>
-
-                    <div className="flex items-center gap-4 text-zinc-500 text-sm">
+                    <div className="flex items-center gap-4 theme-muted text-sm">
                       <div className="flex items-center gap-1">
                         <Heart className="w-4 h-4" />
                         <span>{post.likes}</span>
                       </div>
-
                       <div className="flex items-center gap-1">
                         <MessageCircle className="w-4 h-4" />
                         <span>{post.comments}</span>
@@ -415,24 +389,21 @@ const Blog = () => {
         {/* Empty */}
         {currentPosts.length === 0 && (
           <div className="text-center py-32">
-            <div className="w-28 h-28 rounded-full bg-white/5 border border-white/10 backdrop-blur-2xl flex items-center justify-center mx-auto mb-8">
-              <Search className="w-10 h-10 text-zinc-500" />
+            <div className="w-28 h-28 rounded-full theme-card backdrop-blur-2xl flex items-center justify-center mx-auto mb-8">
+              <Search className="w-10 h-10 theme-muted" />
             </div>
-
-            <h3 className="text-4xl font-black mb-4">
+            <h3 className="text-4xl font-black theme-heading mb-4">
               No Articles Found
             </h3>
-
-            <p className="text-zinc-500 max-w-xl mx-auto mb-8 text-lg">
+            <p className="theme-muted max-w-xl mx-auto mb-8 text-lg">
               Try adjusting your search or selecting another category.
             </p>
-
             <button
               onClick={() => {
                 setSearchTerm("");
                 setSelectedCategory("all");
               }}
-              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold"
+              className="px-8 py-4 rounded-2xl theme-button font-bold"
             >
               Reset Filters
             </button>
@@ -445,29 +416,27 @@ const Blog = () => {
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((prev) => prev - 1)}
-              className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl flex items-center justify-center disabled:opacity-40 hover:bg-white/10 transition-all"
+              className="w-14 h-14 rounded-2xl theme-card backdrop-blur-2xl flex items-center justify-center disabled:opacity-40 hover:opacity-80 transition-all"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(index + 1)}
                 className={`w-14 h-14 rounded-2xl font-bold transition-all duration-500 ${
                   currentPage === index + 1
-                    ? "bg-gradient-to-r from-amber-400 to-orange-500 text-black shadow-[0_0_40px_rgba(251,191,36,0.35)]"
-                    : "bg-white/5 border border-white/10 text-zinc-400 hover:bg-white/10"
+                    ? "theme-button shadow-[0_0_40px_rgba(251,191,36,0.35)]"
+                    : "theme-card theme-muted hover:opacity-80"
                 }`}
               >
                 {index + 1}
               </button>
             ))}
-
             <button
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage((prev) => prev + 1)}
-              className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl flex items-center justify-center disabled:opacity-40 hover:bg-white/10 transition-all"
+              className="w-14 h-14 rounded-2xl theme-card backdrop-blur-2xl flex items-center justify-center disabled:opacity-40 hover:opacity-80 transition-all"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -475,38 +444,32 @@ const Blog = () => {
         )}
 
         {/* Subscribe */}
-        <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl p-10 md:p-14 mt-32">
+        <div className="relative overflow-hidden rounded-[40px] theme-border bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl p-10 md:p-14 mt-32">
           <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-amber-500/20 blur-[120px] rounded-full" />
-
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-3 mb-6 px-5 py-3 rounded-full bg-white/5 border border-white/10">
-                <Sparkles className="w-4 h-4 text-amber-300" />
-
-                <span className="uppercase tracking-[0.25em] text-xs text-amber-200">
+              <div className="inline-flex items-center gap-3 mb-6 px-5 py-3 rounded-full theme-card">
+                <Sparkles className="w-4 h-4 theme-accent" />
+                <span className="uppercase tracking-[0.25em] text-xs theme-accent">
                   Weekly Inspiration
                 </span>
               </div>
-
-              <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+              <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight theme-heading">
                 Stay Inspired Every Week
               </h3>
-
-              <p className="text-zinc-400 text-lg leading-relaxed">
+              <p className="theme-text text-lg leading-relaxed">
                 Receive devotionals, church updates, and encouraging messages
                 delivered directly to your inbox.
               </p>
             </div>
-
             <div className="w-full max-w-xl">
               <div className="flex flex-col sm:flex-row gap-4">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 bg-black/40 border border-white/10 rounded-2xl px-6 py-5 text-white placeholder:text-zinc-500 outline-none focus:border-amber-400"
+                  className="flex-1 theme-input px-6 py-5"
                 />
-
-                <button className="px-8 py-5 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold hover:scale-105 transition-all duration-500 shadow-[0_10px_60px_rgba(251,191,36,0.35)]">
+                <button className="px-8 py-5 rounded-2xl theme-button font-bold hover:scale-105 transition-all duration-500 shadow-[0_10px_60px_rgba(251,191,36,0.35)]">
                   Subscribe
                 </button>
               </div>
@@ -522,7 +485,7 @@ const Blog = () => {
           onClick={() => setSelectedPost(null)}
         >
           <div
-            className="max-w-5xl mx-auto rounded-[40px] overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-[0_20px_120px_rgba(0,0,0,0.8)]"
+            className="max-w-5xl mx-auto rounded-[40px] overflow-hidden theme-border theme-card shadow-[0_20px_120px_rgba(0,0,0,0.8)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative h-[400px] md:h-[600px] overflow-hidden">
@@ -531,55 +494,44 @@ const Blog = () => {
                 alt={selectedPost.title}
                 className="w-full h-full object-cover"
               />
-
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-
               <button
                 onClick={() => setSelectedPost(null)}
-                className="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-amber-400 hover:text-black transition-all duration-500"
+                className="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-black/50 backdrop-blur-xl theme-border flex items-center justify-center hover:theme-button hover:text-black transition-all duration-500"
               >
                 <X className="w-6 h-6" />
               </button>
-
               <div className="absolute bottom-0 left-0 p-8 md:p-14 max-w-4xl">
-                <span className="inline-flex px-5 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-xl text-amber-200 text-xs uppercase tracking-[0.25em] mb-8">
+                <span className="inline-flex px-5 py-3 rounded-full theme-card backdrop-blur-xl theme-accent text-xs uppercase tracking-[0.25em] mb-8">
                   {selectedPost.category}
                 </span>
-
-                <h2 className="text-4xl md:text-6xl font-black leading-[1] mb-6">
+                <h2 className="text-4xl md:text-6xl font-black leading-[1] mb-6 text-white">
                   {selectedPost.title}
                 </h2>
-
                 <div className="flex flex-wrap items-center gap-6 text-zinc-300">
                   <span>{selectedPost.author}</span>
-
                   <span>{formatDate(selectedPost.date)}</span>
-
                   <span>{selectedPost.readTime} min read</span>
                 </div>
               </div>
             </div>
-
             <div className="p-8 md:p-14">
               <div
                 className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-p:text-zinc-300 prose-strong:text-white prose-li:text-zinc-300"
                 dangerouslySetInnerHTML={{ __html: selectedPost.content }}
               />
-
-              <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-6">
+              <div className="mt-16 pt-8 theme-border border-t flex flex-wrap items-center justify-between gap-6">
                 <div className="flex items-center gap-8">
-                  <button className="flex items-center gap-3 text-zinc-400 hover:text-red-400 transition-colors">
+                  <button className="flex items-center gap-3 theme-muted hover:text-red-400 transition-colors">
                     <Heart className="w-5 h-5" />
                     <span>{selectedPost.likes} Likes</span>
                   </button>
-
-                  <button className="flex items-center gap-3 text-zinc-400 hover:text-amber-300 transition-colors">
+                  <button className="flex items-center gap-3 theme-muted hover:theme-accent transition-colors">
                     <MessageCircle className="w-5 h-5" />
                     <span>{selectedPost.comments} Comments</span>
                   </button>
                 </div>
-
-                <button className="flex items-center gap-3 text-zinc-400 hover:text-amber-300 transition-colors">
+                <button className="flex items-center gap-3 theme-muted hover:theme-accent transition-colors">
                   <Share2 className="w-5 h-5" />
                   <span>Share Article</span>
                 </button>
