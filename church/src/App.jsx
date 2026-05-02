@@ -20,29 +20,9 @@ import ServiceTimes from "./components/ServiceTimes";
 import Newsletter from "./components/Newsletter";
 import Contact from "./components/Contact";
 import FAQ from "./components/FAQ";
-
+import Signin from "./components/signin";
 import Footer from "./components/Footer";
 
-
-/* 
-
-
-
-import ServiceTimes from "./components/ServiceTimes";
-import Gallery from "./components/Gallery";
-
-import Newsletter from "./components/Newsletter";
-
-
-
-
-
-
-import GivingProgress from "./components/GivingProgress";
-
-
-
- */
 
 function App() {
   return (
@@ -68,6 +48,7 @@ function App() {
       <Newsletter />
       <Contact />
       <FAQ />
+      <Signin />
       <Footer />
 
       {/* 
