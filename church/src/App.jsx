@@ -1,4 +1,3 @@
-// App.jsx (updated - final version with Blog)
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -51,26 +50,6 @@ function App() {
       <Signin />
       <Footer />
 
-      {/* 
-      <Events />
-      <Sermons />
-      
-      
-      
-      
-      <FAQ />
-      <Newsletter />
-      
-      <Announcements />
-     
-      <Volunteer />
-      
-      <EventsCalendar />
-      <GivingProgress />
-      <Blog />
-      
-     
-       */}
     </>
   );
 }
